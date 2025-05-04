@@ -16,7 +16,7 @@ import { SizeUpdateComponent } from './ui/components/dashboard/size/size-update/
 import { CategoryCreateComponent } from './ui/components/dashboard/category/category-create/category-create.component';
 import { ProductCreateComponent } from './ui/components/dashboard/product/product-create/product-create.component';
 import { SizeCreateComponent } from './ui/components/dashboard/size/size-create/size-create.component';
-import { RenderMode, ServerRoute } from '@angular/ssr';
+
 
 export const routes: Routes = [
     {
@@ -34,7 +34,7 @@ export const routes: Routes = [
           { path: "user/:Id", component: UserUpdateComponent },
 
           { path: "categories", component: CategoryTableComponent },
-          { path: "categorie/:Id", component: CategoryUpdateComponent },
+          { path: "category/:Id", component: CategoryUpdateComponent },
           { path: "categorycreate", component: CategoryCreateComponent },
 
           { path: "products", component: ProductTableComponent },
@@ -48,38 +48,5 @@ export const routes: Routes = [
       },
     { path: '**', component: NotFoundComponent },
 ];
-export const PrerenderRoutes: ServerRoute[] = [
-    {
-      path: '', 
-      renderMode: RenderMode.Client,
-    },
-    {
-      path: 'about',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: 'profile',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: 'dashboard/user/:Id',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: 'dashboard/categorie/:Id',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: 'dashboard/product/:Id',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: 'dashboard/size/:Id',
-      renderMode: RenderMode.Prerender,
-    },
-    {
-      path: '**',
-      renderMode: RenderMode.Prerender,
-    },
-  ];
+
   
