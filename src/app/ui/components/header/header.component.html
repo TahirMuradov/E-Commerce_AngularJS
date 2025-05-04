@@ -1,1 +1,152 @@
-<p>header works!</p>
+<header class="header_area">
+    <div class="top_header_area">
+      <div class="w-[80%] mx-auto h-full">
+        <div class="lg:flex h-full lg:items-center lg:justify-end grid grid-cols-4">
+          <div class="laungugage_box lg: w-1/4 col-span-1">
+            <!-- Replaced LocaleSwitcher with select option -->
+            <select class="language-selector">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <!-- Add more language options as needed -->
+            </select>
+          </div>
+          <div class="w-full lg:w-3/4 col-span-3">
+            <div class="top_single_area grid grid-cols-2 gap-3 lg:flex lg:items-center lg:justify-between">
+              <div class="top_logo col-span-1">
+                <a href="#">
+                  <img src="/img/core-img/logo.png" alt="Company Logo" />
+                </a>
+              </div>
+              <div class="header-cart-menu flex items-center">
+                <div class="cart mx-2">
+                    <a type="button" id="header-cart-btn" class="cursor-pointer" (click)="onclick(!clickSignal().cartListToogle,false,false)">
+                      <span class="cart_quantity">3</span>
+                      <svg class="shopping-bag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <!-- Shopping bag icon SVG path -->
+                      </svg>
+                      <span class="hidden lg:inline-block">
+                     Your Bag is   {{125.00 | currency:'AZN':'':'1.2-2'}} ₼
+                      </span>
+                    </a>
+                  
+                    <ul class="cart-list z-50" *ngIf="clickSignal().cartListToogle;" [ngClass]="{'cart-data-open':clickSignal().cartListToogle}">
+                      <li>
+                        <a href="#" class="image">
+                          <img src="/img/product-img/product-1.jpg" width="100" height="100" class="cart-thumb" alt="Product 1" />
+                        </a>
+                        <div class="cart-item-desc">
+                          <h6>
+                            <a href="#">Product Name 1</a>
+                          </h6>
+                          <p>
+                            1x - M - <span class="price">{{45.00 | currency:'AZN':'':'1.2-2'}} ₼</span>
+                          </p>
+                        </div>
+                        <span class="dropdown-product-remove">
+                          <i class="icon-cross">×</i>
+                        </span>
+                      </li>
+                      <li>
+                        <a href="#" class="image">
+                          <img src="/img/product-img/product-2.jpg" width="100" height="100" class="cart-thumb" alt="Product 2" />
+                        </a>
+                        <div class="cart-item-desc">
+                          <h6>
+                            <a href="#">Product Name 2</a>
+                          </h6>
+                          <p>
+                            2x - L - <span class="price">{{80.00 | currency:'AZN':'':'1.2-2'}} ₼</span>
+                          </p>
+                        </div>
+                        <span class="dropdown-product-remove">
+                          <i class="icon-cross">×</i>
+                        </span>
+                      </li>
+                      <li class="total">
+                        <span class="pull-right">Total: {{125.00 | currency:'AZN':'':'1.2-2'}} ₼</span>
+                        <a routerLink="/en/cart" class="font-bold py-2 mx-2 px-4 rounded btn-cart">
+                          Cart
+                        </a>
+                        <a routerLink="/en/checkout" class="font-bold py-2 px-4 rounded btn-checkout">
+                          Checkout
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+              
+              <div class="mx-2 p-2">
+                <!-- User box component would go here -->
+                <div class="user-box">
+                  <a href="/login">Login</a> | <a href="/register">Register</a>
+                </div>
+              </div>
+              
+              <div class="ml-15 block lg:hidden col-start-2">
+                <button type="button" (click)="onclick(false,!clickSignal().menuVisible,false)">
+                  <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <!-- Menu icon SVG path -->
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="main_header_area transition-all duration-500 overflow-hidden h-0 lg:h-[150px] " [ngClass]="{'h-[350px]':clickSignal().menuVisible}">
+      <div class="container h-full mx-auto">
+        <div class="flex h-full">
+          <div class="w-full lg:flex lg:justify-between text-center">
+            <div class="header-social-area">
+              <a href="#">
+                <svg class="facebook-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <!-- Facebook icon SVG path -->
+                </svg>
+              </a>
+              <a href="#">
+                <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <!-- Instagram icon SVG path -->
+                </svg>
+              </a>
+            </div>
+  
+            <div class="main-menu-area">
+              <nav>
+                <div class="" id="karl-navbar">
+                  <ul class="animated lg:flex z-40" id="nav">
+                    <li class="mx-3">
+                      <a class="nav-link cursor-pointer" routerLink="/en">Home</a>
+                    </li>
+                    <li class="mx-3">
+                      <a class="cursor-pointer" routerLink="/en/shop/1">Shop</a>
+                    </li>
+                    <li class="mx-3">
+                      <a class="cursor-pointer" routerLink="/en/contact">Contact</a>
+                    </li>
+                    <li class="mx-3">
+                      <a class="cursor-pointer" routerLink="/en/cart">Cart Detail</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+  
+            <div class="help-line">
+              <a href="tel:+994552784344" class="text-white">
+                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <!-- Phone icon SVG path -->
+                </svg>
+                
+
+                    +994 55 278 43 44
+                
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
