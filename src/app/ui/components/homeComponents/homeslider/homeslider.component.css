@@ -1,0 +1,32 @@
+.slider {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+  }
+  .slider img {
+    width: 100%;
+    height: auto;
+  }
+  .slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: aliceblue;
+    z-index: 50;
+  }
+  .slider button:first-of-type {
+    left: 10px;
+  }
+  .slider button:last-of-type {
+    right: 10px;
+  }
+  .override {
+    background-color: rgba(0, 0, 0, 0.4); 
+    height: 100%;
+  }
