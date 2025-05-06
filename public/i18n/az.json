@@ -1,0 +1,23 @@
+{
+    "header": {
+        "your_bag": "Səbətiniz",
+        "cart": "Səbət",
+        "checkout": "Ödəniş",
+        "login": "Daxil ol",
+        "register": "Qeydiyyat",
+        "total": "Ümumi",
+        "phone": "+994 55 278 43 44",
+        "logo_alt": "Şirkət loqosu",
+        "menu": {
+          "home": "Əsas səhifə",
+          "shop": "Mağaza",
+          "contact": "Əlaqə",
+          "cart_detail": "Səbət detalları"
+        },
+        "products": {
+          "product1": "Məhsul adı 1",
+          "product2": "Məhsul adı 2"
+        }
+      }
+    
+}

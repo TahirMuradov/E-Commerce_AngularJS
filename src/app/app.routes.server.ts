@@ -8,7 +8,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'about', // This page is static, so we prerender it (SSG)
-    renderMode: RenderMode.Prerender,
+    renderMode: RenderMode.Server,
   },
   {
     path: 'home', // This page requires user-specific data, so we use SSR

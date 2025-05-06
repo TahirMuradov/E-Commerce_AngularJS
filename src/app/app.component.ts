@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,                                    
+  imports: [RouterOutlet,TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'E-Commerce';
+  constructor(private translate: TranslateService) {
+    this.translate.addLangs(['az', 'en','ru']);
+    this.translate.setDefaultLang('az');
+    this.translate.use('az');
+  }
+currentLangCode:string;
+
+  useLanguage(language: string): void {
+    // Save to local storage or some related activity.
+    this.translate.use(language);
+
+    this.currentLangCode = this.translate.currentLang;
+    console.log('Current Language:', this.currentLangCode);
+  }
 }

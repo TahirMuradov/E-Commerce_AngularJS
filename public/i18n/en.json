@@ -1,0 +1,22 @@
+{
+  "header": {
+      "your_bag": "Your Bag is",
+      "cart": "Cart",
+      "checkout": "Checkout",
+      "login": "Login",
+      "register": "Register",
+      "total": "Total",
+      "phone": "+994 55 278 43 44",
+      "logo_alt": "Company Logo",
+      "menu": {
+        "home": "Home",
+        "shop": "Shop",
+        "contact": "Contact",
+        "cart_detail": "Cart Detail"
+      },
+      "products": {
+        "product1": "Product Name 1",
+        "product2": "Product Name 2"
+      }
+    }
+}
