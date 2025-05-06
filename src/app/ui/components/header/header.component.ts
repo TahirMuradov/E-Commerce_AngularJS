@@ -1,5 +1,5 @@
 import { CurrencyPipe, NgClass, NgIf } from '@angular/common';
-import { Component, NgModule, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
@@ -11,10 +11,6 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 })
 export class HeaderComponent {
 
-
-/**
- *
- */
 constructor(private translate: TranslateService) { 
 }
 
@@ -23,6 +19,7 @@ constructor(private translate: TranslateService) {
     toggleMenu:false,
     menuVisible:false
   })
+
   onclick(cartListToogle:boolean,
     toggleMenu:boolean,
     menuVisible:boolean,
