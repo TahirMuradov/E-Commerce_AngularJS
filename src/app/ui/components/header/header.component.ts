@@ -1,10 +1,10 @@
-import { CurrencyPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, NgClass, NgFor } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass,NgIf,NgFor,CurrencyPipe,TranslateModule,],
+  imports: [NgClass,NgFor,CurrencyPipe,TranslateModule,],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -24,18 +24,16 @@ this.supportLangs=this.translate.getLangs()
 
   clickSignal=signal({
     cartListToogle:false,
-    toggleMenu:false,
-    menuVisible:false
+    toggleMenu:false
   })
 
   onclick(cartListToogle:boolean,
     toggleMenu:boolean,
-    menuVisible:boolean,
+  
   ){
     this.clickSignal.set({
  cartListToogle:cartListToogle,
- menuVisible:menuVisible,
- toggleMenu:menuVisible
+ toggleMenu:toggleMenu
     })
 
 if (cartListToogle) {
