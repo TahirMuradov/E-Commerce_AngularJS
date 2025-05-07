@@ -1,10 +1,10 @@
-import { CurrencyPipe, NgClass, NgIf } from '@angular/common';
+import { CurrencyPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass,NgIf,CurrencyPipe,TranslateModule,],
+  imports: [NgClass,NgIf,NgFor,CurrencyPipe,TranslateModule,],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -12,6 +12,14 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 export class HeaderComponent {
 
 constructor(private translate: TranslateService) { 
+}
+
+currentLocale:string
+supportLangs:string[]
+ngOnInit() {
+  this.currentLocale= this.translate.currentLang;
+this.supportLangs=this.translate.getLangs()
+
 }
 
   clickSignal=signal({

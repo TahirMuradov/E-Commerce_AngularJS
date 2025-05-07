@@ -20,9 +20,16 @@
         }
       },
       "home":{
+        "home-slider":{
+          "btn":"Ətraflı Bax"
+        },
         "top-category-section":{
           "btn":"indi alış-veriş edin"
+        },
+        "new-arriwal-section":{
+          "new-arriwal":"Yeni Məhsullar"
         }
+
       },
       "product-cart":{
         "btn":"indi alış-veriş edin"

@@ -3,17 +3,18 @@ import HomeSliderDataType, { homeSliderData } from '../../../../models/ui/HomeSl
 import { CommonModule, NgStyle } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 declare var $: any;
 @Component({
   selector: 'app-homeslider',
   standalone:true,
-  imports: [NgStyle,CarouselModule,CommonModule],
+  imports: [NgStyle,CarouselModule,CommonModule,TranslateModule],
   templateUrl: './homeslider.component.html',
   styleUrl: './homeslider.component.css'
 })
 export class HomesliderComponent  {
- 
+  constructor(private translate: TranslateService) { 
+  }
   @Input({required:false})
   datas:HomeSliderDataType
   currentIndex:number = 0;

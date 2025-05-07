@@ -4,9 +4,12 @@
       <div class="lg:flex h-full lg:items-center lg:justify-end grid grid-cols-4">
         <div class="laungugage_box lg:w-1/4 col-span-1">
           <select (change)="useLanguage($event)" class="language-selector">
-            <option value="en">en</option>
-            <option value="ru">ru</option>
-            <option value="az">az</option>
+            <ng-container *ngFor="let lang of supportLangs">
+              <option [value]="lang" [selected]="lang === currentLanguage">
+                {{ lang }}
+              </option>
+            </ng-container>
+           
           </select>
         </div>
         <div class="w-full lg:w-3/4 col-span-3">

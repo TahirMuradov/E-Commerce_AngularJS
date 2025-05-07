@@ -3,16 +3,18 @@ import { ProductcartComponent } from '../../productcart/productcart.component';
 import {CommonModule} from '@angular/common';
 import ProductCartType from '../../../../models/ui/ProductCartType';
 import CategoryType from '../../../../models/ui/CategoryType';
-
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-new-arriwal-section',
   standalone:true,
-  imports: [ProductcartComponent,CommonModule],
+  imports: [ProductcartComponent,CommonModule,TranslateModule],
   templateUrl: './new-arriwal-section.component.html',
   styleUrl: './new-arriwal-section.component.css'
 })
 export class NewArriwalSectionComponent implements OnInit  {
 
+constructor(private translate: TranslateService) { 
+}
 
   signalSelectCategory = signal<string>('ALL');
   signalData = signal<ProductCartType[]>([]);

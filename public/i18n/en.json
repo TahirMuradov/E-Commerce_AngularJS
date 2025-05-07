@@ -20,8 +20,14 @@
       }
     },
     "home":{
+      "home-slider": {
+        "btn": "View Details"
+      },
       "top-category-section":{
       "btn":"start shopping"
+      },
+      "new-arrival-section": {
+        "new-arrival": "New Arrivals"
       }
     },
     "product-cart":{

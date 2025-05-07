@@ -21,9 +21,16 @@
         }
       },
       "home":{
+        "home-slider": {
+          "btn": "Подробнее"
+        },
         "top-category-section":{
          "btn":"начать покупки"
-        }
+        },
+        "new-arrival-section": {
+    "new-arrival": "Новые поступления"
+  }
+
       },
       "product-cart":{
         "btn":"начать покупки"
