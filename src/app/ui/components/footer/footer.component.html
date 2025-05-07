@@ -1,1 +1,58 @@
-<p>footer works!</p>
+<footer class="footer_area">
+    <div class="w-4/5 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-2">
+        <div class="">
+          <div class="single_footer_area">
+            <div class="footer-logo">
+              <img src="/img/core-img/logo.png" alt="logo" />
+            </div>
+            <div class="copywrite_text d-flex align-items-center">
+              <p >{{currentYear|date:'yyyy'}}</p>
+              <!-- Note: You'll need a SafeHtml pipe for security -->
+            </div>
+          </div>
+        </div>
+  
+        <div class="">
+          <div class="single_footer_area">
+            <ul class="footer_widget_menu">
+                <li class="">
+                    <a class="nav-link cursor-pointer" routerLink="">
+                      {{ 'header.menu.home' | translate }}
+                    </a>
+                  </li>
+                  <li class="">
+                    <a class="cursor-pointer" routerLink="/shop/1">
+                      {{ 'header.menu.shop' | translate }}
+                    </a>
+                  </li>
+                  <li class="">
+                    <a class="cursor-pointer" routerLink="contact">
+                      {{ 'header.menu.contact' | translate }}
+                    </a>
+                  </li>
+                  <li class="">
+                    <a class="cursor-pointer" routerLink="cart">
+                      {{ 'header.menu.cart_detail' | translate }}
+                    </a>
+                  </li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="line col-span-full"></div>
+  
+        <div class="footer_bottom_area col-span-full">
+          <div class="grid grid-cols-1">
+            <div class="">
+              <div class="footer_social_area text-center">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

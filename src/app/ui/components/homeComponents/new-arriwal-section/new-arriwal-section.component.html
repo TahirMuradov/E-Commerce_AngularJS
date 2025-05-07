@@ -1,55 +1,31 @@
-
-
 <section class="py-2">
-
-<div class="w-[80%] mx-auto flex justify-between">
-    <ul class="flex p-2 w-full justify-around">
-        <li class="">
-            
-            <button class="cursor-pointer">All</button>
-        
-          </li>
-        <li>
-            
-          <button class="cursor-pointer">Cocktail Dresses</button>
-      
-        </li>
-        <li>
-          <button class="cursor-pointer">Footwear</button>
-        
-        </li>
-        <li>
-          <button class="cursor-pointer">Outerwear</button>
-          
-        </li>
-        <li>
-          <button class="cursor-pointer">Accessories</button>
-    
-        </li>
-        <li>
-          <button class="cursor-pointer">Tops</button>
-          
-        </li>
-        <li>
-          <button class="cursor-pointer">Home</button>
-         
-        </li>
-        <li>
-          <button class="cursor-pointer">Bags</button>
-         
-        </li>
-        <li>
-          <span>Activewear</span>
-        
-        </li>
-        <li>
-          <button class="cursor-pointer">Kitchen</button>
-        </li>
-      </ul>
-
-</div>
-
-    <div class="w-[80%] mx-auto grid grid-cols-3 gap-2 gap-y-3">
-      <app-productcart *ngFor="let product of data" [product]="product"></app-productcart>
+  <div class="w-4/5 mx-auto">
+    <div class="grid grid-cols-1">
+      <div class="">
+        <div class="section_heading text-center"><h2>Yeni Məhsullar</h2></div>
+      </div>
     </div>
-  </section>
+  </div>
+  <div class="karl-projects-menu mb-10">
+    <div class="text-center portfolio-menu">
+        <ng-container *ngFor="let category of signalCategories()" >
+            <button 
+              (click)="categorySelect(category.categoryName)"  
+              [id]="category.id" 
+              [ngClass]="{ 'active': signalSelectCategory() == category.categoryName }" 
+              class="btn cursor-pointer">
+              {{category.categoryName}}
+            </button>
+          </ng-container>
+          
+
+     
+    </div>
+  </div>
+  <div class="w-[80%] mx-auto grid grid-cols-3 gap-2 gap-y-3">
+    <app-productcart
+      *ngFor="let product of signalData()"
+      [product]="product"
+    ></app-productcart>
+  </div>
+</section>

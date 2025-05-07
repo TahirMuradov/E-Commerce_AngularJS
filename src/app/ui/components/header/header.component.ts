@@ -4,7 +4,7 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass,NgIf,CurrencyPipe,TranslateModule],
+  imports: [NgClass,NgIf,CurrencyPipe,TranslateModule,],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

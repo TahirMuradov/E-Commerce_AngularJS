@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnInit, signal } from '@angular/core';
 import { ProductcartComponent } from '../../productcart/productcart.component';
 import {CommonModule} from '@angular/common';
+import ProductCartType from '../../../../models/ui/ProductCartType';
+import CategoryType from '../../../../models/ui/CategoryType';
+
 @Component({
   selector: 'app-new-arriwal-section',
   standalone:true,
@@ -8,14 +11,14 @@ import {CommonModule} from '@angular/common';
   templateUrl: './new-arriwal-section.component.html',
   styleUrl: './new-arriwal-section.component.css'
 })
-export class NewArriwalSectionComponent {
- data:{
-  id:string,
-  imgUrl:string,
-  category:string,
-  price:number,
-  title:string
-}[]=[
+export class NewArriwalSectionComponent implements OnInit  {
+
+
+  signalSelectCategory = signal<string>('ALL');
+  signalData = signal<ProductCartType[]>([]);
+  signalCategories = signal<CategoryType[]>([]);
+  originalData: ProductCartType[] = [];
+ data:ProductCartType[]=[
   {
     id: 'prod-001',
     imgUrl: 'https://example.com/images/jeans-midi-dress.jpg',
@@ -87,5 +90,73 @@ export class NewArriwalSectionComponent {
     title: 'Minimalist Leather Wallet'
   }
 ];
+ categories: CategoryType[] = [
+  {id:'cat-000',
+    categoryName:"ALL"
+  },
+  {
+    id: 'cat-001',
+    categoryName: 'Accessories'
+  },
+  {
+    id: 'cat-002',
+    categoryName: 'Activewear'
+  },
+  {
+    id: 'cat-003',
+    categoryName: 'Bags'
+  },
+  {
+    id: 'cat-004',
+    categoryName: 'Cocktail Dresses'
+  },
+  {
+    id: 'cat-005',
+    categoryName: 'Footwear'
+  },
+  {
+    id: 'cat-006',
+    categoryName: 'Home'
+  },
+  {
+    id: 'cat-007',
+    categoryName: 'Kitchen'
+  },
+  {
+    id: 'cat-008',
+    categoryName: 'Outerwear'
+  },
+  {
+    id: 'cat-009',
+    categoryName: 'Tops'
+  }
+];
+
+
+ngOnInit(): void {
+  this.signalData.set(this.data);
+  this.originalData = [...this.data]; 
+  this.signalCategories.set(this.categories);
+}
+
+
+
+categorySelect(categoryName: string) {
+  console.log(categoryName)
+  this.signalSelectCategory.set(categoryName);
+  
+  if (categoryName.toUpperCase() === 'ALL') {
+    
+    this.signalData.set([...this.originalData]);
+  } else {
+   
+    this.signalData.update(current => 
+      this.originalData.filter(product => 
+        product.category.toLowerCase().includes(categoryName.toLowerCase())
+      )
+    );
+  }
+
+}
 
 }

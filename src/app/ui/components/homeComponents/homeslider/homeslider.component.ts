@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import {  Component, Input } from '@angular/core';
 import HomeSliderDataType, { homeSliderData } from '../../../../models/ui/HomeSliderDataType';
 import { CommonModule, NgStyle } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+
 declare var $: any;
 @Component({
   selector: 'app-homeslider',
@@ -11,22 +12,22 @@ declare var $: any;
   templateUrl: './homeslider.component.html',
   styleUrl: './homeslider.component.css'
 })
-export class HomesliderComponent implements AfterViewInit {
-
+export class HomesliderComponent  {
+ 
   @Input({required:false})
   datas:HomeSliderDataType
   currentIndex:number = 0;
-  ngAfterViewInit(): void {
-    const owlElement = $('.owl-carousel');
-    owlElement.on('mousewheel', '.owl-stage', function (e: any) {
-      if (e.originalEvent.deltaY > 0) {
-        owlElement.trigger('next.owl.carousel');
-      } else {
-        owlElement.trigger('prev.owl.carousel');
-      }
-      e.preventDefault();
-    });
-  }
+  // ngAfterViewInit(): void {
+  //   const owlElement = $('.owl-carousel');
+  //   owlElement.on('mousewheel', '.owl-stage', function (e: any) {
+  //     if (e.originalEvent.deltaY > 0) {
+  //       owlElement.trigger('next.owl.carousel');
+  //     } else {
+  //       owlElement.trigger('prev.owl.carousel');
+  //     }
+  //     e.preventDefault();
+  //   });
+  // }
   customOptions: OwlOptions = {
 
     loop: true,
