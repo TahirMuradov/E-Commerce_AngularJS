@@ -24,7 +24,8 @@ export const routes: Routes = [
             { path: "", component: HomeComponent },
           { path: "home", component: HomeComponent },
           { path: "about", component: AboutComponent },
-          { path: "shop", component: ShopComponent }
+          { path: "shop", component: ShopComponent },
+          { path: '**', component: NotFoundComponent },
         ]
       },
       {
@@ -43,7 +44,8 @@ export const routes: Routes = [
 
           { path: "sizes", component: SizeTableComponent },
           { path: "sizecreate", component: SizeCreateComponent },
-          { path: "size/:Id", component: SizeUpdateComponent }
+          { path: "size/:Id", component: SizeUpdateComponent },
+          { path: '**', component: NotFoundComponent },
         ]
       },
     { path: '**', component: NotFoundComponent },

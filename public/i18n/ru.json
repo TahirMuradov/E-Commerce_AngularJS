@@ -34,6 +34,9 @@
       },
       "product-cart":{
         "btn":"начать покупки"
+      },
+      "not-found":{
+        "return-home":"Главная"
       }
      
 }

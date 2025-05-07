@@ -1,0 +1,18 @@
+.karl-checkout-btn {
+    width: 100%;
+    height: 60px;
+    background-color: #ff084e;
+    border-radius: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 20px;
+}
+
+
+.karl-checkout-btn:hover,
+.karl-checkout-btn:focus {
+    background-color: #3a3a3a;
+    color: #fff;
+    font-weight: 700;
+}

@@ -32,5 +32,8 @@
     },
     "product-cart":{
       "btn":"start shopping"
+    },
+    "not-found":{
+      "return-home":"Home Page"
     }
 }
