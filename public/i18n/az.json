@@ -18,6 +18,11 @@
           "product1": "Məhsul adı 1",
           "product2": "Məhsul adı 2"
         }
+      },
+      "home":{
+        "top-category-section":{
+          "btn":"indi alış-veriş edin"
+        }
       }
     
 }

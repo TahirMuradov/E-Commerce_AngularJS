@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { HomesliderComponent } from '../homeslider/homeslider.component';
 import { DiscountSectionComponent } from '../discount-section/discount-section.component';
+import { TopCategorySectionComponent } from "../top-category-section/top-category-section.component";
 
 @Component({
   selector: 'app-home',
-  imports: [HomesliderComponent, DiscountSectionComponent],
+  imports: [HomesliderComponent, 
+    DiscountSectionComponent, 
+    TopCategorySectionComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

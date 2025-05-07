@@ -18,5 +18,10 @@
         "product1": "Product Name 1",
         "product2": "Product Name 2"
       }
+    },
+    "home":{
+      "top-category-section":{
+      "btn":"start shopping"
+      }
     }
 }

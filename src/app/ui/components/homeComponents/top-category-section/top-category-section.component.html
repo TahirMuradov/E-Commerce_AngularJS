@@ -1,0 +1,14 @@
+<section class="top_catagory_area lg:grid lg:grid-cols-2 clearfix">
+    <div *ngFor="let item of data; let i = index" 
+         class="single_catagory_area flex items-center w-full bg-img" 
+         [style.background-image]="'url(' + item.pictureUrl + ')'">
+      <div class="catagory-content">
+        <h6>{{item.title}}</h6>
+        <h2>{{item.description}}</h2>
+        <a
+           class="btn karl-btn cursor-pointer">
+    {{'home.top-category-section.btn'|translate}}
+        </a>
+      </div>
+    </div>
+  </section>
