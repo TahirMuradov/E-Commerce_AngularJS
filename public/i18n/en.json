@@ -23,5 +23,8 @@
       "top-category-section":{
       "btn":"start shopping"
       }
+    },
+    "product-cart":{
+      "btn":"start shopping"
     }
 }

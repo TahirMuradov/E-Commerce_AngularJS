@@ -1,0 +1,55 @@
+
+
+<section class="py-2">
+
+<div class="w-[80%] mx-auto flex justify-between">
+    <ul class="flex p-2 w-full justify-around">
+        <li class="">
+            
+            <button class="cursor-pointer">All</button>
+        
+          </li>
+        <li>
+            
+          <button class="cursor-pointer">Cocktail Dresses</button>
+      
+        </li>
+        <li>
+          <button class="cursor-pointer">Footwear</button>
+        
+        </li>
+        <li>
+          <button class="cursor-pointer">Outerwear</button>
+          
+        </li>
+        <li>
+          <button class="cursor-pointer">Accessories</button>
+    
+        </li>
+        <li>
+          <button class="cursor-pointer">Tops</button>
+          
+        </li>
+        <li>
+          <button class="cursor-pointer">Home</button>
+         
+        </li>
+        <li>
+          <button class="cursor-pointer">Bags</button>
+         
+        </li>
+        <li>
+          <span>Activewear</span>
+        
+        </li>
+        <li>
+          <button class="cursor-pointer">Kitchen</button>
+        </li>
+      </ul>
+
+</div>
+
+    <div class="w-[80%] mx-auto grid grid-cols-3 gap-2 gap-y-3">
+      <app-productcart *ngFor="let product of data" [product]="product"></app-productcart>
+    </div>
+  </section>
