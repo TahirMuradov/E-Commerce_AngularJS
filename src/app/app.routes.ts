@@ -24,7 +24,7 @@ export const routes: Routes = [
             { path: "", component: HomeComponent },
           { path: "home", component: HomeComponent },
           { path: "about", component: AboutComponent },
-          { path: "shop", component: ShopComponent },
+          { path: "shop/:page", component: ShopComponent },
           { path: '**', component: NotFoundComponent },
         ]
       },
