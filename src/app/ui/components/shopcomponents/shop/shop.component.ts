@@ -1,6 +1,6 @@
 import { Component, effect, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatSliderChange, MatSliderModule } from '@angular/material/slider';
+import { MatSliderChange, MatSliderDragEvent, MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import CategoryType, {
   mockCategories,
@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import ProductFilter from '../../../../models/ui/ProductFilter';
 
 
+
 @Component({
   selector: 'app-shop',
   standalone: true,
@@ -21,6 +22,7 @@ import ProductFilter from '../../../../models/ui/ProductFilter';
     ProductcartComponent,
     MatSliderModule,
     MatCheckboxModule,
+  
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
@@ -38,6 +40,7 @@ export class ShopComponent implements OnInit {
   signalProducts = signal<ProductCartType[] | null>(null);
   signalCtegories = signal<CategoryType[] | null>(null);
   signalSizes = signal<SizeType[] | null>(null);
+
   signalPage = signal<number>(1);
   signalFilter = signal<ProductFilter | null>(
     {
@@ -48,8 +51,10 @@ export class ShopComponent implements OnInit {
       maxPrice: 500
     }
   );
-  valueRange = [50, 60];
 
+handlePage(event:any){
+console.log(event)
+}
   tryParse(input: string): [boolean, number | null] {
     const parsed = Number(input);
     if (isNaN(parsed)) {
@@ -72,7 +77,7 @@ export class ShopComponent implements OnInit {
     });
   }
   onCategoryCheck(id: string) {
-    debugger;
+
     const selectedCategory = this.signalCtegories()?.find(
       (category) => category.id === id
     );
@@ -107,7 +112,7 @@ export class ShopComponent implements OnInit {
   }
 
   onSizeCheck(id: string) {
-    debugger;
+
     const selectedSize = this.signalSizes()?.find((size) => size.id === id);
     if (!selectedSize) return;
 
@@ -138,11 +143,33 @@ export class ShopComponent implements OnInit {
       }));
     }
   }
+  formatLabel(value: number | null): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+    return value.toString();
+  }
 
-  handlePriceChange(event: any) {
-    const sliderValue = event.value;
+  handleMinPriceChange(event: MatSliderDragEvent) {
+    let minPriceValue = event.value;
 
-    // Use the value as needed (e.g., update a signal)
+    if (minPriceValue < 0)
+      minPriceValue = 0
+    this.signalFilter.update((x) => ({
+      ...x!,
+      minPrice: minPriceValue,
+    }))
 
+  }
+  handleMaxPriceChange(event: MatSliderDragEvent) {
+    let maxPrice = event.value
+  
+    if (maxPrice < 0) {
+      maxPrice = 0
+    }
+    this.signalFilter.update((x) => ({
+      ...x!,
+      maxPrice: maxPrice,
+    }))
   }
 }

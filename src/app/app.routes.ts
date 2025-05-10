@@ -16,6 +16,7 @@ import { SizeUpdateComponent } from './ui/components/dashboard/size/size-update/
 import { CategoryCreateComponent } from './ui/components/dashboard/category/category-create/category-create.component';
 import { ProductCreateComponent } from './ui/components/dashboard/product/product-create/product-create.component';
 import { SizeCreateComponent } from './ui/components/dashboard/size/size-create/size-create.component';
+import { ProductDetailComponent } from './ui/components/product-detail/product-detail.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,7 @@ export const routes: Routes = [
           { path: "home", component: HomeComponent },
           { path: "about", component: AboutComponent },
           { path: "shop/:page", component: ShopComponent },
+          { path: "productdetail", component: ProductDetailComponent },
           { path: '**', component: NotFoundComponent },
         ]
       },

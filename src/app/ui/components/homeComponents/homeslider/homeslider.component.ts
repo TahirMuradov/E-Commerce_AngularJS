@@ -80,10 +80,7 @@ export class HomesliderComponent  {
   
   slides = homeSliderData;
   ngOnInit(){
-  console.log(this.slides)
-    setInterval(()=>{
-      this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-    },3000)
+
   }
 
 

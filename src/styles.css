@@ -280,7 +280,7 @@ ul li {
 }
 
 #scrollUp {
-    background-color: #ff084e;
+    background-color: #FF084E;
     border-radius: 0;
     bottom: 0;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
@@ -339,8 +339,8 @@ ul li {
 .karl-btn:focus {
     font-weight: 700;
     color: #fff;
-    background-color: #ff084e;
-    border-color: #ff084e;
+    background-color: #FF084E;
+    border-color: #FF084E;
 }
 
 /* -------------------
@@ -394,7 +394,7 @@ ul li {
 }
 
 .cart_quantity {
-    background-color: #ff084e;
+    background-color: #FF084E;
     border-radius: 50%;
     color: #fff;
     font-size: 11px;
@@ -430,7 +430,7 @@ ul li {
 
 .header-right-side-menu > a:focus,
 .header-right-side-menu > a:hover {
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
 }
 
@@ -503,7 +503,7 @@ height: 0;
 
 .cart-list li .btn-checkout,
 .cart-list li .btn-cart {
-    background-color: #ff084e;
+    background-color: #FF084E;
     border-radius: 0;
     color: #fff;
     font-size: 13px;
@@ -541,7 +541,7 @@ height: 0;
     width: auto;
     height: 35px;
     padding: 0 30px;
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
     display: block;
     line-height: 35px;
@@ -583,7 +583,7 @@ height: 0;
 .dropdown-menu .dropdown-item:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #ff084e;
+    background-color: #FF084E;
     font-weight: 700;
 }
 
@@ -620,7 +620,7 @@ height: 0;
 }
 
 #sideMenuClose:hover {
-    background-color: #ff084e;
+    background-color: #FF084E;
 }
 
 .menu-list {
@@ -696,8 +696,8 @@ height: 0;
 .menu-content > li > a:before {
     width: 10px;
     height: 10px;
-    border: 1px solid #ff084e;
-    background-color: #ff084e;
+    border: 1px solid #FF084E;
+    background-color: #FF084E;
     border-radius: 2px;
     display: inline-block;
     margin-left: 10px;
@@ -740,7 +740,7 @@ height: 0;
 }
 
 .top-discount-area .single-discount-area:nth-child(2) {
-    background-color: #ff084e;
+    background-color: #FF084E;
 }
 
 .top-discount-area .single-discount-area:last-child {
@@ -819,12 +819,12 @@ height: 0;
 }
 
 .welcome_slides.owl-carousel .owl-dot.active {
-    background-color: #ff084e;
-    border-color: #ff084e;
+    background-color: #FF084E;
+    border-color: #FF084E;
 }
 a.active {
-    background-color: #ff084e;
-    border-color: #ff084e;
+    background-color: #FF084E;
+    border-color: #FF084E;
     color: white;
 }
 
@@ -938,7 +938,7 @@ a.active {
 }
 
 .quickview_body .cart-submit {
-    background-color: #ff084e;
+    background-color: #FF084E;
     border: medium none;
     color: #fff;
     cursor: pointer;
@@ -951,7 +951,7 @@ a.active {
 }
 
 .quickview_body .cart-submit:hover {
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
 }
 
@@ -1031,7 +1031,7 @@ a.active {
     content: "";
     width: 100%;
     height: 100%;
-    background-color: #ff084e;
+    background-color: #FF084E;
     position: absolute;
     top: 0;
     left: 0;
@@ -1126,7 +1126,7 @@ a.active {
     margin-top: 50px;
     font-size: 12px;
     font-weight: 700;
-    color: #ff084e;
+    color: #FF084E;
     display: block;
 }
 
@@ -1166,7 +1166,7 @@ a.active {
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 700;
-    background-color: #ff084e;
+    background-color: #FF084E;
     padding: 3px 10px;
     top: -30px;
     left: 10px;
@@ -1180,7 +1180,7 @@ a.active {
     height: 0;
     border-style: solid;
     border-width: 0 9px 9px 9px;
-    border-color: transparent transparent #ff084e transparent;
+    border-color: transparent transparent #FF084E transparent;
     bottom: -2px;
     left: -6px;
     -webkit-transform: rotate(-45deg);
@@ -1194,7 +1194,7 @@ a.active {
 }
 
 .offer-product-price h3 {
-    color: #ff084e;
+    color: #FF084E;
 }
 
 .offer-product-price h3 span {
@@ -1211,7 +1211,7 @@ a.active {
 .single-testimonial-area .quote {
     font-size: 72px;
     font-weight: 700;
-    color: #ff084e;
+    color: #FF084E;
     line-height: 1;
 }
 
@@ -1249,7 +1249,7 @@ a.active {
     text-align: left;
     display: block;
     font-weight: 700;
-    color: #ff084e;
+    color: #FF084E;
 }
 
 .karl-testimonials-slides.owl-carousel .owl-dots {
@@ -1275,8 +1275,8 @@ a.active {
 }
 
 .karl-testimonials-slides.owl-carousel .owl-dot.active {
-    background-color: #ff084e;
-    border-color: #ff084e;
+    background-color: #FF084E;
+    border-color: #FF084E;
 }
 
 /* ----------------------
@@ -1306,7 +1306,7 @@ a.active {
 .footer_social_area > a:hover {
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
-    color: #ff084e;
+    color: #FF084E;
 }
 
 .footer_widget_menu a {
@@ -1363,7 +1363,7 @@ a.active {
 }
 
 .subscribtion_form .submit:hover {
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
 }
 
@@ -1451,11 +1451,11 @@ a.active {
 
 .widget.size .widget-desc a:hover,
 .widget.size .widget-desc a:focus {
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
 }
 .single_product_desc .widget.size .widget-desc .aClick{
-    background-color: #ff084e;
+    background-color: #FF084E;
     color: #fff;
 }
 
@@ -1520,7 +1520,7 @@ a.active {
     width: calc(100% + 6px);
     height: calc(100% + 6px);
     display: block;
-    border: 2px solid #ff084e;
+    border: 2px solid #FF084E;
     position: absolute;
     z-index: -1;
     top: -3px;
@@ -1570,8 +1570,8 @@ a.active {
 .pagination-sm .page-link:hover,
 .pagination-sm .page-item.active .page-link,
 .pagination-sm .page-link:focus {
-    color: #ff084e;
-    border: 2px solid #ff084e;
+    color: #FF084E;
+    border: 2px solid #FF084E;
     background-color: transparent;
 }
 
@@ -1689,8 +1689,8 @@ a.active {
 
 .single_product_desc .widget.size .widget-desc a:hover,
 .single_product_desc .widget.size .widget-desc a:focus {
-    border: 2px solid #ff084e;
-    background-color: #ff084e;
+    border: 2px solid #FF084E;
+    background-color: #FF084E;
 }
 
 .single_product_desc .widget.size {
@@ -1740,7 +1740,7 @@ a.active {
 }
 
 .single_product_desc .cart .cart-submit {
-    background-color: #ff084e;
+    background-color: #FF084E;
     border: medium none;
     color: #fff;
     font-size: 14px;
@@ -1965,7 +1965,7 @@ a.active {
     height: 52px;
     border: none;
     text-transform: uppercase;
-    background-color: #ff084e;
+    background-color: #FF084E;
     padding: 0 30px;
     font-size: 14px;
     position: absolute;
@@ -2003,7 +2003,7 @@ a.active {
 .karl-checkout-btn {
     width: 100%;
     height: 60px;
-    background-color: #ff084e;
+    background-color: #FF084E;
     border-radius: 0;
     color: #fff;
     text-transform: uppercase;
@@ -2029,7 +2029,7 @@ a.active {
 }
 
 .checkout_details_area form label span {
-    color: #ff084e;
+    color: #FF084E;
 }
 
 .checkout_details_area form .form-control,
@@ -2084,7 +2084,7 @@ a.active {
             padding: 0;
             font-size: 20px;
             line-height: 1;
-            background-color: #ff084e;
+            background-color: #FF084E;
             border: none;
             border-radius: 0;
             width: 80px;
@@ -2134,7 +2134,7 @@ a.active {
             padding: 0;
             font-size: 20px;
             line-height: 1;
-            background-color: #ff084e;
+            background-color: #FF084E;
             border: none;
             border-radius: 0;
             width: 100%;
@@ -2235,7 +2235,7 @@ a.active {
         padding: 0;
         font-size: 20px;
         line-height: 1;
-        background-color: #ff084e;
+        background-color: #FF084E;
         border: none;
         border-radius: 0;
         width: 80px;
@@ -2286,7 +2286,7 @@ a.active {
         padding: 0;
         font-size: 20px;
         line-height: 1;
-        background-color: #ff084e;
+        background-color: #FF084E;
         border: none;
         border-radius: 0;
         width: 100%;
@@ -2370,6 +2370,9 @@ a.active {
 /*dashboard css*/
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
