@@ -20,7 +20,7 @@
                         [id]="category.id"
                           (change)="onCategoryCheck(category.id)"
                           [checked]="
-                            signalFilter()?.categoryIds.includes(category.id)
+                            signalFilter()?.categoryIds?.includes(category.id)
                           "
                           >{{ category.categoryName }}</mat-checkbox
                         >

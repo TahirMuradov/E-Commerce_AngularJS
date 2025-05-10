@@ -11,7 +11,7 @@ import { ProductcartComponent } from '../../productcart/productcart.component';
 import ProductCartType from '../../../../models/ui/ProductCartType';
 import { CommonModule } from '@angular/common';
 import ProductFilter from '../../../../models/ui/ProductFilter';
-import { event } from 'jquery';
+
 
 @Component({
   selector: 'app-shop',
@@ -39,7 +39,15 @@ export class ShopComponent implements OnInit {
   signalCtegories = signal<CategoryType[] | null>(null);
   signalSizes = signal<SizeType[] | null>(null);
   signalPage = signal<number>(1);
-  signalFilter = signal<ProductFilter | null>(null);
+  signalFilter = signal<ProductFilter | null>(
+    {
+      categoryIds: [],
+      sizeIds: [],
+      page: 1,
+      minPrice: 0,
+      maxPrice: 500
+    }
+  );
   valueRange = [50, 60];
 
   tryParse(input: string): [boolean, number | null] {
@@ -64,6 +72,7 @@ export class ShopComponent implements OnInit {
     });
   }
   onCategoryCheck(id: string) {
+    debugger;
     const selectedCategory = this.signalCtegories()?.find(
       (category) => category.id === id
     );
@@ -98,6 +107,7 @@ export class ShopComponent implements OnInit {
   }
 
   onSizeCheck(id: string) {
+    debugger;
     const selectedSize = this.signalSizes()?.find((size) => size.id === id);
     if (!selectedSize) return;
 
@@ -114,7 +124,7 @@ export class ShopComponent implements OnInit {
         filter?.sizeIds?.filter((sid) => {
           const size = this.signalSizes()?.find((s) => s.id === sid);
           return size?.content.toLowerCase() !== 'all';
-        }) ?? [];
+        });
 
       const isAlreadySelected = currentIds?.includes(id);
 
@@ -129,10 +139,10 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  handlePriceChange(event:any) {
+  handlePriceChange(event: any) {
     const sliderValue = event.value;
 
-  // Use the value as needed (e.g., update a signal)
-  
+    // Use the value as needed (e.g., update a signal)
+
   }
 }

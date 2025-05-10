@@ -1,10 +1,11 @@
 import { CurrencyPipe, NgClass, NgFor } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass,NgFor,CurrencyPipe,TranslateModule,],
+  imports: [NgClass,NgFor,CurrencyPipe,TranslateModule,RouterLink],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
