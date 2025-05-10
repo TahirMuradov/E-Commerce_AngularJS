@@ -1,0 +1,111 @@
+<div class="cart_area section_padding_100 clearfix" >
+  <div class="w-4/5 mx-auto">
+    <div class="grid grid-cols-1">
+      <div>
+        <div class="cart-table clearfix">
+          <table class="table-auto">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Kateqoriyasi</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cart_product_img flex items-center break-words">
+                  <a href="/en/productdetail/1">
+                    <img width="100" height="100" src="img/product-img/product-11.jpg" alt="Sample Product" />
+                  </a>
+                  <h6>Sample Product</h6>
+                </td>
+                <td class="text-center break-words">Category1, </td>
+                <td class="price text-center break-words"><span>$25.00</span></td>
+                <td class="text-center break-words"><span>M</span></td>
+                <td class="qty break-words">
+                  <div class="quantity">
+                    <span class="qty-minus">-</span>
+                    <input type="number" class="qty-text" step="1" min="1" max="99" name="quantity" value="2" readonly disabled />
+                    <span class="qty-plus">+</span>
+                  </div>
+                </td>
+                <td class="total_price text-center break-words"><span>$50.00</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cart-footer flex justify-between mt-30">
+          <div class="back-to-shop w-50">
+            <a href="/en/shop/1">Shopping</a>
+          </div>
+          <div class="update-checkout w-50 text-right">
+            <button>Clear Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+    <div></div>
+
+      <div>
+        <div class="shipping-method-area mt-70">
+          <div class="cart-page-heading">
+            <h5>Shipping Method</h5>
+          </div>
+
+          <!-- Selected Shipping Method -->
+          <div class="grid grid-cols-2">
+            <div class="custom-control custom-radio mb-30">
+              <input type="radio" id="Express Shipping" name="Express Shipping" class="custom-control-input"/>
+              <label class="custom-control-label d-flex align-items-center justify-content-between" for="Express Shipping">
+                Express Shipping
+              </label>
+            </div>
+            <span class="grid grid-cols-2 gap-0"><s>₼10.00</s> ₼8.00</span>
+          </div>
+
+          <!-- Unselected Shipping Method -->
+          <div class="grid grid-cols-2">
+            <div class="custom-control custom-radio mb-30">
+              <input type="radio" id="Standard Shipping" name="Standard Shipping" class="custom-control-input" />
+              <label class="custom-control-label d-flex align-items-center justify-content-between" for="Standard Shipping">
+                Standard Shipping
+              </label>
+            </div>
+            <span>₼5.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cart-total-area mt-70">
+          <div class="cart-page-heading">
+            <h5>Cart Total</h5>
+            <p>Final information before checkout</p>
+          </div>
+
+          <ul class="cart-total-chart">
+            <li><span>Subtotal</span> <span>₼ 50.00</span></li>
+            <li><span>Shipping</span> <span>₼ 8.00</span></li>
+            <li><span><strong>Total</strong></span> <span><strong>₼ 58.00</strong></span></li>
+          </ul>
+          <button class="btn karl-checkout-btn text-center">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Empty cart alternative (if condition is false) -->
+<!--
+<div class="w-4/5 mx-auto my-2">
+  <mat-alert variant="outlined" severity="info">
+    Your cart is currently empty.
+  </mat-alert>
+</div>
+-->

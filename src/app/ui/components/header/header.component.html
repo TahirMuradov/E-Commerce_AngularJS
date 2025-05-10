@@ -61,7 +61,7 @@
                   </li>
                   <li class="total">
                     <span class="pull-right">{{ 'header.total' | translate }}: {{125.00 | currency:currencyCode:'symbol':'1.2-2':currentLanguage}}</span>
-                    <a routerLink="cart" class="font-bold cursor-pointer py-2 mx-2 px-4 rounded btn-cart">
+                    <a routerLink="/cartdetail" class="font-bold cursor-pointer py-2 mx-2 px-4 rounded btn-cart">
                       {{ 'header.cart' | translate }}
                     </a>
                     <a routerLink="checkout" class="font-bold cursor-pointer py-2 px-4 rounded btn-checkout">
@@ -117,12 +117,12 @@
                     </a>
                   </li>
                   <li class="mx-3">
-                    <a class="cursor-pointer" routerLink="contact">
+                    <a class="cursor-pointer" routerLink="/contact">
                       {{ 'header.menu.contact' | translate }}
                     </a>
                   </li>
                   <li class="mx-3">
-                    <a class="cursor-pointer" routerLink="cart">
+                    <a routerLink="/cartdetail" class="cursor-pointer">
                       {{ 'header.menu.cart_detail' | translate }}
                     </a>
                   </li>

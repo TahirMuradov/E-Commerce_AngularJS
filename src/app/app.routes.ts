@@ -17,6 +17,8 @@ import { CategoryCreateComponent } from './ui/components/dashboard/category/cate
 import { ProductCreateComponent } from './ui/components/dashboard/product/product-create/product-create.component';
 import { SizeCreateComponent } from './ui/components/dashboard/size/size-create/size-create.component';
 import { ProductDetailComponent } from './ui/components/product-detail/product-detail.component';
+import { CartDetailComponent } from './ui/components/cart-detail/cart-detail.component';
+import { ContactComponent } from './ui/components/contact/contact.component';
 
 
 export const routes: Routes = [
@@ -27,6 +29,8 @@ export const routes: Routes = [
           { path: "about", component: AboutComponent },
           { path: "shop/:page", component: ShopComponent },
           { path: "productdetail", component: ProductDetailComponent },
+          { path: "cartdetail", component: CartDetailComponent },
+          { path: "contact", component: ContactComponent },
           { path: '**', component: NotFoundComponent },
         ]
       },
