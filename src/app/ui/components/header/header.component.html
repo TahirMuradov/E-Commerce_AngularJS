@@ -1,7 +1,9 @@
 <header class="header_area">
   <div class="top_header_area">
     <div class="w-[80%] mx-auto h-full">
-      <div class="lg:flex h-full lg:items-center lg:justify-end grid grid-cols-4 text-center">
+      <div
+        class="lg:flex h-full lg:items-center lg:justify-end grid grid-cols-4 text-center"
+      >
         <div class="laungugage_box lg:w-1/4 col-span-1">
           <select (change)="useLanguage($event)" class="language-selector">
             <ng-container *ngFor="let lang of supportLangs">
@@ -9,76 +11,139 @@
                 {{ lang }}
               </option>
             </ng-container>
-           
           </select>
         </div>
         <div class="w-full lg:w-3/4 col-span-3">
-          <div class="top_single_area grid grid-cols-2 gap-3 lg:flex lg:items-center lg:justify-between">
+          <div
+            class="top_single_area grid grid-cols-2 gap-3 lg:flex lg:items-center lg:justify-between"
+          >
             <div class="top_logo col-span-1">
               <a href="#">
-                <img src="/img/core-img/logo.png" alt="{{ 'header.logo_alt' | translate }}" />
+                <img
+                  src="/img/core-img/logo.png"
+                  alt="{{ 'header.logo_alt' | translate }}"
+                />
               </a>
             </div>
             <div class="header-cart-menu flex items-center">
               <div class="cart mx-2">
-                <a type="button" id="header-cart-btn" class="cursor-pointer" (click)="onclick(!clickSignal().cartListToogle,false)">
-                  <span class="cart_quantity">3</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  
+                <a
+                  type="button"
+                  id="header-cart-btn"
+                  class="cursor-pointer"
+                  (click)="onclick(!clickSignal().cartListToogle, false)"
+                >
+                  <span class="cart_quantity">{{
+                    basketService.totalItems()
+                  }}</span>
+                  <i class="fa-solid fa-cart-shopping"></i>
+
                   <span class="hidden lg:inline-block">
-                    {{ 'header.your_bag' | translate }} {{125.00 | currency:currencyCode:'symbol':'1.2-2':currentLanguage}}
+                    {{ "header.your_bag" | translate }}
+                    {{
+                      basketService.totalPrice()
+                        | currency
+                          : currencyCode
+                          : "symbol"
+                          : "1.2-2"
+                          : currentLanguage
+                    }}
                   </span>
                 </a>
-              
-                <ul class="cart-list z-50" [ngClass]="{'cart-data-open':clickSignal().cartListToogle}">
-                  <li>
-                    <a href="#" class="image">
-                      <img src="/img/product-img/product-1.jpg" width="100" height="100" class="cart-thumb" alt="Product 1" />
-                    </a>
-                    <div class="cart-item-desc">
-                      <h6>
-                        <a href="#">{{ 'header.products.product1' | translate }}</a>
-                      </h6>
-                      <p>
-                        1x - M - <span class="price">{{45.00 | currency:currencyCode:'symbol':'1.2-2':currentLanguage}}</span>
-                      </p>
-                    </div>
-                    <span class="dropdown-product-remove"></span>
-                  </li>
-                  <li>
-                    <a href="#" class="image">
-                      <img src="/img/product-img/product-2.jpg" width="100" height="100" class="cart-thumb" alt="Product 2" />
-                    </a>
-                    <div class="cart-item-desc">
-                      <h6>
-                        <a href="#">{{ 'header.products.product2' | translate }}</a>
-                      </h6>
-                      <p>
-                        2x - L - <span class="price">{{80.00 | currency:currencyCode:'symbol':'1.2-2':currentLanguage}}</span>
-                      </p>
-                    </div>
-                    <span class="dropdown-product-remove"></span>
-                  </li>
+
+                <ul
+                  class="cart-list z-50"
+                  [ngClass]="{ 'cart-data-open': clickSignal().cartListToogle }"
+                >
+                  <ng-container
+                    *ngFor="
+                      let product of basketService.getProductBasket();
+                      let i = index
+                    "
+                  >
+                    <li [id]="i">
+                      <a
+                        [routerLink]="'/productdetail/' + product.id"
+                        class="image"
+                      >
+                        <img
+                          [src]="product.imgUrl"
+                          width="100"
+                          height="100"
+                          class="cart-thumb"
+                          [alt]="product.title"
+                        />
+                      </a>
+                      <div class="cart-item-desc">
+                        <h6>
+                          <a href="#">{{ product.title }}</a>
+                        </h6>
+                        <p>
+                          {{ product.quantity }}x - {{ product.size }} -
+                          <span class="price">
+                            {{
+                              product.price
+                                | currency
+                                  : currencyCode
+                                  : "symbol"
+                                  : "1.2-2"
+                                  : currentLanguage
+                            }}
+                            =
+                            {{
+                              product.totalPrice
+                                | currency
+                                  : currencyCode
+                                  : "symbol"
+                                  : "1.2-2"
+                                  : currentLanguage
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <span class="dropdown-product-remove"></span>
+                    </li>
+                  </ng-container>
+
                   <li class="total">
-                    <span class="pull-right">{{ 'header.total' | translate }}: {{125.00 | currency:currencyCode:'symbol':'1.2-2':currentLanguage}}</span>
-                    <a routerLink="/cartdetail" class="font-bold cursor-pointer py-2 mx-2 px-4 rounded btn-cart">
-                      {{ 'header.cart' | translate }}
+                    <span class="pull-right"
+                      >{{ "header.total" | translate }}:
+                      {{
+                        basketService.totalPrice()
+                          | currency
+                            : currencyCode
+                            : "symbol"
+                            : "1.2-2"
+                            : currentLanguage
+                      }}</span
+                    >
+                    <a
+                      routerLink="/cartdetail"
+                      class="font-bold cursor-pointer py-2 mx-2 px-4 rounded btn-cart"
+                    >
+                      {{ "header.cart" | translate }}
                     </a>
-                    <a routerLink="checkout" class="font-bold cursor-pointer py-2 px-4 rounded btn-checkout">
-                      {{ 'header.checkout' | translate }}
+                    <a
+                      routerLink="checkout"
+                      class="font-bold cursor-pointer py-2 px-4 rounded btn-checkout"
+                    >
+                      {{ "header.checkout" | translate }}
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            
+
             <div class="mx-2 p-2">
-              <a href="/login">{{ 'header.login' | translate }}</a> | 
-              <a href="/register">{{ 'header.register' | translate }}</a>
+              <a href="/login">{{ "header.login" | translate }}</a> |
+              <a href="/register">{{ "header.register" | translate }}</a>
             </div>
-            
+
             <div class="ml-15 block lg:hidden col-start-2">
-              <button type="button" (click)="onclick(false,!clickSignal().toggleMenu)">
+              <button
+                type="button"
+                (click)="onclick(false, !clickSignal().toggleMenu)"
+              >
                 <i class="fa-solid fa-bars"></i>
               </button>
             </div>
@@ -88,8 +153,11 @@
     </div>
   </div>
 
-  <div class="main_header_area transition-all duration-500 overflow-hidden h-0 lg:h-[150px]"    [class.h-[350px]]="clickSignal().toggleMenu"
-     [class.h-0]="!clickSignal().toggleMenu">
+  <div
+    class="main_header_area transition-all duration-500 overflow-hidden h-0 lg:h-[150px]"
+    [class.h-[350px]]="clickSignal().toggleMenu"
+    [class.h-0]="!clickSignal().toggleMenu"
+  >
     <div class="container h-full mx-auto">
       <div class="flex h-full">
         <div class="w-full lg:flex lg:justify-between text-center">
@@ -98,7 +166,7 @@
               <i class="fa-brands fa-facebook"></i>
             </a>
             <a href="#">
-              <i class="fa-brands fa-instagram"></i>          
+              <i class="fa-brands fa-instagram"></i>
             </a>
           </div>
 
@@ -108,22 +176,22 @@
                 <ul class="animated lg:flex z-40" id="nav">
                   <li class="mx-3">
                     <a class="nav-link cursor-pointer" routerLink="">
-                      {{ 'header.menu.home' | translate }}
+                      {{ "header.menu.home" | translate }}
                     </a>
                   </li>
                   <li class="mx-3">
                     <a class="cursor-pointer" [routerLink]="['/shop/1']">
-                      {{ 'header.menu.shop' | translate }}
+                      {{ "header.menu.shop" | translate }}
                     </a>
                   </li>
                   <li class="mx-3">
                     <a class="cursor-pointer" routerLink="/contact">
-                      {{ 'header.menu.contact' | translate }}
+                      {{ "header.menu.contact" | translate }}
                     </a>
                   </li>
                   <li class="mx-3">
                     <a routerLink="/cartdetail" class="cursor-pointer">
-                      {{ 'header.menu.cart_detail' | translate }}
+                      {{ "header.menu.cart_detail" | translate }}
                     </a>
                   </li>
                 </ul>
@@ -134,7 +202,7 @@
           <div class="help-line">
             <a href="tel:+994552784344" class="text-white px-2">
               <i class="fa-solid fa-headset"></i>
-          +994(55)-278-4344
+              +994(55)-278-4344
             </a>
           </div>
         </div>

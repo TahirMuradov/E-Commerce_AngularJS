@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-top-category-section',
   imports: [CommonModule,TranslateModule],
@@ -10,7 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class TopCategorySectionComponent {
  
  
-  constructor( private translate: TranslateService) {
+  constructor( private translate: TranslateService ) {
 
     
   }

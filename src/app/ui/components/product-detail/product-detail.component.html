@@ -1,116 +1,116 @@
-<section class="single_product_details_area section_padding_0_100">
-  <div class="w-4/5 mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div class="w-full">
-     
-          
-                <owl-carousel-o [options]="customOptions" class="w-full">
-<ng-template carouselSlide>
 
-    <div class="w-full">
-      <img
-        src="img\product-img\product-3.jpg"
-        alt="Product Description"
-        style="max-width: 345px; max-height: 498px"
-        class="object-cover object-center"
-      />
-    </div>
-</ng-template>
-<ng-template carouselSlide>
 
-    <div>
-      <img
-        src="img\product-img\product-5.jpg"
-        alt="Product Description"
-        style="max-width: 345px; max-height: 498px"
-        class="object-cover object-center"
-      />
-    </div>
-</ng-template>
-</owl-carousel-o>
-           
-         
-        
-      </div>
-
-      <div>
-        <div class="single_product_desc">
-          <span>Məhsul Kodu: ABC123</span>
-          <h4 class="title">Sample Product Description</h4>
-          <h4 class="price">$ 29.99</h4>
-
-          <div class="widget size mb-50">
-            <h6 class="widget-title">Size</h6>
-            <div class="widget-desc">
-              <ul>
-                <li><a class="cursor-pointer">S</a></li>
-                <li><a class="cursor-pointer">M</a></li>
-                <li><a class="cursor-pointer">L</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <form class="cart mb-50 flex">
-            <div class="quantity">
-              <span class="qty-minus cursor-pointer">
-                <!-- Angular Material veya SVG ikon kullanılabilir -->
-                -
-              </span>
-              <input
-                type="number"
-                class="qty-text"
-                step="1"
-                min="1"
-                name="quantity"
-                value="1"
-                readonly
-                disabled
-              />
-              <span class="qty-plus cursor-pointer">+</span>
-            </div>
-            <button
-              type="button"
-              name="addtocart"
-              value="5"
-              class="btn cart-submit block"
-            >
-              Add to cart
-            </button>
-          </form>
-
-   <p>Description</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="you_may_like_area">
-    <div class="w-[90%]">
-      <div class="flex">
+  <section *ngIf="signalProduct()!=null" class="single_product_details_area section_padding_0_100">
+    <div class="w-4/5 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="w-full">
-          <div class="section_heading text-center">
-            <h2>Related Products</h2>
-          </div>
-        </div>
+       
+            
+                  <owl-carousel-o [options]="customOptions" class="w-full">
+  <ng-template carouselSlide *ngFor="let imgUrl of signalProduct().imgUrls">
+  
+      <div class="w-full" >
+        <img
+          [src]="imgUrl"
+          alt="Product Description"
+          style="max-width: 345px; max-height: 498px"
+          class="object-cover object-center"
+          [alt]="signalProduct().title"
+        />
       </div>
+  </ng-template>
 
-      <div class="slider-container grid grid-cols-2 md:grid-cols-3 gap-3">
-        <div class="px-2">
-          <!-- Placeholder for product card -->
-          <div class="product-card">
-            <img src="img\product-img\product-3.jpg" alt="Related Product" />
-            <p>Related Product Name</p>
-            <p>$19.99</p>
-          </div>
+  </owl-carousel-o>
+             
+           
+          
         </div>
-        <div class="px-2">
-          <div class="product-card">
-            <img src="img\product-img\product-1.jpg" alt="Related Product" />
-            <p>Another Product</p>
-            <p>$24.99</p>
+  
+        <div>
+          <div class="single_product_desc">
+            <span>Məhsul Kodu: {{signalProduct().productCode}}</span>
+            <h4 class="title">{{signalProduct().title}}</h4>
+            <h4 class="price">{{signalProduct().price|currency
+                          : 'AZN'
+                          : "symbol"
+                          : "1.2-2"
+                          : 'az'}}</h4>
+  
+            <div class="widget size mb-50">
+              <h6 class="widget-title">Size</h6>
+              <div class="widget-desc">
+                <ul>
+                <ng-container *ngFor="let size of signalProduct().size">
+  
+                  <li><a [id]="size.key" (click)="onSelectSize(size.key)"  [ngClass]="{ 'active': signalSelectedSize()==size.key}" class="cursor-pointer">{{size.key}}</a></li>
+                </ng-container>
+            
+                </ul>
+              </div>
+            </div>
+  
+            <form class="cart mb-50 flex">
+              <div class="quantity">
+                <span (click)="decrement()" class="qty-minus cursor-pointer">
+                   <i class="fa-solid fa-minus"></i>
+                </span>
+                <input
+
+                  type="number"
+                  class="qty-text"
+                  step="1"
+                  min="1"
+                  name="quantity"
+                  [value]="signalSelectedCount()"
+                  readonly
+                  disabled
+                />
+                <span (click)="increment()" class="qty-plus cursor-pointer"><i class="fa-solid fa-plus"></i></span>
+              </div>
+              <button
+              (click)="onAddBasketItem()"
+                type="button"
+                name="addtocart"
+                class="btn cart-submit block"
+              >
+                Add to cart
+              </button>
+            </form>
+  
+     <p>{{signalProduct().description}}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  
+    <div class="you_may_like_area">
+      <div class="w-[90%]">
+        <div class="flex">
+          <div class="w-full">
+            <div class="section_heading text-center">
+              <h2>Related Products</h2>
+            </div>
+          </div>
+        </div>
+  
+        <div class="slider-container grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="px-2" *ngFor="let relatedProduct of signalProduct().relatedProducts">
+            <a [routerLink]="'/productdetail/'+relatedProduct.id">
+            <!-- Placeholder for product card -->
+            <div class="product-card">
+              <img [src]="relatedProduct.imgUrl" [alt]="relatedProduct.title" />
+              <p>{{relatedProduct.title}}</p>
+              <p>{{relatedProduct.price|currency
+                          : "AZN"
+                          : "symbol"
+                          : "1.2-2"
+                          : 'az'}}</p>
+            </div>
+          </a>
+          </div>
+ 
+        </div>
+      </div>
+    </div>
+  </section>
+
