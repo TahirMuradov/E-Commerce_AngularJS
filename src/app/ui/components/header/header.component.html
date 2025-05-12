@@ -18,7 +18,7 @@
             class="top_single_area grid grid-cols-2 gap-3 lg:flex lg:items-center lg:justify-between"
           >
             <div class="top_logo col-span-1">
-              <a href="#">
+              <a routerLink="">
                 <img
                   src="/img/core-img/logo.png"
                   alt="{{ 'header.logo_alt' | translate }}"
@@ -135,8 +135,8 @@
             </div>
 
             <div class="mx-2 p-2">
-              <a href="/login">{{ "header.login" | translate }}</a> |
-              <a href="/register">{{ "header.register" | translate }}</a>
+              <a routerLink="/auth/login">{{ "header.login" | translate }}</a> |
+              <a routerLink="/auth/register">{{ "header.register" | translate }}</a>
             </div>
 
             <div class="ml-15 block lg:hidden col-start-2">

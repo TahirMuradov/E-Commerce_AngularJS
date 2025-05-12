@@ -19,6 +19,9 @@ import { SizeCreateComponent } from './ui/components/dashboard/size/size-create/
 import { ProductDetailComponent } from './ui/components/product-detail/product-detail.component';
 import { CartDetailComponent } from './ui/components/cart-detail/cart-detail.component';
 import { ContactComponent } from './ui/components/contact/contact.component';
+import { LoginComponent } from './ui/components/auth/login/login.component';
+import { ForgotpasswordComponent } from './ui/components/auth/forgotpassword/forgotpassword.component';
+import { RegisterComponent } from './ui/components/auth/register/register.component';
 
 
 export const routes: Routes = [
@@ -27,6 +30,9 @@ export const routes: Routes = [
             { path: "", component: HomeComponent },
           { path: "home", component: HomeComponent },
           { path: "about", component: AboutComponent },
+          { path: "auth/login", component: LoginComponent },
+          { path: "auth/register", component: RegisterComponent },
+          { path: "auth/forgotpassword", component: ForgotpasswordComponent },
           { path: "shop/:page", component: ShopComponent },
           { path: "productdetail/:id", component: ProductDetailComponent },
           { path: "cartdetail", component: CartDetailComponent },
