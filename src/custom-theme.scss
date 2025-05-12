@@ -6,6 +6,7 @@
 html {
   :root {
   @include mat.slider-overrides((
+    
     handle-elevation: orange,
     active-track-color: rgb(38, 0, 255),
     value-indicator-border-radius:50px,

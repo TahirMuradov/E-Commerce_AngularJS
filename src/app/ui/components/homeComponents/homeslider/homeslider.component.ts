@@ -33,7 +33,7 @@ export class HomesliderComponent  {
 
     loop: true,
 
-    mouseDrag: false,
+    mouseDrag: true,
 
     touchDrag: false,
 
