@@ -35,5 +35,10 @@
     },
     "not-found":{
       "return-home":"Home Page"
-    }
+    },
+    "VALIDATION": {
+    "RequiredPassword": "Password cannot be left empty.",
+    "EmailType": "Please enter a valid email address.",
+    "EmailRequired": "Please enter your email address."
+  }
 }

@@ -8,26 +8,33 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import {provideNativeDateAdapter} from "@angular/material/core"
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),//for angular material animation
     provideNativeDateAdapter(),//for angular material animation
+    
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideClientHydration(withEventReplay()),
     provideHttpClient(
       withFetch() // Enable fetch for HttpClient
     ),
+      provideToastr(),
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-    })])
+    }),
+      ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      timeOut: 3000
+    })
+  ])
   
   ]
 

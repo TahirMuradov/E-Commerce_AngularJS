@@ -36,6 +36,11 @@
       },
       "not-found":{
         "return-home":"Ana Səhifə"
-      }
+      },
+        "VALIDATION": {
+    "RequiredPassword": "Şifrə boş buraxıla bilməz.",
+    "EmailType": "Zəhmət olmasa düzgün e-poçt adresi daxil edin.",
+    "EmailRequired": "Zəhmət olmasa e-poçt adresi daxil edin."
+  }
     
 }
