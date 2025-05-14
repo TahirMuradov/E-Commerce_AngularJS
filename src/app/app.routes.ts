@@ -22,6 +22,7 @@ import { ContactComponent } from './ui/components/contact/contact.component';
 import { LoginComponent } from './ui/components/auth/login/login.component';
 import { ForgotpasswordComponent } from './ui/components/auth/forgotpassword/forgotpassword.component';
 import { RegisterComponent } from './ui/components/auth/register/register.component';
+import { authGuard } from './guards/common/auth.guard';
 
 
 export const routes: Routes = [
@@ -30,7 +31,7 @@ export const routes: Routes = [
             { path: "", component: HomeComponent },
           { path: "home", component: HomeComponent },
           { path: "about", component: AboutComponent },
-          { path: "auth/login", component: LoginComponent },
+          { path: "auth/login", component: LoginComponent,canActivate:[authGuard] },
           { path: "auth/register", component: RegisterComponent },
           { path: "auth/forgotpassword", component: ForgotpasswordComponent },
           { path: "shop/:page", component: ShopComponent },

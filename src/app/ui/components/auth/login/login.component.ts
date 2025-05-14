@@ -9,6 +9,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../../services/common/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public translate: TranslateService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) {
     this.frm = formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -32,9 +34,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.frm.controls['email'].setValue('muradovtahir01@gmail.com');
     console.log(this.frm.controls);
+    console.log(  this.authService.identityCheck());
   }
   onSubmitForm(): void {
     if (this.frm.valid) {
+
+this.authService.signIn(
+  this.frm.controls["email"].value,
+  this.frm.controls["password"].value
+)
       console.log('Email:', this.frm.controls['email'].value);
       console.log('Password:', this.frm.controls['password'].value);
     } else {

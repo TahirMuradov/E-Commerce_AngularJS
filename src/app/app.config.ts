@@ -9,6 +9,8 @@ import {HttpClient} from '@angular/common/http';
 import {provideNativeDateAdapter} from "@angular/material/core"
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { JwtModule } from '@auth0/angular-jwt';
+
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
 export const appConfig: ApplicationConfig = {
@@ -33,6 +35,12 @@ export const appConfig: ApplicationConfig = {
       ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       timeOut: 3000
+    }),
+    JwtModule.forRoot({
+          config: {
+        tokenGetter: () => localStorage.getItem("accessToken"),
+        allowedDomains: ["localhost:4200"]
+      }
     })
   ])
   
