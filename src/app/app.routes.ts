@@ -33,8 +33,8 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent, title: 'Home' },
       { path: 'about', component: AboutComponent, title: 'About' },
       { path: 'auth/login', component: LoginComponent, canActivate: [authGuard], title: 'Login' },
-      { path: 'auth/register', component: RegisterComponent, title: 'Register' },
-      { path: 'auth/forgotpassword', component: ForgotpasswordComponent, title: 'ForgotPassword' },
+      { path: 'auth/register', component: RegisterComponent,canActivate:[authGuard], title: 'Register' },
+      { path: 'auth/forgotpassword', component: ForgotpasswordComponent,canActivate:[authGuard], title: 'ForgotPassword' },
       { path: 'shop/:page', component: ShopComponent, title: 'Shop' },
       { path: 'productdetail/:id', component: ProductDetailComponent, title: 'Product Detail' },
       { path: 'cartdetail', component: CartDetailComponent, title: 'Basket Detail' },
@@ -44,6 +44,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardLayoutComponent,
+    canActivate:[authGuard],
     children: [
       { path: 'users', component: UsertableComponent },
       { path: 'user/:Id', component: UserUpdateComponent },

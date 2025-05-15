@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import { BasketService } from '../../../services/globalStateServices/basketState.service';
+import { AuthService } from '../../../services/common/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ import { BasketService } from '../../../services/globalStateServices/basketState
 })
 export class HeaderComponent {
 
-constructor(private translate: TranslateService,public basketService:BasketService) { 
+constructor(private translate: TranslateService,public basketService:BasketService,private authService:AuthService) { 
 }
 
 currentLocale:string
@@ -28,7 +29,9 @@ this.supportLangs=this.translate.getLangs()
     cartListToogle:false,
     toggleMenu:false
   })
-
+logout() {
+  this.authService.signOut();
+}
   onclick(cartListToogle:boolean,
     toggleMenu:boolean,
   

@@ -7,6 +7,7 @@ import {
   ToastrMessageType,
   ToastrPosition,
 } from '../ui/custom-toastr.service';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,10 +16,10 @@ export class AuthService {
   constructor(
     private jwtHelper: JwtHelperService,
     private http: HttpClient,
-    private customToastrService: CustomToastrService
-  ) {
-
-    _isAuthenticated=false;
+    private customToastrService: CustomToastrService,
+    private router:Router
+  ) { 
+    _isAuthenticated=false
   }
 
   get isAuthenticated(): boolean {
@@ -28,7 +29,7 @@ export class AuthService {
   identityCheck() {
     const token: string = JSON.parse(
       localStorage.getItem('SessionInfo')
-    ).accessToken;
+    )?.accessToken;
 
     let expired: boolean;
     try {
@@ -36,6 +37,7 @@ export class AuthService {
     } catch {
       expired = false;
     }
+
 
     _isAuthenticated = token != null && !expired;
   }
@@ -58,6 +60,7 @@ export class AuthService {
           })
         );
         this.identityCheck();
+        this.router.navigate(["home"]);
       },
       error: (err) => {
         console.log(err);
@@ -71,6 +74,15 @@ export class AuthService {
         );
       },
     });
+  }
+  signOut(){
+      const token: string = JSON.parse(
+      localStorage.getItem('SessionInfo')
+    )?.accessToken;
+    if (token) {
+      localStorage.removeItem("SessionInfo")
+      this.identityCheck()
+    }
   }
 }
 

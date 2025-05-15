@@ -6,9 +6,14 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
 
 const translateService=inject(TranslateService)
 const currentLocale=translateService.currentLang;
-const token=JSON.parse(localStorage.getItem('SessionInfo'))?.accessToken 
 let modifiedReq = req;
 
+  let token: string | null = null;
+
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const sessionInfo = localStorage.getItem('SessionInfo');
+    token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;
+  }
     if (token) {
       modifiedReq = modifiedReq.clone({
         setHeaders: {
