@@ -26,15 +26,15 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     this.frm = formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
   frm: FormGroup;
   ngOnInit(): void {
-    this.frm.controls['email'].setValue('muradovtahir01@gmail.com');
-    console.log(this.frm.controls);
-    console.log(  this.authService.identityCheck());
+    this.frm.controls['email'].setValue('emilys');
+    this.frm.controls['password'].setValue('emilyspass');
+
   }
   onSubmitForm(): void {
     if (this.frm.valid) {

@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './usertable.component.css'
 })
 export class UsertableComponent {
-
+ngOnInit(){
+  console.log("work")
+}
 }

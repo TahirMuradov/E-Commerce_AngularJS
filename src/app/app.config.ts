@@ -3,13 +3,17 @@ import { provideRouter } from '@angular/router';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import {provideNativeDateAdapter} from "@angular/material/core"
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
+import { httpClientInterceptor } from './services/common/http-client.interceptor';
+import { provideServerRendering } from '@angular/platform-server';
+import { provideServerRouting } from '@angular/ssr';
+import { serverRoutes } from './app.routes.server';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
@@ -19,10 +23,13 @@ export const appConfig: ApplicationConfig = {
     provideNativeDateAdapter(),//for angular material animation
     
     provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
+    provideRouter(routes),
+       provideServerRendering(),
+    provideServerRouting(serverRoutes), 
     provideClientHydration(withEventReplay()),
     provideHttpClient(
-      withFetch() // Enable fetch for HttpClient
+      withFetch(), // Enable fetch for HttpClient
+  withInterceptors([httpClientInterceptor])
     ),
       provideToastr(),
     importProvidersFrom([TranslateModule.forRoot({
@@ -41,7 +48,7 @@ export const appConfig: ApplicationConfig = {
         tokenGetter: () => localStorage.getItem("accessToken"),
         allowedDomains: ["localhost:4200"]
       }
-    })
+    }) 
   ])
   
   ]

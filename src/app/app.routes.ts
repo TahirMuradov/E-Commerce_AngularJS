@@ -24,44 +24,40 @@ import { ForgotpasswordComponent } from './ui/components/auth/forgotpassword/for
 import { RegisterComponent } from './ui/components/auth/register/register.component';
 import { authGuard } from './guards/common/auth.guard';
 
-
 export const routes: Routes = [
-    {
-        path: "", component: LayoutComponent, children: [
-            { path: "", component: HomeComponent },
-          { path: "home", component: HomeComponent },
-          { path: "about", component: AboutComponent },
-          { path: "auth/login", component: LoginComponent,canActivate:[authGuard] },
-          { path: "auth/register", component: RegisterComponent },
-          { path: "auth/forgotpassword", component: ForgotpasswordComponent },
-          { path: "shop/:page", component: ShopComponent },
-          { path: "productdetail/:id", component: ProductDetailComponent },
-          { path: "cartdetail", component: CartDetailComponent },
-          { path: "contact", component: ContactComponent },
-          { path: '**', component: NotFoundComponent },
-        ]
-      },
-      {
-        path: "dashboard", component: DashboardLayoutComponent, children: [
-           
-          { path: "users", component: UsertableComponent },
-          { path: "user/:Id", component: UserUpdateComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: '', component: HomeComponent, title: 'Home' },
+      { path: 'home', component: HomeComponent, title: 'Home' },
+      { path: 'about', component: AboutComponent, title: 'About' },
+      { path: 'auth/login', component: LoginComponent, canActivate: [authGuard], title: 'Login' },
+      { path: 'auth/register', component: RegisterComponent, title: 'Register' },
+      { path: 'auth/forgotpassword', component: ForgotpasswordComponent, title: 'ForgotPassword' },
+      { path: 'shop/:page', component: ShopComponent, title: 'Shop' },
+      { path: 'productdetail/:id', component: ProductDetailComponent, title: 'Product Detail' },
+      { path: 'cartdetail', component: CartDetailComponent, title: 'Basket Detail' },
+      { path: 'contact', component: ContactComponent, title: 'Contact' }
+    ]
+  },
+  {
+    path: 'dashboard',
+    component: DashboardLayoutComponent,
+    children: [
+      { path: 'users', component: UsertableComponent },
+      { path: 'user/:Id', component: UserUpdateComponent },
+      { path: 'categories', component: CategoryTableComponent },
+      { path: 'category/:Id', component: CategoryUpdateComponent },
+      { path: 'categorycreate', component: CategoryCreateComponent },
+      { path: 'products', component: ProductTableComponent },
+      { path: 'product/:Id', component: ProductUpdateComponent },
+      { path: 'productcreate', component: ProductCreateComponent },
+      { path: 'sizes', component: SizeTableComponent },
+      { path: 'sizecreate', component: SizeCreateComponent },
+      { path: 'size/:Id', component: SizeUpdateComponent }
+    ]
+  },
 
-          { path: "categories", component: CategoryTableComponent },
-          { path: "category/:Id", component: CategoryUpdateComponent },
-          { path: "categorycreate", component: CategoryCreateComponent },
-
-          { path: "products", component: ProductTableComponent },
-          { path: "product/:Id", component: ProductUpdateComponent, },
-          { path: "productcreate", component: ProductCreateComponent },
-
-          { path: "sizes", component: SizeTableComponent },
-          { path: "sizecreate", component: SizeCreateComponent },
-          { path: "size/:Id", component: SizeUpdateComponent },
-          { path: '**', component: NotFoundComponent },
-        ]
-      },
-    { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent, title: 'Not Found Page' }
 ];
-
-  

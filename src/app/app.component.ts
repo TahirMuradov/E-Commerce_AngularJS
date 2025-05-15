@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   standalone: true,                                    
@@ -11,9 +12,9 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 export class AppComponent {
   title = 'E-Commerce';
   constructor(private translate: TranslateService) {
-    this.translate.addLangs(['az', 'en','ru']);
-    this.translate.setDefaultLang('az');
-    this.translate.use('az');
+    this.translate.addLangs(environment.supportLanguagesLocale);
+    this.translate.setDefaultLang(environment.defaultLanguage);
+    this.translate.use(environment.defaultLanguage);
   }
 currentLangCode:string;
 
