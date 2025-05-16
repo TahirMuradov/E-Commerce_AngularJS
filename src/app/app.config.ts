@@ -7,22 +7,23 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient} from '@angular/common/http';
 import {provideNativeDateAdapter} from "@angular/material/core"
-import { provideAnimations } from '@angular/platform-browser/animations';
+import {provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
 import { httpClientInterceptor } from './services/common/http-client.interceptor';
 import { provideServerRendering } from '@angular/platform-server';
 import { provideServerRouting } from '@angular/ssr';
 import { serverRoutes } from './app.routes.server';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
 export const appConfig: ApplicationConfig = {
   providers: [
+   
     provideAnimations(),//for angular material animation
     provideNativeDateAdapter(),//for angular material animation
-    
-    provideZoneChangeDetection({ eventCoalescing: true }), 
+      provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
        provideServerRendering(),
     provideServerRouting(serverRoutes), 
@@ -32,6 +33,7 @@ export const appConfig: ApplicationConfig = {
   withInterceptors([httpClientInterceptor])
     ),
       provideToastr(),
+     
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -48,7 +50,9 @@ export const appConfig: ApplicationConfig = {
         tokenGetter: () => localStorage.getItem("accessToken"),
         allowedDomains: ["localhost:4200"]
       }
-    }) 
+    }),
+   NgxSpinnerModule
+
   ])
   
   ]
