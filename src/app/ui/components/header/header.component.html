@@ -137,14 +137,14 @@
             <div class="mx-2 p-2">
               <a routerLink="/auth/login">{{ "header.login" | translate }}</a> |
               <a routerLink="/auth/register">{{ "header.register" | translate }}</a> |<br>
-              <a routerLink="/dashboard/users">dashboardUsers</a>
+              <a routerLink="/dashboard/users">dashboardUsers</a> | <br>
               <a class="cursor-pointer" (click)="logout()">SignOut</a>
             </div>
 
             <div class="ml-15 block lg:hidden col-start-2">
               <button
                 type="button"
-                (click)="onclick(false, !clickSignal().toggleMenu)"
+                (click)="onclick(false,!clickSignal().toggleMenu)"
               >
                 <i class="fa-solid fa-bars"></i>
               </button>
