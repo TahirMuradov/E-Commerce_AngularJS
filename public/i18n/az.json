@@ -1,5 +1,6 @@
 {
     "header": {
+      "currencyType":"AZN",
         "your_bag": "Səbətiniz",
         "cart": "Səbət",
         "checkout": "Ödəniş",
@@ -37,6 +38,7 @@
       "not-found":{
         "return-home":"Ana Səhifə"
       },
+      
         "VALIDATION": {
     "RequiredPassword": "Şifrə boş buraxıla bilməz.",
     "EmailType": "Zəhmət olmasa düzgün e-poçt adresi daxil edin.",

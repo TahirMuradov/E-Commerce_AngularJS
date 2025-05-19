@@ -36,6 +36,7 @@
     "not-found":{
       "return-home":"Home Page"
     },
+       "currencyType":"USD",
     "VALIDATION": {
     "RequiredPassword": "Password cannot be left empty.",
     "EmailType": "Please enter a valid email address.",

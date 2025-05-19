@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import { BasketService } from '../../../services/globalStateServices/basketState.service';
 import { AuthService } from '../../../services/common/auth.service';
-
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-header',
   imports: [NgClass,NgFor,CurrencyPipe,TranslateModule,RouterLink],
@@ -22,7 +22,6 @@ supportLangs:string[]
 ngOnInit() {
   this.currentLocale= this.translate.currentLang;
 this.supportLangs=this.translate.getLangs()
-
 }
 
   clickSignal=signal({
@@ -51,23 +50,25 @@ if (cartListToogle) {
   }
 
 
-  currentLanguage = 'az'; // Default language
-  currencyCode = 'AZN'; // Can be made dynamic based on language
+    // currencyCode = 'AZN'; // Can be made dynamic based on language
   
   useLanguage(event: Event): void {
     const lang = (event.target as HTMLSelectElement).value;
-    this.currentLanguage = lang;
-    this.translate.use(lang);
-    // Optional: Update currency code based on language
-    this.updateCurrencyCode(lang);
+    if (lang&&environment.supportLanguagesLocale.includes(lang)) {
+      localStorage.setItem("Locale",lang);
+      this.currentLocale = lang;
+      this.translate.use(lang);
+  
+      // this.updateCurrencyCode(lang);
+    }
   }
   
-  private updateCurrencyCode(lang: string): void {
-    const currencyMap: {[key: string]: string} = {
-      'en': 'USD',
-      'ru': 'RUB',
-      'az': 'AZN'
-    };
-    this.currencyCode = currencyMap[lang] || 'AZN';
-  }
+  // private updateCurrencyCode(lang: string): void {
+  //   const currencyMap: {[key: string]: string} = {
+  //     'en': 'USD',
+  //     'ru': 'RUB',
+  //     'az': 'AZN'
+  //   };
+  //   this.currencyCode = currencyMap[lang] || 'AZN';
+  // }
 }

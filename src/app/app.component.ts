@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import { environment } from '../environments/environment';
 import { NgxSpinnerComponent } from 'ngx-spinner';
+import { MetadataOverride } from '@angular/core/testing';
 @Component({
   selector: 'app-root',
   standalone: true,                                    
@@ -12,18 +13,12 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 })
 export class AppComponent {
   title = 'E-Commerce';
+
   constructor(private translate: TranslateService) {
     this.translate.addLangs(environment.supportLanguagesLocale);
     this.translate.setDefaultLang(environment.defaultLanguage);
-    this.translate.use(environment.defaultLanguage);
+    this.translate.use(localStorage?.getItem("Locale")?? environment.defaultLanguage);
   }
-currentLangCode:string;
 
-  useLanguage(language: string): void {
-    // Save to local storage or some related activity.
-    this.translate.use(language);
 
-    this.currentLangCode = this.translate.currentLang;
-    console.log('Current Language:', this.currentLangCode);
-  }
 }

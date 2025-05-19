@@ -1,47 +1,45 @@
 {
-    
-    "header": {
-        "your_bag": "Ваша корзина",
-        "cart": "Корзина",
-        "checkout": "Оплата",
-        "login": "Войти",
-        "register": "Регистрация",
-        "total": "Итого",
-        "phone": "+994 55 278 43 44",
-        "logo_alt": "Логотип компании",
-        "menu": {
-          "home": "Главная",
-          "shop": "Магазин",
-          "contact": "Контакты",
-          "cart_detail": "Детали корзины"
-        },
-        "products": {
-          "product1": "Название продукта 1",
-          "product2": "Название продукта 2"
-        }
-      },
-      "home":{
-        "home-slider": {
-          "btn": "Подробнее"
-        },
-        "top-category-section":{
-         "btn":"Подробнее"
-        },
-        "new-arrival-section": {
-    "new-arrival": "Новые поступления"
-  }
-
-      },
-      "product-cart":{
-        "btn":"начать покупки"
-      },
-      "not-found":{
-        "return-home":"Главная"
-      },
-       "VALIDATION": {
+  "header": {
+    "your_bag": "Ваша корзина",
+    "cart": "Корзина",
+    "checkout": "Оплата",
+    "login": "Войти",
+    "register": "Регистрация",
+    "total": "Итого",
+    "phone": "+994 55 278 43 44",
+    "logo_alt": "Логотип компании",
+    "menu": {
+      "home": "Главная",
+      "shop": "Магазин",
+      "contact": "Контакты",
+      "cart_detail": "Детали корзины"
+    },
+    "products": {
+      "product1": "Название продукта 1",
+      "product2": "Название продукта 2"
+    }
+  },
+  "home": {
+    "home-slider": {
+      "btn": "Подробнее"
+    },
+    "top-category-section": {
+      "btn": "Подробнее"
+    },
+    "new-arrival-section": {
+      "new-arrival": "Новые поступления"
+    }
+  },
+  "product-cart": {
+    "btn": "начать покупки"
+  },
+  "not-found": {
+    "return-home": "Главная"
+  },
+  "currencyType": "RUB",
+  "VALIDATION": {
     "RequiredPassword": "Пароль не может быть пустым.",
     "EmailType": "Пожалуйста, введите корректный адрес электронной почты.",
     "EmailRequired": "Пожалуйста, введите адрес электронной почты."
   }
-     
 }

@@ -4,10 +4,7 @@ import { DiscountSectionComponent } from '../discount-section/discount-section.c
 import { TopCategorySectionComponent } from '../top-category-section/top-category-section.component';
 import { NewArriwalSectionComponent } from '../new-arriwal-section/new-arriwal-section.component';
 import { HttpClientService } from '../../../../services/common/http-client.service';
-import {
-  NgxSpinnerComponent,
-  NgxSpinnerService,
-} from 'ngx-spinner';
+import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.service';
 
 @Component({
@@ -17,7 +14,6 @@ import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.s
     DiscountSectionComponent,
     TopCategorySectionComponent,
     NewArriwalSectionComponent,
- 
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -26,22 +22,30 @@ import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.s
 export class HomeComponent implements OnInit {
   constructor(
     private httpClientService: HttpClientService,
-    private spinnerService:SpinnerLoadingService
+    private spinnerService: SpinnerLoadingService
   ) {}
   ngOnInit() {
-    this.spinnerService.spinerShow()
+    this.spinnerService.spinerShow();
 
     this.httpClientService
       .get({ baseUrl: 'https://dummyjson.com', controller: 'products' })
-      .subscribe((data) => {
-        if (data) {
-          setTimeout(() => {
-           
-            this.spinnerService.spinerHide();
-          }, 5000);
-        }
-
-        console.log(data);
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            this.spinnerService.spinerHide()
+            console.log(response)
+          }
+        },
+        error(err) {
+          console.error(err);
+        },
+      });
+  }
+  GetCurrentUserInfo() {
+    this.httpClientService
+      .get({ fullEndPoint: 'https://dummyjson.com/auth/me' })
+      .subscribe((response) => {
+        console.log(JSON.stringify(response));
       });
   }
 }

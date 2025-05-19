@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonModule} from '@angular/common'
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -13,7 +13,7 @@ import { AuthService } from '../../../../services/common/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, ReactiveFormsModule,CommonModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -34,15 +34,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.frm.controls['email'].setValue('emilys');
     this.frm.controls['password'].setValue('emilyspass');
-
   }
   onSubmitForm(): void {
     if (this.frm.valid) {
-
-this.authService.signIn(
-  this.frm.controls["email"].value,
-  this.frm.controls["password"].value
-)
+      this.authService.signIn(
+        this.frm.controls['email'].value,
+        this.frm.controls['password'].value
+      );
       console.log('Email:', this.frm.controls['email'].value);
       console.log('Password:', this.frm.controls['password'].value);
     } else {
@@ -67,7 +65,7 @@ this.authService.signIn(
         }
       }
 
-          this.toastr.error((errorMessages.join('\n')), 'Error');
+      this.toastr.error(errorMessages.join('\n'), 'Error');
     }
   }
 }

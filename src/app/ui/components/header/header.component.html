@@ -7,7 +7,7 @@
         <div class="laungugage_box lg:w-1/4 col-span-1">
           <select (change)="useLanguage($event)" class="language-selector">
             <ng-container *ngFor="let lang of supportLangs">
-              <option [value]="lang" [selected]="lang === currentLanguage">
+              <option [value]="lang" [selected]="lang === currentLocale">
                 {{ lang }}
               </option>
             </ng-container>
@@ -43,10 +43,10 @@
                     {{
                       basketService.totalPrice()
                         | currency
-                          : currencyCode
+                          : 'AZN'
                           : "symbol"
                           : "1.2-2"
-                          : currentLanguage
+                          : currentLocale
                     }}
                   </span>
                 </a>
@@ -84,19 +84,19 @@
                             {{
                               product.price
                                 | currency
-                                  : currencyCode
+                                  : "AZN"
                                   : "symbol"
                                   : "1.2-2"
-                                  : currentLanguage
+                                  : currentLocale
                             }}
                             =
                             {{
                               product.totalPrice
                                 | currency
-                                  : currencyCode
+                                  : "AZN"
                                   : "symbol"
                                   : "1.2-2"
-                                  : currentLanguage
+                                  : currentLocale
                             }}
                           </span>
                         </p>
@@ -111,10 +111,10 @@
                       {{
                         basketService.totalPrice()
                           | currency
-                            : currencyCode
+                            : "AZN"
                             : "symbol"
                             : "1.2-2"
-                            : currentLanguage
+                            : currentLocale
                       }}</span
                     >
                     <a
