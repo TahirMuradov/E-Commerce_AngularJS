@@ -33,11 +33,11 @@ export class HomeComponent implements OnInit {
         next: (response) => {
           if (response) {
             this.spinnerService.spinerHide()
-            console.log(response)
+     
           }
         },
         error(err) {
-          console.error(err);
+          console.log(err)
         },
       });
   }

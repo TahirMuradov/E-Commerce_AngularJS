@@ -1,7 +1,7 @@
 export const environment = {
 
  production: true,
-  apiUrl: 'https://dummyjson.com',
+  apiUrl: 'https://localhost:7289/api',
   supportLanguagesLocale:['az','ru','en'],
   defaultLanguage:"az"
 };
