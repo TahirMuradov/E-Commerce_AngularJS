@@ -11,7 +11,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   let token: string | null = null;
 
   if (typeof window !== 'undefined' && window.localStorage) {
-    currentLocale=localStorage.getItem("Locale")??environment.defaultLanguage;
+    currentLocale=localStorage.getItem("Locale")??currentLocale;
     const sessionInfo = localStorage.getItem('SessionInfo');
     token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;
   }
