@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { AuthService, _isAuthenticated } from '../../services/common/auth.service';
 import { CustomToastrService } from '../../services/ui/custom-toastr.service';
 import { ToastrMessageType, ToastrPosition } from '../../services/ui/custom-toastr.service';
+import { RoleEnums } from '../../models/enums/RoleEnums';
 
 
 export const authGuard: CanActivateFn = (route, state) => {
@@ -16,7 +17,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   
 authService.identityCheck()
 
-      if (!authService.isAuthenticated && state.url.startsWith("/dashboard")){
+      if ((!authService.isAuthenticated||authService.isRole==RoleEnums.User) && state.url.startsWith("/dashboard")){
       
     toastrService.message("Please Sign in", "AccessDenied!", {
       messageType: ToastrMessageType.Warning,

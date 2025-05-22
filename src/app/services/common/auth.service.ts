@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { afterRender, Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -9,8 +9,11 @@ import {
 } from '../ui/custom-toastr.service';
 import { Router } from '@angular/router';
 import ResultResponseType from '../../models/responseType/ResultResponseType';
-import TokenType from '../../models/responseType/authResponseType/TokenType';
+import TokenType, { DecodedToken } from '../../models/responseType/authResponseType/TokenType';
 import { HttpClientService } from './http-client.service';
+import { RoleEnums } from '../../models/enums/RoleEnums';
+import RegisterType from '../../models/responseType/authResponseType/RegisterType';
+import { RenderMode } from '@angular/ssr';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,25 +24,46 @@ export class AuthService {
     private customToastrService: CustomToastrService,
     private router: Router
   ) {
-    _isAuthenticated = false;
+   _isAuthenticated=false,
+   _isRole=RoleEnums.User
   }
 
   get isAuthenticated(): boolean {
     return _isAuthenticated;
   }
-
+get isRole():RoleEnums{
+  return _isRole
+}
   identityCheck() {
-    const token: string = JSON.parse(
-      localStorage.getItem('SessionInfo')
-    )?.accessToken;
+    let token: string=null;
+      let expired: boolean;
+    
 
-    let expired: boolean;
-    try {
-      expired = this.jwtHelper.isTokenExpired(token);
-    } catch {
-      expired = false;
-    }
-
+        if(typeof window!=="undefined"){
+    
+         token = JSON.parse(
+            localStorage.getItem('SessionInfo')
+          )?.accessToken;
+      
+          try {
+            expired = this.jwtHelper.isTokenExpired(token);
+          } catch {
+            expired = false;
+          }
+      if (expired&& token) {
+            const tokenDecode:DecodedToken=this.jwtHelper.decodeToken(token);
+            console.log(tokenDecode)
+            if (tokenDecode.Roles.includes(RoleEnums.SuperAdmin)) {
+              _isRole=RoleEnums.SuperAdmin
+            }else if (tokenDecode.Roles.includes(RoleEnums.Admin)) {
+              _isRole=RoleEnums.Admin
+            }else{
+              _isRole=RoleEnums.User
+            }
+        
+      }
+        }
+    
     _isAuthenticated = token != null && !expired;
   }
   signIn(email: string, password: string) {
@@ -93,6 +117,10 @@ error:(response:HttpErrorResponse)=>{
       this.identityCheck();
     }
   }
+  register(data:RegisterType){
+
+  }
 }
 
 export let _isAuthenticated: boolean;
+export let _isRole:RoleEnums;

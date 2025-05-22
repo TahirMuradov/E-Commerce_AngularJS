@@ -22,6 +22,7 @@ supportLangs:string[]
 ngOnInit() {
   this.currentLocale= this.translate.currentLang;
 this.supportLangs=this.translate.getLangs()
+this.authService.identityCheck()
 }
 
   clickSignal=signal({

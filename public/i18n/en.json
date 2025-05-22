@@ -38,8 +38,17 @@
     },
        "currencyType":"USD",
     "VALIDATION": {
-    "RequiredPassword": "Password cannot be left empty.",
-    "EmailType": "Please enter a valid email address.",
-    "EmailRequired": "Please enter your email address."
+    "FirstnameRequired": "First name is required.",
+    "LastnameRequired": "Last name is required.",
+    "UsernameRequired": "Username is required.",
+    "EmailRequired": "Email is required.",
+    "EmailType": "Invalid email format.",
+    "PhoneRequired": "Phone number is required.",
+    "PhonePattern": "Phone number must be in '+994-xx-xxx-xx-xx' format.",
+    "RequiredPassword": "Password is required.",
+    "PasswordPattern": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character.",
+    "ConfirmPasswordRequired": "Confirm password is required.",
+    "PasswordMismatch": "Password and Confirm Password do not match.",
+    "AddressRequired": "Address is required."
   }
 }

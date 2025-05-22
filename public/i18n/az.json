@@ -40,9 +40,18 @@
       },
       
         "VALIDATION": {
-    "RequiredPassword": "Şifrə boş buraxıla bilməz.",
-    "EmailType": "Zəhmət olmasa düzgün e-poçt adresi daxil edin.",
-    "EmailRequired": "Zəhmət olmasa e-poçt adresi daxil edin."
+        "FirstnameRequired": "Ad daxil edilməlidir.",
+    "LastnameRequired": "Soyad daxil edilməlidir.",
+    "UsernameRequired": "İstifadəçi adı daxil edilməlidir.",
+    "EmailRequired": "Email daxil edilməlidir.",
+    "EmailType": "Email formatı yanlışdır.",
+    "PhoneRequired": "Telefon nömrəsi daxil edilməlidir.",
+    "PhonePattern": "Telefon nömrəsi '+994-xx-xxx-xx-xx' formatında olmalıdır.",
+    "RequiredPassword": "Şifrə daxil edilməlidir.",
+    "PasswordPattern": "Şifrə ən azı 6 simvoldan ibarət olmalı və böyük hərf, kiçik hərf, rəqəm və xüsusi simvol daxil etməlidir.",
+    "ConfirmPasswordRequired": "Təkrar şifrə daxil edilməlidir.",
+    "PasswordMismatch": "Şifrə və təkrar şifrə eyni olmalıdır.",
+    "AddressRequired": "Ünvan daxil edilməlidir."
   }
     
 }
