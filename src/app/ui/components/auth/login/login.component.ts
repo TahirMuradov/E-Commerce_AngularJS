@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     private toastr: ToastrService,
+  
     private authService: AuthService
   ) {
     this.frm = formBuilder.group({

@@ -67,9 +67,9 @@ export class RegisterComponent {
   onSubmitForm(): void {
     if (this.frm.valid) {
       const data: RegisterType = {
-        firstname: this.frm.controls['firstname'].value,
-        lastname: this.frm.controls['lastname'].value,
-        username: this.frm.controls['username'].value,
+        firstname: this.frm.controls['firstName'].value,
+        lastname: this.frm.controls['lastName'].value,
+        username: this.frm.controls['userName'].value,
         email: this.frm.controls['email'].value,
         phoneNumber: this.frm.controls['phoneNumber'].value,
         password: this.frm.controls['password'].value,
@@ -118,12 +118,7 @@ export class RegisterComponent {
         }
       }
 
-      if (
-        this.frm.controls['password'].value !==
-        this.frm.controls['confirmPassword'].value
-      ) {
-        errorMessages.push(this.translate.instant('VALIDATION.PasswordMismatch'));
-      }
+
 
       this.toastr.message(errorMessages.join('\n'), 'Info', {
         messageType: ToastrMessageType.Info,
