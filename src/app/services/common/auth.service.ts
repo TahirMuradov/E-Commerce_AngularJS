@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 import {
   CustomToastrService,
   ToastrMessageType,
@@ -14,7 +18,8 @@ import TokenType, {
 import { HttpClientService } from './http-client.service';
 import { RoleEnums } from '../../models/enums/RoleEnums';
 import RegisterType from '../../models/responseType/authResponseType/RegisterType';
-import { SpinnerLoadingService } from '../ui/spinner-loading.service';
+import { TranslateService } from '@ngx-translate/core';
+import UpdateForgotPassword from '../../models/DTOs/UpdateForgotPassword';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +29,7 @@ export class AuthService {
     private http: HttpClientService,
     private customToastrService: CustomToastrService,
     private router: Router,
-    private spinner: SpinnerLoadingService
+    private translate: TranslateService
   ) {
     (_isAuthenticated = false), (_isRole = RoleEnums.User);
   }
@@ -63,7 +68,6 @@ export class AuthService {
     _isAuthenticated = token != null && !expired;
   }
   signIn(email: string, password: string) {
-    this.spinner.spinerShow();
     this.http
       .post<ResultResponseType<TokenType>, { email: string; password: string }>(
         { controller: 'Auth', action: 'Login' },
@@ -75,7 +79,6 @@ export class AuthService {
             localStorage.setItem('SessionInfo', JSON.stringify(response?.data));
             this.identityCheck();
             this.router.navigate(['home']);
-            this.spinner.spinerHide()
           }
         },
         error: (response: HttpErrorResponse) => {
@@ -92,60 +95,53 @@ export class AuthService {
             messageType: ToastrMessageType.Error,
             position: ToastrPosition.TopRight,
           });
-          this.spinner.spinerHide();
         },
       });
   }
   signOut() {
-   
     const token: string = JSON.parse(
       localStorage.getItem('SessionInfo')
     )?.accessToken;
     if (token) {
-   
       this.http.put({ controller: 'Auth', action: 'LogOut' }).subscribe({
-      next:(value: ResultResponseType<null>)=> {
-        if (value.isSuccess) {
-             localStorage.removeItem('SessionInfo');
-          this.customToastrService.message("",'Success', {
-            messageType: ToastrMessageType.Success,
+        next: (value: ResultResponseType<null>) => {
+          if (value.isSuccess) {
+            localStorage.removeItem('SessionInfo');
+            this.customToastrService.message('', 'Success', {
+              messageType: ToastrMessageType.Success,
+              position: ToastrPosition.TopRight,
+            });
+          }
+        },
+        error: (response: HttpErrorResponse) => {
+          let errorMessage = '';
+          if (Array.isArray(response?.error?.messages)) {
+            errorMessage = response?.error?.messages.join('\n');
+          } else if (typeof response?.error?.message === 'string') {
+            errorMessage = response.error?.message;
+          } else {
+            errorMessage = JSON.stringify(response.error);
+          }
+
+          this.customToastrService.message(errorMessage, 'Error', {
+            messageType: ToastrMessageType.Error,
             position: ToastrPosition.TopRight,
           });
-        this.spinner.spinerHide();
-        }
-      },
-      error:(response: HttpErrorResponse)=> {
-        let errorMessage = '';
-        if (Array.isArray(response?.error?.messages)) {
-          errorMessage = response?.error?.messages.join('\n');
-        } else if (typeof response?.error?.message === 'string') {
-          errorMessage = response.error?.message;
-        } else {
-          errorMessage = JSON.stringify(response.error);
-        }
-        
-        this.customToastrService.message(errorMessage, 'Error', {
-          messageType: ToastrMessageType.Error,
-          position: ToastrPosition.TopRight,
-        });
-      },
-    });
+        },
+      });
     }
-  
   }
   register(data: RegisterType) {
-   
     this.http.post({ controller: 'Auth', action: 'Register' }, data).subscribe({
-      next:(value: ResultResponseType<null>)=> {
+      next: (value: ResultResponseType<null>) => {
         if (value.isSuccess) {
-          this.customToastrService.message("",'Success', {
+          this.customToastrService.message('', 'Success', {
             messageType: ToastrMessageType.Success,
             position: ToastrPosition.TopRight,
           });
-        this.spinner.spinerHide();
         }
       },
-      error:(response: HttpErrorResponse)=> {
+      error: (response: HttpErrorResponse) => {
         let errorMessage = '';
         if (Array.isArray(response?.error?.messages)) {
           errorMessage = response?.error?.messages.join('\n');
@@ -154,7 +150,7 @@ export class AuthService {
         } else {
           errorMessage = JSON.stringify(response.error);
         }
-        
+
         this.customToastrService.message(errorMessage, 'Error', {
           messageType: ToastrMessageType.Error,
           position: ToastrPosition.TopRight,
@@ -162,7 +158,79 @@ export class AuthService {
       },
     });
   }
+  forgotPassword(email: string) {
+    this.http
+      .put<ResultResponseType<null>, null>({
+        controller: 'Auth',
+        action: 'SendEmailTokenForForgotPassword',
+        queryString: `email=${email}`,
+      })
+      .subscribe({
+        next: (value: ResultResponseType<null>) => {
+          if (value.isSuccess) {
+            this.customToastrService.message('', 'Success', {
+              messageType: ToastrMessageType.Success,
+              position: ToastrPosition.TopRight,
+            });
+          }
+        },
+        error: (response: HttpErrorResponse) => {
+          let errorMessage = '';
+          if (Array.isArray(response?.error?.messages)) {
+            errorMessage = response?.error?.messages.join('\n');
+          } else if (typeof response?.error?.message === 'string') {
+            errorMessage = response.error?.message;
+          } else {
+            errorMessage = JSON.stringify(response.error);
+          }
 
+          this.customToastrService.message(errorMessage, 'Error', {
+            messageType: ToastrMessageType.Error,
+            position: ToastrPosition.TopRight,
+          });
+        },
+      });
+  }
+  changeForgotPassword(
+    email: string,
+    token: string,
+    newPassword: string,
+    confirmNewPassword: string
+  ) {
+    this.http.put<ResultResponseType<null>, UpdateForgotPassword>(
+      { controller: 'Auth', action: 'ChangePasswordForTokenForgotPassword' },
+      {
+        email: email,
+        token: token,
+        newPassword: newPassword,
+        confirmNewPassword: confirmNewPassword,
+      }
+    ).subscribe({
+         next: (value: ResultResponseType<null>) => {
+        if (value.isSuccess) {
+          this.customToastrService.message('', 'Success', {
+            messageType: ToastrMessageType.Success,
+            position: ToastrPosition.TopRight,
+          });
+        }
+      },
+      error: (response: HttpErrorResponse) => {
+        let errorMessage = '';
+        if (Array.isArray(response?.error?.messages)) {
+          errorMessage = response?.error?.messages.join('\n');
+        } else if (typeof response?.error?.message === 'string') {
+          errorMessage = response.error?.message;
+        } else {
+          errorMessage = JSON.stringify(response.error);
+        }
+
+        this.customToastrService.message(errorMessage, 'Error', {
+          messageType: ToastrMessageType.Error,
+          position: ToastrPosition.TopRight,
+        });
+      },
+    });
+  }
 }
 
 export let _isAuthenticated: boolean;

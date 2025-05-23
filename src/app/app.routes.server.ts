@@ -8,6 +8,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'contact', renderMode: RenderMode.Server },
   { path: 'shop/:page', renderMode: RenderMode.Client },
   { path: 'productdetail/:id', renderMode: RenderMode.Client },
+  { path: 'auth/forgotpassword', renderMode: RenderMode.Client },
   { path: 'cartdetail', renderMode: RenderMode.Client },
 
   // Auth

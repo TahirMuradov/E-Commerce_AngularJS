@@ -23,7 +23,7 @@ export class HttpClientService {
     let url: string = '';
     requestParametres.fullEndPoint
       ? (url = requestParametres.fullEndPoint)
-      : (url = `${this.url(requestParametres)}${id ? `/${id}` : ''}`);
+      : id? (url = `${this.url(requestParametres)}${id ? `/${id}` : ''}`):url =  `${this.url(requestParametres)}?${requestParametres.queryString}`;
 
     return this.httpClient.get<T>(url, { headers: requestParametres.headers });
   }

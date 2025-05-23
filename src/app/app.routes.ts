@@ -24,6 +24,7 @@ import { ForgotpasswordComponent } from './ui/components/auth/forgotpassword/for
 import { RegisterComponent } from './ui/components/auth/register/register.component';
 import { authGuard } from './guards/common/auth.guard';
 import { EmailConfirmationComponent } from './ui/components/auth/email-confirmation/email-confirmation.component';
+import { ChangeForgotPasswordComponent } from './ui/components/auth/change-forgot-password/change-forgot-password.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,7 @@ export const routes: Routes = [
       { path: 'shop/:page', component: ShopComponent, title: 'Shop' },
       { path: 'productdetail/:id', component: ProductDetailComponent, title: 'Product Detail' },
       { path: 'auth/emailconfirmed/:email/:token', component: EmailConfirmationComponent, title: 'Email Confirmation' },
+      { path: 'auth/changepasswordforforgot/:email/:token', component: ChangeForgotPasswordComponent, title: 'Change Password' },
       { path: 'cartdetail', component: CartDetailComponent, title: 'Basket Detail' },
       { path: 'contact', component: ContactComponent, title: 'Contact' }
     ]
