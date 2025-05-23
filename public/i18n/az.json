@@ -51,7 +51,15 @@
     "PasswordPattern": "Şifrə ən azı 6 simvoldan ibarət olmalı və böyük hərf, kiçik hərf, rəqəm və xüsusi simvol daxil etməlidir.",
     "ConfirmPasswordRequired": "Təkrar şifrə daxil edilməlidir.",
     "PasswordMismatch": "Şifrə və təkrar şifrə eyni olmalıdır.",
-    "AddressRequired": "Ünvan daxil edilməlidir."
-  }
+    "AddressRequired": "Ünvan daxil edilməlidir.",
+    "ConfirmTokenAlreadyUsed":"Bu təsdiq linki artıq istifadə olunub və ya müddəti bitib.",
+ "ConfirmedEmail":"Elektron Poçtunuz təsdiqləndi"
+  },
+"MessageType": {
+    "error": "Xəta",
+    "warning": "Xəbərdarlıq",
+    "info": "Məlumat",
+    "success": "Uğurlu əməliyyat"
+}
     
 }

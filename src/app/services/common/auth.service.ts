@@ -22,9 +22,9 @@ export class AuthService {
   constructor(
     private jwtHelper: JwtHelperService,
     private http: HttpClientService,
-    public customToastrService: CustomToastrService,
+    private customToastrService: CustomToastrService,
     private router: Router,
-    public spinner: SpinnerLoadingService
+    private spinner: SpinnerLoadingService
   ) {
     (_isAuthenticated = false), (_isRole = RoleEnums.User);
   }

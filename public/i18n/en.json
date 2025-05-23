@@ -49,6 +49,14 @@
     "PasswordPattern": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character.",
     "ConfirmPasswordRequired": "Confirm password is required.",
     "PasswordMismatch": "Password and Confirm Password do not match.",
-    "AddressRequired": "Address is required."
-  }
+    "AddressRequired": "Address is required.",
+     "ConfirmTokenAlreadyUsed":"This confirmation link has already been used or has expired.",
+      "ConfirmedEmail":"Your e-mail has been approved"
+  },
+  "MessageType": {
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "success": "Successful operation"
+}
 }

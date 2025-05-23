@@ -23,6 +23,7 @@ import { LoginComponent } from './ui/components/auth/login/login.component';
 import { ForgotpasswordComponent } from './ui/components/auth/forgotpassword/forgotpassword.component';
 import { RegisterComponent } from './ui/components/auth/register/register.component';
 import { authGuard } from './guards/common/auth.guard';
+import { EmailConfirmationComponent } from './ui/components/auth/email-confirmation/email-confirmation.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'auth/forgotpassword', component: ForgotpasswordComponent,canActivate:[authGuard], title: 'ForgotPassword' },
       { path: 'shop/:page', component: ShopComponent, title: 'Shop' },
       { path: 'productdetail/:id', component: ProductDetailComponent, title: 'Product Detail' },
+      { path: 'auth/emailconfirmed/:email/:token', component: EmailConfirmationComponent, title: 'Email Confirmation' },
       { path: 'cartdetail', component: CartDetailComponent, title: 'Basket Detail' },
       { path: 'contact', component: ContactComponent, title: 'Contact' }
     ]
