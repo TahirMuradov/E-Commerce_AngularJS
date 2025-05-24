@@ -1,13 +1,15 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import {  HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
-import { finalize } from 'rxjs';
-
+import { catchError, finalize, tap, throwError } from 'rxjs';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
+import ResultResponseType from '../../models/responseType/ResultResponseType';
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
+  const toastrService=inject(CustomToastrService)
   let currentLocale =  environment.defaultLanguage;
   let modifiedReq = req;
 
@@ -36,5 +38,94 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
     });
   }
 
-  return next(modifiedReq).pipe(finalize(()=>spinner.spinerHide()));
+  return next(modifiedReq).pipe(
+    finalize(()=>spinner.spinerHide())
+  ,catchError(res=>{
+              let errorMessage = '';
+     switch (res.status) {
+        case 0:
+          toastrService.message(translateService.instant("clientErrorMessage.failedFetchServer"), translateService.instant("clientErrorMessage.serverError"), {
+            messageType: ToastrMessageType.Warning,
+            position: ToastrPosition.BottomFullWidth
+          });
+          break;
+        case HttpStatusCode.BadRequest:
+
+
+          if (Array.isArray(res.error?.messages)) {
+            errorMessage = res.error?.messages.join('\n');
+          } else if (typeof res.error?.message === 'string') {
+            errorMessage =res.error?.message;
+          } else {
+            errorMessage = JSON.stringify(res.error);
+          }
+          toastrService.message(errorMessage, translateService.instant("MessageType.warning"), {
+            messageType: ToastrMessageType.Warning,
+            position: ToastrPosition.BottomFullWidth
+          });
+          break;
+        case HttpStatusCode.NotFound:
+           
+
+          if (Array.isArray(res.error?.messages)) {
+            errorMessage = res.error?.messages.join('\n');
+          } else if (typeof res.error?.message === 'string') {
+            errorMessage = res.error?.message;
+          } else {
+            errorMessage = JSON.stringify(res.error);
+          }
+          toastrService.message(errorMessage, translateService.instant("MessageType.info"), {
+            messageType: ToastrMessageType.Warning,
+            position: ToastrPosition.BottomFullWidth
+          });
+          break;
+       case HttpStatusCode.Unauthorized||HttpStatusCode.Forbidden:
+          if (Array.isArray(res.error?.messages)) {
+            errorMessage = res.error?.messages.join('\n');
+          } else if (typeof res.error?.message === 'string') {
+            errorMessage = res.error?.message;
+          } else {
+            errorMessage = JSON.stringify(res.error);
+          }
+          toastrService.message(errorMessage, translateService.instant("MessageType.info"), {
+            messageType: ToastrMessageType.Info,
+            position: ToastrPosition.BottomFullWidth
+          });
+        break;
+       
+       default:
+          toastrService.message(translateService.instant("clientErrorMessage.defaultErorContent"), translateService.instant("MessageType.error"), {
+            messageType: ToastrMessageType.Error,
+            position: ToastrPosition.BottomFullWidth
+          });
+          break;
+      }
+ return throwError(() => res);
+      
+  }),
+  tap((res: any) => {
+    console.log(res.body)
+    const responseBody = res.body;
+    let messages:string[]=[]
+      if (res instanceof HttpResponse) {
+     
+        if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+      if (typeof responseBody?.message === 'string') {
+        messages.push(responseBody.message);
+      }
+     if (Array.isArray(responseBody?.messages)) {
+        messages.push(...responseBody.messages);
+      }
+          toastrService.message(
+          messages.join("\n")??"",
+            translateService.instant("MessageType.success"),
+            {
+              messageType: ToastrMessageType.Success,
+              position: ToastrPosition.BottomFullWidth
+            }
+          );
+        }
+      }
+    }),
+);
 };

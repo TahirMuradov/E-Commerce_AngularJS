@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,6 +16,7 @@ import {
   ToastrPosition,
 } from '../../../../services/ui/custom-toastr.service';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-change-forgot-password',
   imports: [CommonModule,RouterLink, ReactiveFormsModule, TranslateModule],
@@ -23,19 +24,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './change-forgot-password.component.html',
   styleUrl: './change-forgot-password.component.css',
 })
-export class ChangeForgotPasswordComponent {
+export class ChangeForgotPasswordComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     private toastr: CustomToastrService,
     private authService: AuthService,
-    private httpService: HttpClientService
   ) {
     this.frm = formBuilder.group(
       {
         newPassword: [
-          'test',
+          '',
           [
             Validators.required,
             Validators.pattern(
@@ -56,49 +56,23 @@ export class ChangeForgotPasswordComponent {
     const confirmPassword = form.get('confirmNewPassword')?.value;
     return password === confirmPassword ? null : { mismatch: true };
   }
-  token: string = null;
-  email: string = null;
+  email: string;
+  token: string;
+  tokenValid = false;
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe({
-      next: async (params) => {
-        const queryToken: string =  params['token'];
-        const queryEmail: string = params['email'];
-        if (queryToken && queryEmail) {
-          this.httpService
-            .get<ResultResponseType<null>>({controller:"Auth",action:"CheckTokenForForgotPassword",
-              queryString: `email=${queryEmail}&token=${queryToken}`,
-            })
-            .subscribe({
-              next: (response) => {
-                if (response.isSuccess) {
-                  this.toastr.message('Success', 'Profiliniz tesdiqlendi', {
-                    messageType: ToastrMessageType.Success,
-                    position: ToastrPosition.TopLeft,
-                  });
-                  this.token =queryToken? decodeURIComponent(queryToken):null;
-                  this.email =queryEmail? decodeURIComponent(queryEmail):null;
-                }
-              },
-              error: (response) => {
-                if (Array.isArray(response?.error?.messages)) {
-                  response?.error?.messages?.forEach((message) => {
-                    this.errorMessages.push(`${message}`);
-                  });
-                } else if (typeof response?.error?.message === 'string') {
-                  this.errorMessages.push(`${response.error?.message}`);
-                } else {
-                  this.errorMessages.push(`${JSON.stringify(response.error)}`);
-                }
-              },
-            });
-        }
-      },
-    });
+this.activatedRoute.queryParamMap.subscribe(params => {
+  this.email = params.get('email') || '';
+  this.token = params.get('token') || '';
+
+ this.authService.checkTokenForForgotPassword(this.email,this.token).subscribe(result=>this.tokenValid=result)
+
+});
+      
   }
   onSubmitForm(): void {
     if (this.frm.valid) {
       this.authService.changeForgotPassword(
-        this.email,
+      this.email,
         this.token,
         this.frm.controls['newPassword'].value,
         this.frm.controls['confirmNewPassword'].value
@@ -132,8 +106,8 @@ export class ChangeForgotPasswordComponent {
         );
       }
 
-      this.toastr.message(errorMessages.join('\n'), 'Error', {
-        messageType: ToastrMessageType.Error,
+      this.toastr.message(errorMessages.join('\n'), this.translate.instant("MessageType.warning"), {
+        messageType: ToastrMessageType.Warning,
         position: ToastrPosition.TopLeft,
       });
     }

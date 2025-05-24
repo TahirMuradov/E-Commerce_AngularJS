@@ -65,6 +65,7 @@ export class RegisterComponent {
   frm: FormGroup;
   passwordForm: FormGroup;
   onSubmitForm(): void {
+   
     if (this.frm.valid) {
       const data: RegisterType = {
         firstname: this.frm.controls['firstName'].value,

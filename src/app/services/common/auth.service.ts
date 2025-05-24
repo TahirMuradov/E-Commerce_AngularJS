@@ -20,6 +20,7 @@ import { RoleEnums } from '../../models/enums/RoleEnums';
 import RegisterType from '../../models/responseType/authResponseType/RegisterType';
 import { TranslateService } from '@ngx-translate/core';
 import UpdateForgotPassword from '../../models/DTOs/UpdateForgotPassword';
+import { map, Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,9 +28,8 @@ export class AuthService {
   constructor(
     private jwtHelper: JwtHelperService,
     private http: HttpClientService,
-    private customToastrService: CustomToastrService,
     private router: Router,
-    private translate: TranslateService
+  
   ) {
     (_isAuthenticated = false), (_isRole = RoleEnums.User);
   }
@@ -81,21 +81,7 @@ export class AuthService {
             this.router.navigate(['home']);
           }
         },
-        error: (response: HttpErrorResponse) => {
-          let errorMessage = '';
-
-          if (Array.isArray(response?.error?.messages)) {
-            errorMessage = response?.error?.messages.join('\n');
-          } else if (typeof response?.error?.message === 'string') {
-            errorMessage = response.error?.message;
-          } else {
-            errorMessage = JSON.stringify(response.error);
-          }
-          this.customToastrService.message(errorMessage, 'Error', {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.TopRight,
-          });
-        },
+   
       });
   }
   signOut() {
@@ -107,56 +93,40 @@ export class AuthService {
         next: (value: ResultResponseType<null>) => {
           if (value.isSuccess) {
             localStorage.removeItem('SessionInfo');
-            this.customToastrService.message('', 'Success', {
-              messageType: ToastrMessageType.Success,
-              position: ToastrPosition.TopRight,
-            });
+      
+             this.router.navigate(['/auth/login']);
           }
         },
-        error: (response: HttpErrorResponse) => {
-          let errorMessage = '';
-          if (Array.isArray(response?.error?.messages)) {
-            errorMessage = response?.error?.messages.join('\n');
-          } else if (typeof response?.error?.message === 'string') {
-            errorMessage = response.error?.message;
-          } else {
-            errorMessage = JSON.stringify(response.error);
-          }
-
-          this.customToastrService.message(errorMessage, 'Error', {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.TopRight,
-          });
-        },
+    
       });
     }
   }
   register(data: RegisterType) {
     this.http.post({ controller: 'Auth', action: 'Register' }, data).subscribe({
       next: (value: ResultResponseType<null>) => {
+        console.log(value)
         if (value.isSuccess) {
-          this.customToastrService.message('', 'Success', {
-            messageType: ToastrMessageType.Success,
-            position: ToastrPosition.TopRight,
-          });
+          
+
+           this.router.navigate(['/auth/login']);
         }
       },
-      error: (response: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (Array.isArray(response?.error?.messages)) {
-          errorMessage = response?.error?.messages.join('\n');
-        } else if (typeof response?.error?.message === 'string') {
-          errorMessage = response.error?.message;
-        } else {
-          errorMessage = JSON.stringify(response.error);
+ 
+    });
+  }
+  checkEmailConfirmationToken(queryToken:string,queryEmail:string){
+  
+    if (queryToken && queryEmail) {
+          this.http.put<
+            ResultResponseType<null>,
+            { email: string; token: string }
+          >(
+            { controller: 'Auth', action: 'ChecekdConfirmedEmailToken' },
+            { email:queryEmail, token:queryToken}
+          );
+          this.router.navigate(["/auth/login"])
         }
 
-        this.customToastrService.message(errorMessage, 'Error', {
-          messageType: ToastrMessageType.Error,
-          position: ToastrPosition.TopRight,
-        });
-      },
-    });
   }
   forgotPassword(email: string) {
     this.http
@@ -168,29 +138,26 @@ export class AuthService {
       .subscribe({
         next: (value: ResultResponseType<null>) => {
           if (value.isSuccess) {
-            this.customToastrService.message('', 'Success', {
-              messageType: ToastrMessageType.Success,
-              position: ToastrPosition.TopRight,
-            });
+       
+             this.router.navigate(['/auth/login']);
           }
         },
-        error: (response: HttpErrorResponse) => {
-          let errorMessage = '';
-          if (Array.isArray(response?.error?.messages)) {
-            errorMessage = response?.error?.messages.join('\n');
-          } else if (typeof response?.error?.message === 'string') {
-            errorMessage = response.error?.message;
-          } else {
-            errorMessage = JSON.stringify(response.error);
-          }
-
-          this.customToastrService.message(errorMessage, 'Error', {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.TopRight,
-          });
-        },
+   
       });
   }
+checkTokenForForgotPassword(queryEmail: string, queryToken: string): Observable<boolean> {
+  if (queryEmail && queryToken) {
+    return this.http.get<ResultResponseType<null>>({
+      controller: "Auth",
+      action: "CheckTokenForForgotPassword",
+      queryString: `email=${encodeURIComponent(queryEmail.replace(/\+/g, '%2B'))}&token=${encodeURIComponent(queryToken.replace(/\+/g, '%2B'))}`
+    }).pipe(
+      map(response => response.isSuccess)
+    );
+  } else {
+    return of(false);
+  }
+}
   changeForgotPassword(
     email: string,
     token: string,
@@ -203,32 +170,16 @@ export class AuthService {
         email: email,
         token: token,
         newPassword: newPassword,
-        confirmNewPassword: confirmNewPassword,
+        NewConfirmPassword: confirmNewPassword,
       }
     ).subscribe({
          next: (value: ResultResponseType<null>) => {
         if (value.isSuccess) {
-          this.customToastrService.message('', 'Success', {
-            messageType: ToastrMessageType.Success,
-            position: ToastrPosition.TopRight,
-          });
+     
+           this.router.navigate(['/auth/login']);
         }
       },
-      error: (response: HttpErrorResponse) => {
-        let errorMessage = '';
-        if (Array.isArray(response?.error?.messages)) {
-          errorMessage = response?.error?.messages.join('\n');
-        } else if (typeof response?.error?.message === 'string') {
-          errorMessage = response.error?.message;
-        } else {
-          errorMessage = JSON.stringify(response.error);
-        }
-
-        this.customToastrService.message(errorMessage, 'Error', {
-          messageType: ToastrMessageType.Error,
-          position: ToastrPosition.TopRight,
-        });
-      },
+   
     });
   }
 }

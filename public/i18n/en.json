@@ -1,43 +1,43 @@
 {
   "header": {
-      "your_bag": "Your Bag is",
-      "cart": "Cart",
-      "checkout": "Checkout",
-      "login": "Login",
-      "register": "Register",
-      "total": "Total",
-      "phone": "+994 55 278 43 44",
-      "logo_alt": "Company Logo",
-      "menu": {
-        "home": "Home",
-        "shop": "Shop",
-        "contact": "Contact",
-        "cart_detail": "Cart Detail"
-      },
-      "products": {
-        "product1": "Product Name 1",
-        "product2": "Product Name 2"
-      }
+    "your_bag": "Your Bag is",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "login": "Login",
+    "register": "Register",
+    "total": "Total",
+    "phone": "+994 55 278 43 44",
+    "logo_alt": "Company Logo",
+    "menu": {
+      "home": "Home",
+      "shop": "Shop",
+      "contact": "Contact",
+      "cart_detail": "Cart Detail"
     },
-    "home":{
-      "home-slider": {
-        "btn": "View Details"
-      },
-      "top-category-section":{
-      "btn":"View Details"
-      },
-      "new-arrival-section": {
-        "new-arrival": "New Arrivals"
-      }
+    "products": {
+      "product1": "Product Name 1",
+      "product2": "Product Name 2"
+    }
+  },
+  "home": {
+    "home-slider": {
+      "btn": "View Details"
     },
-    "product-cart":{
-      "btn":"start shopping"
+    "top-category-section": {
+      "btn": "View Details"
     },
-    "not-found":{
-      "return-home":"Home Page"
-    },
-       "currencyType":"USD",
-    "VALIDATION": {
+    "new-arrival-section": {
+      "new-arrival": "New Arrivals"
+    }
+  },
+  "product-cart": {
+    "btn": "start shopping"
+  },
+  "not-found": {
+    "return-home": "Home Page"
+  },
+  "currencyType": "USD",
+  "VALIDATION": {
     "FirstnameRequired": "First name is required.",
     "LastnameRequired": "Last name is required.",
     "UsernameRequired": "Username is required.",
@@ -50,13 +50,24 @@
     "ConfirmPasswordRequired": "Confirm password is required.",
     "PasswordMismatch": "Password and Confirm Password do not match.",
     "AddressRequired": "Address is required.",
-     "ConfirmTokenAlreadyUsed":"This confirmation link has already been used or has expired.",
-      "ConfirmedEmail":"Your e-mail has been approved"
+    "ConfirmTokenAlreadyUsed": "This confirmation link has already been used or has expired.",
+    "ConfirmedEmail": "Your e-mail has been approved"
   },
   "MessageType": {
     "error": "Error",
     "warning": "Warning",
     "info": "Information",
     "success": "Successful operation"
-}
+  },
+  "clientErrorMessage": {
+    "emailConfirmation": "Your e-mail has confirmed you can now access your profile!",
+    "defaultErorContent": "An unknown failure has occurred.",
+    "failedFetchServer": "The server is not accessible!",
+    "serverError": "Server Error!",
+    "forgotPasswordCheckTrue": "Now you can set the new password!",
+    "accessDenied": "Access denied",
+    "accessDeniedContent": "You do not have permission to access this page!",
+    "againLogin": "Login denied",
+    "againLoginContent": "Please log out first!"
+  }
 }

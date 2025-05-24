@@ -38,7 +38,7 @@
   },
   "currencyType": "RUB",
   "VALIDATION": {
-  "FirstnameRequired": "Имя обязательно.",
+    "FirstnameRequired": "Имя обязательно.",
     "LastnameRequired": "Фамилия обязательна.",
     "UsernameRequired": "Имя пользователя обязательно.",
     "EmailRequired": "Электронная почта обязательна.",
@@ -50,13 +50,24 @@
     "ConfirmPasswordRequired": "Подтверждение пароля обязательно.",
     "PasswordMismatch": "Пароль и подтверждение пароля не совпадают.",
     "AddressRequired": "Адрес обязателен.",
-  "ConfirmTokenAlreadyUsed":"Эта ссылка для подтверждения уже использована или истек срок её действия.",
-"ConfirmedEmail":"Ваша электронная почта была одобрена"
+    "ConfirmTokenAlreadyUsed": "Эта ссылка для подтверждения уже использована или истек срок её действия.",
+    "ConfirmedEmail": "Ваша электронная почта была одобрена"
   },
-"MessageType": {
+  "MessageType": {
     "error": "Ошибка",
     "warning": "Предупреждение",
     "info": "Информация",
     "success": "Успешная операция"
-}
+  },
+  "clientErrorMessage": {
+    "emailConfirmation": "Ваша электронная почта подтвердила, что теперь вы можете получить доступ к вашему профилю!",
+    "defaultErorContent": "Произошла неизвестная ошибка",
+    "serverError": "Ошибка сервера!",
+    "failedFetchServer": "Сервер недоступен!",
+    "forgotPasswordCheckTrue": "Теперь вы можете установить новый пароль!",
+    "accessDenied": "Доступ запрещен",
+    "accessDeniedContent": "У вас нет прав для доступа к этой странице!",
+    "againLogin": "Вход запрещен",
+    "againLoginContent": "Сначала выйдите из системы!"
+  }
 }
