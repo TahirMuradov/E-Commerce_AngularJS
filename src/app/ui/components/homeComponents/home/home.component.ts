@@ -4,7 +4,6 @@ import { DiscountSectionComponent } from '../discount-section/discount-section.c
 import { TopCategorySectionComponent } from '../top-category-section/top-category-section.component';
 import { NewArriwalSectionComponent } from '../new-arriwal-section/new-arriwal-section.component';
 import { HttpClientService } from '../../../../services/common/http-client.service';
-import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.service';
 
 @Component({

@@ -1,13 +1,14 @@
-import { CurrencyPipe, NgClass, NgFor } from '@angular/common';
+import { CommonModule, CurrencyPipe, NgClass, NgFor } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BasketService } from '../../../services/globalStateServices/basketState.service';
 import { AuthService } from '../../../services/common/auth.service';
 import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-header',
-  imports: [NgClass, NgFor, CurrencyPipe, TranslateModule, RouterLink],
+  imports: [ CurrencyPipe, TranslateModule, RouterLink,CommonModule],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -16,7 +17,7 @@ export class HeaderComponent {
   constructor(
     private translate: TranslateService,
     public basketService: BasketService,
-    private authService: AuthService,
+    public authService: AuthService,
   ) {}
 
   currentLocale: string;

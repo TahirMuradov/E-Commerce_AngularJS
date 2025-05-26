@@ -40,7 +40,7 @@ export class AuthService {
   get isRole(): RoleEnums {
     return _isRole;
   }
-  identityCheck() {
+  identityCheck():boolean {
     let token: string = null;
     let expired: boolean;
 
@@ -66,6 +66,7 @@ export class AuthService {
     }
 
     _isAuthenticated = token != null && !expired;
+    return _isAuthenticated
   }
   signIn(email: string, password: string) {
     this.http
@@ -188,6 +189,9 @@ checkTokenForForgotPassword(queryEmail: string, queryToken: string): Observable<
    
     });
   }
+  get isLoggedIn(): boolean {
+  return _isAuthenticated;
+}
 }
 
 export let _isAuthenticated: boolean;
