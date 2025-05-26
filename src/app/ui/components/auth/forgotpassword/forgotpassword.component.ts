@@ -34,7 +34,7 @@ export class ForgotpasswordComponent {
   }
   frm: FormGroup;
   onSubmitForm(): void {
-    console.log(this.frm.controls['email'].value)
+
     if (this.frm.valid) {
       this.authService.forgotPassword(this.frm.controls['email'].value);
     } else {

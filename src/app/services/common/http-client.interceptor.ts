@@ -1,9 +1,9 @@
-import {  HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
+import {  HttpEvent, HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
-import { catchError, finalize, tap, throwError } from 'rxjs';
+import { catchError, finalize, map, tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 import ResultResponseType from '../../models/responseType/ResultResponseType';
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
@@ -126,6 +126,19 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
           );
         }
       }
+      return res;
     }),
+    // map((event: HttpEvent<any>) => {
+
+    //                 if (event instanceof HttpResponse) {
+    //                   if (event.ok) {
+    //                      console.log('Success');
+    //                   } else {
+    //                     console.log('Error');
+    //                   }
+    //                 }
+            
+    //                 return event;
+    //               })
 );
 };

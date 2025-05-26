@@ -123,8 +123,14 @@ export class AuthService {
           >(
             { controller: 'Auth', action: 'ChecekdConfirmedEmailToken' },
             { email:queryEmail, token:queryToken}
-          );
-          this.router.navigate(["/auth/login"])
+          ).subscribe({
+            next:(response)=>{
+if (response.isSuccess) {
+  
+  this.router.navigate(["/auth/login"])
+}
+            }
+          });
         }
 
   }
@@ -150,7 +156,7 @@ checkTokenForForgotPassword(queryEmail: string, queryToken: string): Observable<
     return this.http.get<ResultResponseType<null>>({
       controller: "Auth",
       action: "CheckTokenForForgotPassword",
-      queryString: `email=${encodeURIComponent(queryEmail.replace(/\+/g, '%2B'))}&token=${encodeURIComponent(queryToken.replace(/\+/g, '%2B'))}`
+      queryString: `email=${encodeURIComponent(queryEmail)}&token=${encodeURIComponent(queryToken)}`
     }).pipe(
       map(response => response.isSuccess)
     );
