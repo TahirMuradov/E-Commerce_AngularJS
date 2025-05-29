@@ -31,38 +31,228 @@ export const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: HomeComponent, title: 'Home' },
-      { path: 'home', component: HomeComponent, title: 'Home' },
-      { path: 'about', component: AboutComponent, title: 'About' },
-      { path: 'auth/login', component: LoginComponent, canActivate: [authGuard], title: 'Login' },
-      { path: 'auth/register', component: RegisterComponent,canActivate:[authGuard], title: 'Register' },
-      { path: 'auth/forgotpassword', component: ForgotpasswordComponent,canActivate:[authGuard], title: 'ForgotPassword' },
-      { path: 'shop/:page', component: ShopComponent, title: 'Shop' },
-      { path: 'productdetail/:id', component: ProductDetailComponent, title: 'Product Detail' },
-      { path: 'auth/emailconfirmed/:email/:token', component: EmailConfirmationComponent, title: 'Email Confirmation' },
-      { path: 'auth/changepasswordforforgot', component: ChangeForgotPasswordComponent, title: 'Change Password' },
-      { path: 'cartdetail', component: CartDetailComponent, title: 'Basket Detail' },
-      { path: 'contact', component: ContactComponent, title: 'Contact' }
-    ]
+      {
+        path: '',
+        component: HomeComponent,
+        title: 'Home',
+        loadComponent: () =>
+          import('./ui/components/homeComponents/home/home.component').then(
+            (x) => x.HomeComponent
+          ),
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        title: 'Home',
+        loadComponent: () =>
+          import('./ui/components/homeComponents/home/home.component').then(
+            (x) => x.HomeComponent
+          ),
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
+        title: 'About',
+
+        loadComponent: () =>
+          import('./ui/components/aboutcomponents/about/about.component').then(
+            (x) => x.AboutComponent
+          ),
+      },
+      {
+        path: 'auth/login',
+        component: LoginComponent,
+        canActivate: [authGuard],
+        title: 'Login',
+        loadComponent: () =>
+          import('./ui/components/auth/login/login.component').then(
+            (x) => x.LoginComponent
+          ),
+      },
+      {
+        path: 'auth/register',
+        component: RegisterComponent,
+        canActivate: [authGuard],
+        title: 'Register',
+        loadComponent: () =>
+          import('./ui/components/auth/register/register.component').then(
+            (x) => x.RegisterComponent
+          ),
+      },
+      {
+        path: 'auth/forgotpassword',
+        component: ForgotpasswordComponent,
+        canActivate: [authGuard],
+        title: 'ForgotPassword',
+        loadComponent: () =>
+          import(
+            './ui/components/auth/forgotpassword/forgotpassword.component'
+          ).then((x) => x.ForgotpasswordComponent),
+      },
+      {
+        path: 'shop/:page',
+        component: ShopComponent,
+        title: 'Shop',
+
+        loadComponent: () =>
+          import('./ui/components/shopcomponents/shop/shop.component').then(
+            (x) => x.ShopComponent
+          ),
+      },
+      {
+        path: 'productdetail/:id',
+        component: ProductDetailComponent,
+        title: 'Product Detail',
+        loadComponent: () =>
+          import(
+            './ui/components/product-detail/product-detail.component'
+          ).then((x) => x.ProductDetailComponent),
+      },
+      {
+        path: 'auth/emailconfirmed/:email/:token',
+        component: EmailConfirmationComponent,
+        title: 'Email Confirmation',
+        loadComponent: () =>
+          import(
+            './ui/components/auth/email-confirmation/email-confirmation.component'
+          ).then((x) => x.EmailConfirmationComponent),
+      },
+      {
+        path: 'auth/changepasswordforforgot',
+        component: ChangeForgotPasswordComponent,
+        title: 'Change Password',
+        loadComponent: () =>
+          import(
+            './ui/components/auth/change-forgot-password/change-forgot-password.component'
+          ).then((x) => x.ChangeForgotPasswordComponent),
+      },
+      {
+        path: 'cartdetail',
+        component: CartDetailComponent,
+        title: 'Basket Detail',
+        loadComponent: () =>
+          import('./ui/components/cart-detail/cart-detail.component').then(
+            (x) => x.CartDetailComponent
+          ),
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        title: 'Contact',
+        loadComponent: () =>
+          import('./ui/components/contact/contact.component').then(
+            (x) => x.ContactComponent
+          ),
+      },
+    ],
   },
   {
     path: 'dashboard',
     component: DashboardLayoutComponent,
-    canActivate:[authGuard],
+    canActivate: [authGuard],
     children: [
-      { path: 'users', component: UsertableComponent },
-      { path: 'user/:Id', component: UserUpdateComponent },
-      { path: 'categories', component: CategoryTableComponent },
-      { path: 'category/:Id', component: CategoryUpdateComponent },
-      { path: 'categorycreate', component: CategoryCreateComponent },
-      { path: 'products', component: ProductTableComponent },
-      { path: 'product/:Id', component: ProductUpdateComponent },
-      { path: 'productcreate', component: ProductCreateComponent },
-      { path: 'sizes', component: SizeTableComponent },
-      { path: 'sizecreate', component: SizeCreateComponent },
-      { path: 'size/:Id', component: SizeUpdateComponent }
-    ]
+      {
+        path: 'users',
+        component: UsertableComponent,
+        title: 'Users',
+
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/user/usertable/usertable.component'
+          ).then((x) => x.UsertableComponent),
+      },
+      {
+        path: 'user/:Id',
+        component: UserUpdateComponent,
+        title: 'User Edit Profile',
+
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/user/user-update/user-update.component'
+          ).then((x) => x.UserUpdateComponent),
+      },
+      {
+        path: 'categories',
+        component: CategoryTableComponent,
+        title: 'Categories',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/category/category-table/category-table.component'
+          ).then((x) => x.CategoryTableComponent),
+      },
+      {
+        path: 'category/:Id',
+        component: CategoryUpdateComponent,
+        title: 'Category Detail',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/category/category-update/category-update.component'
+          ).then((x) => x.CategoryUpdateComponent),
+      },
+      {
+        path: 'categorycreate',
+        component: CategoryCreateComponent,
+        title: 'Category Create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/category/category-create/category-create.component'
+          ).then((x) => x.CategoryCreateComponent),
+      },
+      {
+        path: 'products',
+        component: ProductTableComponent,
+        title: 'Products',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/product/product-table/product-table.component'
+          ).then((x) => x.ProductTableComponent),
+      },
+      {
+        path: 'product/:Id',
+        component: ProductUpdateComponent,
+        title: 'Product Detail',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/product/product-update/product-update.component'
+          ).then((x) => x.ProductUpdateComponent),
+      },
+      {
+        path: 'productcreate',
+        component: ProductCreateComponent,
+        title: 'Product Create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/product/product-create/product-create.component'
+          ).then((x) => x.ProductCreateComponent),
+      },
+      {
+        path: 'sizes',
+        component: SizeTableComponent,
+        title: 'Sizes',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/size/size-table/size-table.component'
+          ).then((x) => x.SizeTableComponent),
+      },
+      {
+        path: 'sizecreate',
+        component: SizeCreateComponent,
+        title: 'Size Create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/size/size-create/size-create.component'
+          ).then((x) => x.SizeCreateComponent),
+      },
+      {
+        path: 'size/:Id',
+        component: SizeUpdateComponent,
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/size/size-update/size-update.component'
+          ).then((x) => x.SizeUpdateComponent),
+      },
+    ],
   },
 
-  { path: '**', component: NotFoundComponent, title: 'Not Found Page' }
+  { path: '**', component: NotFoundComponent, title: 'Not Found Page' },
 ];
