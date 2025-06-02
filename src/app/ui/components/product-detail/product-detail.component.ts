@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import ProductDetailType, { Data } from '../../../models/ui/ProductDetailType';
 import { RouterLink } from '@angular/router';
 import { BasketService } from '../../../services/globalStateServices/basketState.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,7 @@ import { BasketService } from '../../../services/globalStateServices/basketState
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor (public basketService:BasketService){}
+  constructor (public basketService:BasketService,private meta: Meta, private title: Title){}
   customOptions: OwlOptions = {
   
     loop: true,
@@ -73,7 +74,13 @@ signalSelectedSize=signal<string|null>(null)
 signalSelectedCount=signal<number>(0)
   ngOnInit(): void {
    this.signalProduct.set(Data[0])
-  }
+  this.title.setTitle(this.signalProduct().title + ' | My Shop');
+        this.meta.updateTag({ name: 'description', content: this.signalProduct().description });
+  this.meta.updateTag({ property: 'og:title', content: this.signalProduct().title });
+this.meta.updateTag({ property: 'og:description', content: this.signalProduct().description });
+this.meta.updateTag({ property: 'og:image', content: this.signalProduct().imgUrls[0] });
+  
+      }
   onAddBasketItem(){
     debugger;
     if (this.signalSelectedSize()!=null||this.signalSelectedCount()>0) {

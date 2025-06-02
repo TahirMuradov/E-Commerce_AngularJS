@@ -31,38 +31,42 @@ export class AuthService {
     private router: Router,
   
   ) {
-    (_isAuthenticated = false), (_isRole = RoleEnums.User);
+    (_isAuthenticated = false);
+    (_isRole=[])
   }
 
   get isAuthenticated(): boolean {
     return _isAuthenticated;
   }
-  get isRole(): RoleEnums {
+  get isRole(): RoleEnums[] {
     return _isRole;
   }
   identityCheck():boolean {
+  
     let token: string = null;
     let expired: boolean;
 
     if (typeof window !== 'undefined') {
       token = JSON.parse(localStorage.getItem('SessionInfo'))?.accessToken;
-
-      try {
-        expired = this.jwtHelper.isTokenExpired(token);
-      } catch {
-        expired = false;
-      }
-      if (expired && token) {
-        const tokenDecode: DecodedToken = this.jwtHelper.decodeToken(token);
-        console.log(tokenDecode);
-        if (tokenDecode.Roles.includes(RoleEnums.SuperAdmin)) {
-          _isRole = RoleEnums.SuperAdmin;
-        } else if (tokenDecode.Roles.includes(RoleEnums.Admin)) {
-          _isRole = RoleEnums.Admin;
-        } else {
-          _isRole = RoleEnums.User;
-        }
-      }
+if (token) {
+  
+  try {
+    expired = this.jwtHelper.isTokenExpired(token);
+  } catch {
+    expired = true;
+  }
+  if (!expired && token) {
+    const tokenDecode: DecodedToken = this.jwtHelper.decodeToken(token);
+   
+    if (tokenDecode.Roles.includes(RoleEnums.SuperAdmin)) {
+      _isRole=[RoleEnums.SuperAdmin];
+    } else if (tokenDecode.Roles.includes(RoleEnums.Admin)) {
+     _isRole=[RoleEnums.Admin];
+    } else {
+     _isRole=[RoleEnums.User];
+    }
+  }
+}
     }
 
     _isAuthenticated = token != null && !expired;
@@ -105,7 +109,7 @@ export class AuthService {
   register(data: RegisterType) {
     this.http.post({ controller: 'Auth', action: 'Register' }, data).subscribe({
       next: (value: ResultResponseType<null>) => {
-        console.log(value)
+     
         if (value.isSuccess) {
           
 
@@ -189,10 +193,8 @@ checkTokenForForgotPassword(queryEmail: string, queryToken: string): Observable<
    
     });
   }
-  get isLoggedIn(): boolean {
-  return _isAuthenticated;
-}
+
 }
 
 export let _isAuthenticated: boolean;
-export let _isRole: RoleEnums;
+export let _isRole: RoleEnums[];

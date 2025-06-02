@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import {
   AuthService,
   _isAuthenticated,
+  _isRole,
 } from '../../services/common/auth.service';
 import { CustomToastrService } from '../../services/ui/custom-toastr.service';
 import {
@@ -19,9 +20,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
 
   authService.identityCheck();
+  console.log('Role: ' + _isRole);
+  console.log('Auth Status: '+ _isAuthenticated);
 
   if (
-    (!authService.isAuthenticated || authService.isRole == RoleEnums.User) &&
+    (!authService.isAuthenticated ||
+      !(authService.isRole.includes(RoleEnums.SuperAdmin) ||
+      authService.isRole.includes(RoleEnums.Admin))) &&
     state.url.startsWith('/dashboard')
   ) {
     toastrService.message(
@@ -37,7 +42,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   } else if (authService.isAuthenticated && state.url.startsWith('/auth')) {
     toastrService.message(
       translateService.instant('clientErrorMessage.againLoginContent'),
-    translateService.instant('clientErrorMessage.againLogin'),
+      translateService.instant('clientErrorMessage.againLogin'),
       {
         messageType: ToastrMessageType.Warning,
         position: ToastrPosition.TopRight,

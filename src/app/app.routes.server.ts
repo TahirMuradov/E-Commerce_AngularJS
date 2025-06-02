@@ -6,15 +6,15 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'home', renderMode: RenderMode.Server },
   { path: 'about', renderMode: RenderMode.Server },
   { path: 'contact', renderMode: RenderMode.Server },
-  { path: 'shop/:page', renderMode: RenderMode.Client },
-  { path: 'productdetail/:id', renderMode: RenderMode.Client },
-  { path: 'auth/forgotpassword', renderMode: RenderMode.Client },
-  { path: 'cartdetail', renderMode: RenderMode.Client },
+  { path: 'shop/:page', renderMode: RenderMode.Server },
+  { path: 'productdetail/:id', renderMode: RenderMode.Server },
+  { path: 'auth/forgotpassword', renderMode: RenderMode.Server },
+  { path: 'cartdetail', renderMode: RenderMode.Server },
 
   // Auth
-  { path: 'auth/login', renderMode: RenderMode.Client },
-  { path: 'auth/register', renderMode: RenderMode.Client },
-  { path: 'auth/forgotpassword', renderMode: RenderMode.Client },
+  { path: 'auth/login', renderMode: RenderMode.Server },
+  { path: 'auth/register', renderMode: RenderMode.Server },
+  { path: 'auth/forgotpassword', renderMode: RenderMode.Server },
 
   // Dashboard (Child routes of DashboardLayoutComponent)
   { path: 'dashboard', renderMode: RenderMode.Client }, // parent
@@ -32,6 +32,9 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/sizes', renderMode: RenderMode.Client },
   { path: 'dashboard/size/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/sizecreate', renderMode: RenderMode.Client },
+
+
+
 
   // Wildcard
   { path: '**', renderMode: RenderMode.Client },

@@ -1,1 +1,7 @@
-<p>category-table works!</p>
+
+<ng-container *ngIf="categoriesResponse?.isSuccess">
+
+    <app-table [responseApi]="categoriesResponse" [deleteActionLink]="deleteLink" [editActionLink]="edit"></app-table>
+</ng-container>
+
+

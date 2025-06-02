@@ -1,11 +1,10 @@
-import {  HttpEvent, HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
+import {HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
 import { catchError, finalize, map, tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
-import ResultResponseType from '../../models/responseType/ResultResponseType';
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
@@ -104,7 +103,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
       
   }),
   tap((res: any) => {
-    console.log(res.body)
+
     const responseBody = res.body;
     let messages:string[]=[]
       if (res instanceof HttpResponse) {

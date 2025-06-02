@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BasketService } from '../../../services/globalStateServices/basketState.service';
 import { AuthService } from '../../../services/common/auth.service';
 import { environment } from '../../../../environments/environment';
+import { RoleEnums } from '../../../models/enums/RoleEnums';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,9 @@ export class HeaderComponent {
     private translate: TranslateService,
     public basketService: BasketService,
     public authService: AuthService,
+    
   ) {}
+  readonly RoleEnum = RoleEnums;
 
   currentLocale: string;
   supportLangs: string[];
