@@ -6,6 +6,7 @@ import GetCategoryType from '../../../../../models/DTOs/CategoryDTOs/GetCategory
 import PaginatedListType from '../../../../../models/responseType/PaginatedListType';
 import { TableComponent } from "../../../table/table.component";
 import { NgIf } from '@angular/common';
+import { SpinnerLoadingService } from '../../../../../services/ui/spinner-loading.service';
 @Component({
   selector: 'app-category-table',
   imports: [TableComponent,NgIf],
@@ -17,13 +18,16 @@ export class CategoryTableComponent implements OnInit {
 
 constructor(
     private httpClientService: HttpClientService,
+    private Spinner :SpinnerLoadingService
 ) {
 
 
 }
+searchInput?:string=null;
 categoriesResponse:ResultResponseType<PaginatedListType<GetCategoryType[]>>;
 deleteLink:string="deleteLink";
 edit:string="editlink";
+  private timeout: any = null;
 ngOnInit(){
        this.httpClientService
     .get({ controller: 'Category',action:"GetAllCategoryByPage",queryString:"page=1" })
@@ -40,6 +44,18 @@ ngOnInit(){
         console.log(err)
       },
     });
+}
+onChangeSearchInput(obj:any){
+  console.log("Parent childdan gelen deyeri qebul etdi "+obj)
+  this.Spinner.spinerShow()
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  this.timeout=setTimeout(()=>{
+    console.log("FetchAtildi")
+this.Spinner.spinerHide()
+  },5000)
+
 }
 
 }

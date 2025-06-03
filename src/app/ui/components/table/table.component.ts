@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, input, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, input, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,6 +25,7 @@ export class TableComponent<TDataType> implements AfterViewInit {
 @Input({required:true}) deleteActionLink:string;
 @Input({required:true}) editActionLink:string;
 
+@Output() searchEvent:EventEmitter<any>=new EventEmitter();
 
 
   searchTerm: string = '';
@@ -42,6 +43,13 @@ console.log(this.responseApi)
     console.log('No data to extract field names.');
   }
   }
+
+onChangeSearchInput(e){
+ 
+this.searchEvent.emit(e)
+}
+
+
 isString(value: any): value is string {
   return typeof value === 'string';
 }
