@@ -149,7 +149,7 @@ export const routes: Routes = [
           ).then((x) => x.UserUpdateComponent),
       },
       {
-        path: 'categories',
+        path: 'categories/:page',
     
         title: 'Categories',
         loadComponent: () =>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, effect, OnInit, Signal, signal } from '@angular/core';
 import { HttpClientService } from '../../../../../services/common/http-client.service';
 import Product from '../../../../../models/dummuyJsonDataTypes/ProductType';
 import ResultResponseType from '../../../../../models/responseType/ResultResponseType';
@@ -20,20 +20,51 @@ constructor(
     private httpClientService: HttpClientService,
     private Spinner :SpinnerLoadingService
 ) {
+    effect(() => {
+      const params = this.requestParamsSignal();
+      if (!params) return;  
 
+this.requestForGetCatigories()
+    
+  
+      console.log(params);
+    });
 
 }
-searchInput?:string=null;
+  requestParamsSignal=signal<{search:string|null,page:number}>({page:1,search:""});
+
 categoriesResponse:ResultResponseType<PaginatedListType<GetCategoryType[]>>;
 deleteLink:string="deleteLink";
 edit:string="editlink";
   private timeout: any = null;
 ngOnInit(){
-       this.httpClientService
-    .get({ controller: 'Category',action:"GetAllCategoryByPage",queryString:"page=1" })
+this.requestForGetCatigories();
+}
+onChangeSearchInput(search:string){
+if (this.timeout) {
+  clearTimeout(this.timeout)
+}
+
+  this.timeout=setTimeout(()=>{
+
+
+   this.requestParamsSignal.set({page:this.requestParamsSignal().page,search:search})
+},1000)
+
+
+}
+onChangePage(page:number){
+if (this.categoriesResponse.data.page!=page && page>0) {
+  this.requestParamsSignal.set({page:page,search:this.requestParamsSignal().search})
+}
+
+}
+requestForGetCatigories(){
+           this.httpClientService
+    .get({ controller: 'Category',action:"GetAllCategoryByPage",queryString:`page=${this.requestParamsSignal().page}&search=${this.requestParamsSignal().search??''}` })
     .subscribe({
       next: (response: ResultResponseType<PaginatedListType<GetCategoryType[]>>) => {
-     
+
         if (response) {
    this.categoriesResponse=response
 
@@ -44,18 +75,6 @@ ngOnInit(){
         console.log(err)
       },
     });
-}
-onChangeSearchInput(obj:any){
-  console.log("Parent childdan gelen deyeri qebul etdi "+obj)
-  this.Spinner.spinerShow()
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-  this.timeout=setTimeout(()=>{
-    console.log("FetchAtildi")
-this.Spinner.spinerHide()
-  },5000)
-
 }
 
 }

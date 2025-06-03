@@ -6,6 +6,7 @@ export default interface TokenType {
 
 export interface DecodedToken {
   jti: string; 
+  id:string;
   nameid: string; 
   Email: string;
   UserName: string;

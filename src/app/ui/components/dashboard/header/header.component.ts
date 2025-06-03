@@ -1,15 +1,22 @@
 import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { AuthService } from '../../../../services/common/auth.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass],
+  imports: [NgClass,RouterLink],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+constructor(public atuhService:AuthService) { 
+  this.atuhService.identityCheck()
+}
+
   clickData =signal({
     userDropdownOpen:false,
     categoryDropdown:false,

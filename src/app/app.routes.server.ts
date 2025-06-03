@@ -21,7 +21,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/users', renderMode: RenderMode.Client },
   { path: 'dashboard/user/:Id', renderMode: RenderMode.Client },
 
-  { path: 'dashboard/categories', renderMode: RenderMode.Client },
+  { path: 'dashboard/categories/:page', renderMode: RenderMode.Client },
   { path: 'dashboard/category/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/categorycreate', renderMode: RenderMode.Client },
 

@@ -21,6 +21,8 @@ import RegisterType from '../../models/responseType/authResponseType/RegisterTyp
 import { TranslateService } from '@ngx-translate/core';
 import UpdateForgotPassword from '../../models/DTOs/UpdateForgotPassword';
 import { map, Observable, of } from 'rxjs';
+import GetCurrentUserType from '../../models/responseType/authResponseType/GetCurrentUserType';
+import { execPath } from 'process';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,13 +36,18 @@ export class AuthService {
     (_isAuthenticated = false);
     (_isRole=[])
   }
-
+get isCurrentUser():GetCurrentUserType{
+  return _GetCurrentUser;
+}
   get isAuthenticated(): boolean {
     return _isAuthenticated;
   }
   get isRole(): RoleEnums[] {
     return _isRole;
   }
+  /**
+ *For  Check User Session
+ */
   identityCheck():boolean {
   
     let token: string = null;
@@ -57,8 +64,20 @@ if (token) {
   }
   if (!expired && token) {
     const tokenDecode: DecodedToken = this.jwtHelper.decodeToken(token);
-   
+   _GetCurrentUser={
+    email:tokenDecode.Email,
+    firstName:tokenDecode.FirstName,
+    id:tokenDecode.id,
+    lastName:tokenDecode.LastName,
+    phoneNumber:tokenDecode.PhoneNumber,
+    roles:tokenDecode.Roles.split(","),
+    userName:tokenDecode.UserName
+
+   }
     if (tokenDecode.Roles.includes(RoleEnums.SuperAdmin)) {
+
+
+
       _isRole=[RoleEnums.SuperAdmin];
     } else if (tokenDecode.Roles.includes(RoleEnums.Admin)) {
      _isRole=[RoleEnums.Admin];
@@ -198,3 +217,4 @@ checkTokenForForgotPassword(queryEmail: string, queryToken: string): Observable<
 
 export let _isAuthenticated: boolean;
 export let _isRole: RoleEnums[];
+export let _GetCurrentUser:GetCurrentUserType;

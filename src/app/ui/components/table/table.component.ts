@@ -5,11 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import PaginatedListType from '../../../models/responseType/PaginatedListType';
 import ResultResponseType from '../../../models/responseType/ResultResponseType';
 import { RouterLink } from '@angular/router';
+import { PaginationComponentComponent } from "../pagination-component/pagination-component.component";
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, PaginationComponentComponent],
   templateUrl: './table.component.html',
 })
 export class TableComponent<TDataType> implements AfterViewInit {
@@ -25,8 +26,8 @@ export class TableComponent<TDataType> implements AfterViewInit {
 @Input({required:true}) deleteActionLink:string;
 @Input({required:true}) editActionLink:string;
 
-@Output() searchEvent:EventEmitter<any>=new EventEmitter();
-
+@Output() searchEvent:EventEmitter<string>=new EventEmitter();
+@Output() pageEvent:EventEmitter<number>=new EventEmitter();
 
   searchTerm: string = '';
   currentPage: number = 1;
@@ -48,7 +49,10 @@ onChangeSearchInput(e){
  
 this.searchEvent.emit(e)
 }
-
+onChangePage(e){
+  console.log(e)
+this.pageEvent.emit(e)
+}
 
 isString(value: any): value is string {
   return typeof value === 'string';
