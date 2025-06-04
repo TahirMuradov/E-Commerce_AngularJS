@@ -30,7 +30,7 @@ export class TableComponent<TDataType> implements OnInit {
 @Output() searchEvent:EventEmitter<string>=new EventEmitter();
 @Output() pageEvent:EventEmitter<number>=new EventEmitter();
 
- 
+ searchTerm="";
   currentPage: number = 1;
   pageSize: number = 5;
 
@@ -52,9 +52,8 @@ if (this.deleteActionLink && !this.deleteActionLink.startsWith('/')) {
   }
   }
 
-onChangeSearchInput(e){
- 
-this.searchEvent.emit(e)
+onChangeSearchInput(){
+this.searchEvent.emit(this.searchTerm)
 }
 onChangePage(e){
  

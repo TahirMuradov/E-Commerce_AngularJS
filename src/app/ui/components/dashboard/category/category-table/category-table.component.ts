@@ -25,7 +25,7 @@ constructor(
       if (!params) return;  
 
 this.requestForGetCatigories()
-    
+   
   
    
     });

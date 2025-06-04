@@ -28,10 +28,11 @@ export class HttpClientService {
     return this.httpClient.get<T>(url, { headers: requestParametres.headers });
   }
   ///Return is return type,Body is body type
-  post<Return,Body>(
+  post<TReturn,TBody>(
     requestParameter: Partial<RequestParameters>,
-    body: Partial<Body>
-  ): Observable<Return> {
+    body: Partial<TBody>
+  ): Observable<TReturn> {
+    console.log(body)
     let url: string = '';
     if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
     else
@@ -39,7 +40,7 @@ export class HttpClientService {
         requestParameter.queryString ? `?${requestParameter.queryString}` : ''
       }`;
 
-    return this.httpClient.post<Return>(url, body, {
+    return this.httpClient.post<TReturn>(url, body, {
       headers: requestParameter.headers,
       responseType: requestParameter.responseType as 'json',
     });
