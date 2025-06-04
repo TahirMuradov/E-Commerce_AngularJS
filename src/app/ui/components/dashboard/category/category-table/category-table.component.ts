@@ -27,7 +27,7 @@ constructor(
 this.requestForGetCatigories()
     
   
-      console.log(params);
+   
     });
 
 }

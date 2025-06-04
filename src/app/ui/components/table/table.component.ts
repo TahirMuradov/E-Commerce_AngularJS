@@ -13,11 +13,12 @@ import { PaginationComponentComponent } from "../pagination-component/pagination
   imports: [CommonModule, FormsModule, RouterLink, PaginationComponentComponent],
   templateUrl: './table.component.html',
 })
-export class TableComponent<TDataType> implements AfterViewInit {
+export class TableComponent<TDataType> implements OnInit {
 
   constructor(public translateService:TranslateService) {
      //  this.columnNames.push( this.translateService.instant("colum1"))
    }
+
 //result data
   @Input({ required: true }) responseApi: ResultResponseType<PaginatedListType< TDataType>>;;
   //fro custom Colum Names
@@ -33,9 +34,8 @@ export class TableComponent<TDataType> implements AfterViewInit {
   currentPage: number = 1;
   pageSize: number = 5;
 
-   ngAfterViewInit(): void {
+  ngOnInit(): void {
 
-console.log(this.responseApi)
   if (this.responseApi.data.paginatedData.length > 0) {
     const fieldNames = Object.keys(this.responseApi.data.paginatedData[0]);
     this.columnNames=fieldNames
@@ -50,7 +50,7 @@ onChangeSearchInput(e){
 this.searchEvent.emit(e)
 }
 onChangePage(e){
-  console.log(e)
+ 
 this.pageEvent.emit(e)
 }
 
