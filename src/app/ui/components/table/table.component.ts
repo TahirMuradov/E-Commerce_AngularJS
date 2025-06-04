@@ -30,12 +30,19 @@ export class TableComponent<TDataType> implements OnInit {
 @Output() searchEvent:EventEmitter<string>=new EventEmitter();
 @Output() pageEvent:EventEmitter<number>=new EventEmitter();
 
-  searchTerm: string = '';
+ 
   currentPage: number = 1;
   pageSize: number = 5;
 
   ngOnInit(): void {
 
+  if (this.editActionLink && !this.editActionLink.startsWith('/')) {
+  this.editActionLink = '/' + this.editActionLink;
+}
+
+if (this.deleteActionLink && !this.deleteActionLink.startsWith('/')) {
+  this.deleteActionLink = '/' + this.deleteActionLink;
+}
   if (this.responseApi.data.paginatedData.length > 0) {
     const fieldNames = Object.keys(this.responseApi.data.paginatedData[0]);
     this.columnNames=fieldNames
