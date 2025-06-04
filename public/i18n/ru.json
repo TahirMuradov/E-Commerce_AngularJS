@@ -68,6 +68,16 @@
     "accessDenied": "Доступ запрещен",
     "accessDeniedContent": "У вас нет прав для доступа к этой странице!",
     "againLogin": "Вход запрещен",
-    "againLoginContent": "Сначала выйдите из системы!"
+    "againLoginContent": "Сначала выйдите из системы!",
+"UnsupportedLangs": "Обнаружен(ы) неподдерживаемый(е) язык(и): {{langs}}.",
+    "MissingLangs": "Обнаружены отсутствующие языки: {{langs}}.",
+      "CategoryCRUD":{
+    "CategoryNameRequired": "Требуется название категории.",
+    "CategoryNameMinLength": "Название категории должно содержать не менее 3 символов."
+    },
+      "SizeCrud":{
+            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    }
   }
 }

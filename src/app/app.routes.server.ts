@@ -29,7 +29,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/product/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/productcreate', renderMode: RenderMode.Client },
 
-  { path: 'dashboard/sizes', renderMode: RenderMode.Client },
+  { path: 'dashboard/sizes/:page', renderMode: RenderMode.Client },
   { path: 'dashboard/size/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/sizecreate', renderMode: RenderMode.Client },
 

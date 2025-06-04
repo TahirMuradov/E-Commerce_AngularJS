@@ -1,4 +1,4 @@
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, NavigationStart, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import {
   AuthService,
@@ -20,8 +20,14 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
 
   authService.identityCheck();
-  console.log('Role: ' + _isRole);
-  console.log('Auth Status: '+ _isAuthenticated);
+     let  previousUrl: string | null = null;
+  let currentUrl: string | null = router.url;
+      router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        previousUrl = currentUrl;
+        currentUrl = event.url;
+      }
+    });
 
   if (
     (!authService.isAuthenticated ||
@@ -48,7 +54,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         position: ToastrPosition.TopRight,
       }
     );
-    router.navigate(['home']);
+    router.navigate([previousUrl]);
     return false;
   }
 

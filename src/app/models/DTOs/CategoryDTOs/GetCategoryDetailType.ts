@@ -1,5 +1,5 @@
 export default interface GetCategoryDetailType{
   id:string,
-  categoryContent:{key:string,value:string}[],
+     categoryContent:{ [key: string]: string }
   isFeatured:boolean
 }

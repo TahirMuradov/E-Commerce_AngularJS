@@ -68,6 +68,16 @@
     "accessDenied": "Access denied",
     "accessDeniedContent": "You do not have permission to access this page!",
     "againLogin": "Login denied",
-    "againLoginContent": "Please log out first!"
+    "againLoginContent": "Please log out first!",
+        "UnsupportedLangs": "Unsupported language(s) detected: {{langs}}.",
+         "MissingLangs": "Missing language(s) detected: {{langs}}.",
+      "CategoryCRUD":{
+       "CategoryNameRequired": "Category Name is required.",
+    "CategoryNameMinLength": "Category Name must be at least 3 characters long."
+    },
+      "SizeCrud":{
+            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    }
   }
 }

@@ -160,7 +160,7 @@ export const routes: Routes = [
       {
         path: 'category/:Id',
 
-        title: 'Category Detail',
+        title: 'Category Edit',
         loadComponent: () =>
           import(
             './ui/components/dashboard/category/category-update/category-update.component'
@@ -203,7 +203,7 @@ export const routes: Routes = [
           ).then((x) => x.ProductCreateComponent),
       },
       {
-        path: 'sizes',
+        path: 'sizes/:page',
        
         title: 'Sizes',
         loadComponent: () =>

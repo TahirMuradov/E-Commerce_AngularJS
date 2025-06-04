@@ -52,7 +52,17 @@
     "PasswordMismatch": "Şifrə və təkrar şifrə eyni olmalıdır.",
     "AddressRequired": "Ünvan daxil edilməlidir.",
     "ConfirmTokenAlreadyUsed": "Bu təsdiq linki artıq istifadə olunub və ya müddəti bitib.",
-    "ConfirmedEmail": "Elektron Poçtunuz təsdiqləndi"
+    "ConfirmedEmail": "Elektron Poçtunuz təsdiqləndi",
+    "UnsupportedLangs":"Dəstəklənməyən dil(lər) aşkar edildi: {{langs}}.",
+      "MissingLangs": "Əskik dil(lər) aşkar edildi: {{langs}}.",
+    "CategoryCRUD":{
+       "CategoryNameRequired": "Kateqoriya adı tələb olunur.",
+    "CategoryNameMinLength": "Kateqoriya adı ən azı 3 simvol olmalıdır."
+    },
+    "SizeCrud":{
+            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    }
   },
   "MessageType": {
     "error": "Xəta",
