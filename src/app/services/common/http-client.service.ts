@@ -27,11 +27,11 @@ export class HttpClientService {
 
     return this.httpClient.get<T>(url, { headers: requestParametres.headers });
   }
-  ///Return is return type,Body is body type
-  post<TReturn,TBody>(
+ 
+  post<TResult,TBody>(
     requestParameter: Partial<RequestParameters>,
     body: Partial<TBody>
-  ): Observable<TReturn> {
+  ): Observable<TResult> {
     console.log(body)
     let url: string = '';
     if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
@@ -40,15 +40,15 @@ export class HttpClientService {
         requestParameter.queryString ? `?${requestParameter.queryString}` : ''
       }`;
 
-    return this.httpClient.post<TReturn>(url, body, {
+    return this.httpClient.post<TResult>(url, body, {
       headers: requestParameter.headers,
       responseType: requestParameter.responseType as 'json',
     });
   }
-  put<Return,Body>(
+  put<TResult,TBody>(
     requestParameter: Partial<RequestParameters>,
-    body?: Partial<Body>
-  ): Observable<Return> {
+    body?: Partial<TBody>
+  ): Observable<TResult> {
     let url: string = '';
     if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
     else
@@ -56,15 +56,15 @@ export class HttpClientService {
         requestParameter.queryString ? `?${requestParameter.queryString}` : ''
       }`;
 
-    return this.httpClient.put<Return>(url, body, {
+    return this.httpClient.put<TResult>(url, body, {
       headers: requestParameter.headers,
       responseType: requestParameter.responseType as 'json',
     });
   }
-  delete<T>(
+  delete<TResult>(
     requestParameter: Partial<RequestParameters>,
     id: string
-  ): Observable<T> {
+  ): Observable<TResult> {
     let url: string = '';
     if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
     else
@@ -72,7 +72,7 @@ export class HttpClientService {
         requestParameter.queryString ? `?${requestParameter.queryString}` : ''
       }`;
 
-    return this.httpClient.delete<T>(url, {
+    return this.httpClient.delete<TResult>(url, {
       headers: requestParameter.headers,
       responseType: requestParameter.responseType as 'json',
     });

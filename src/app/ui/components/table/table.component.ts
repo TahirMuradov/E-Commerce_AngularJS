@@ -17,6 +17,8 @@ export class TableComponent<TDataType> implements OnInit {
 
   constructor(public translateService:TranslateService) {
      //  this.columnNames.push( this.translateService.instant("colum1"))
+
+
    }
 
 //result data
@@ -29,7 +31,6 @@ export class TableComponent<TDataType> implements OnInit {
 
 @Output() searchEvent:EventEmitter<string>=new EventEmitter();
 @Output() pageEvent:EventEmitter<number>=new EventEmitter();
-
  searchTerm="";
   currentPage: number = 1;
   pageSize: number = 5;

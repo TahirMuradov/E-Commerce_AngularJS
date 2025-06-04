@@ -32,7 +32,7 @@ export class CategoryCreateComponent {
     private formBuilder: FormBuilder,
     private toastr: CustomToastrService,
     private httpClient: HttpClientService,
-    private roter: Router
+    private router: Router
   ) {
     this.frm = formBuilder.group(
       {},
@@ -83,7 +83,7 @@ export class CategoryCreateComponent {
         .subscribe({
           next: (response) => {
             if (response?.isSuccess) {
-              this.roter.navigate(['/dashboard/categories/1']);
+              this.router.navigate(['/dashboard/categories/1']);
             }
           },
         });

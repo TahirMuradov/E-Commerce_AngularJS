@@ -31,7 +31,7 @@ export const serverRoutes: ServerRoute[] = [
 
   { path: 'dashboard/sizes/:page', renderMode: RenderMode.Client },
   { path: 'dashboard/size/:Id', renderMode: RenderMode.Client },
-  { path: 'dashboard/sizecreate', renderMode: RenderMode.Client },
+  { path: 'dashboard/size/create', renderMode: RenderMode.Client },
 
 
 

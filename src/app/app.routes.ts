@@ -212,7 +212,7 @@ export const routes: Routes = [
           ).then((x) => x.SizeTableComponent),
       },
       {
-        path: 'sizecreate',
+        path: 'size/create',
      
         title: 'Size Create',
         loadComponent: () =>
