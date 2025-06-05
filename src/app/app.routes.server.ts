@@ -22,15 +22,15 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/user/:Id', renderMode: RenderMode.Client },
 
   { path: 'dashboard/categories/:page', renderMode: RenderMode.Client },
-  { path: 'dashboard/category/:Id', renderMode: RenderMode.Client },
-  { path: 'dashboard/categorycreate', renderMode: RenderMode.Client },
+  { path: 'dashboard/category/edit/:Id', renderMode: RenderMode.Client },
+  { path: 'dashboard/category/create', renderMode: RenderMode.Client },
 
-  { path: 'dashboard/products', renderMode: RenderMode.Client },
-  { path: 'dashboard/product/:Id', renderMode: RenderMode.Client },
-  { path: 'dashboard/productcreate', renderMode: RenderMode.Client },
+  { path: 'dashboard/products/:page', renderMode: RenderMode.Client },
+  { path: 'dashboard/product/edit/:Id', renderMode: RenderMode.Client },
+  { path: 'dashboard/product/create', renderMode: RenderMode.Client },
 
   { path: 'dashboard/sizes/:page', renderMode: RenderMode.Client },
-  { path: 'dashboard/size/:Id', renderMode: RenderMode.Client },
+  { path: 'dashboard/size/edit/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/size/create', renderMode: RenderMode.Client },
 
 

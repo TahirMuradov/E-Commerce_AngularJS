@@ -158,7 +158,7 @@ export const routes: Routes = [
           ).then((x) => x.CategoryTableComponent),
       },
       {
-        path: 'category/:Id',
+        path: 'category/edit/:Id',
 
         title: 'Category Edit',
         loadComponent: () =>
@@ -167,7 +167,7 @@ export const routes: Routes = [
           ).then((x) => x.CategoryUpdateComponent),
       },
       {
-        path: 'categorycreate',
+        path: 'category/create',
       
         title: 'Category Create',
         loadComponent: () =>
@@ -175,8 +175,16 @@ export const routes: Routes = [
             './ui/components/dashboard/category/category-create/category-create.component'
           ).then((x) => x.CategoryCreateComponent),
       },
+            {
+        path: 'product/create',
+        title: 'Product Create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/product/product-create/product-create.component'
+          ).then((x) => x.ProductCreateComponent),
+      },
       {
-        path: 'products',
+        path: 'products/:page',
   
         title: 'Products',
         loadComponent: () =>
@@ -185,26 +193,16 @@ export const routes: Routes = [
           ).then((x) => x.ProductTableComponent),
       },
       {
-        path: 'product/:Id',
-     
-        title: 'Product Detail',
+        path: 'product/edit/:Id',
+        title: 'Product Update',
         loadComponent: () =>
           import(
             './ui/components/dashboard/product/product-update/product-update.component'
           ).then((x) => x.ProductUpdateComponent),
       },
-      {
-        path: 'productcreate',
-  
-        title: 'Product Create',
-        loadComponent: () =>
-          import(
-            './ui/components/dashboard/product/product-create/product-create.component'
-          ).then((x) => x.ProductCreateComponent),
-      },
+
       {
         path: 'sizes/:page',
-       
         title: 'Sizes',
         loadComponent: () =>
           import(
@@ -213,7 +211,6 @@ export const routes: Routes = [
       },
       {
         path: 'size/create',
-     
         title: 'Size Create',
         loadComponent: () =>
           import(
@@ -221,8 +218,7 @@ export const routes: Routes = [
           ).then((x) => x.SizeCreateComponent),
       },
       {
-        path: 'size/:Id',
-      
+        path: 'size/edit/:Id',
         loadComponent: () =>
           import(
             './ui/components/dashboard/size/size-update/size-update.component'

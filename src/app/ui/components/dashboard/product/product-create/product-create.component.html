@@ -1,1 +1,186 @@
-<p>product-create works!</p>
+<ng-container *ngIf="controlsReady">
+  <form [formGroup]="frm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="grid grid-cols-4 gap-6 mb-6">
+      <div
+        class="col-span-4 border-2 border-gray-200 border-dashed rounded-lg p-4"
+      >
+        <h1>Title</h1>
+        <ng-container *ngFor="let locale of translateService.getLangs()">
+          <label
+            [htmlFor]="'title' + locale"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Product Title in {{ locale }}:
+          </label>
+
+          <input
+            [placeholder]="`Product  Title in ${locale}  Language`"
+            type="text"
+            [id]="'title' + locale"
+            [name]="'title' + locale"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+        </ng-container>
+      </div>
+      <div
+        class="col-span-4 border-2 border-gray-200 border-dashed rounded-lg p-4"
+      >
+        <h1>Description</h1>
+        <ng-container *ngFor="let locale of translateService.getLangs()">
+          <label
+            [htmlFor]="'description' + locale"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Product Description in {{ locale }}:
+          </label>
+
+          <input
+            [placeholder]="`Product  Description in ${locale} Language`"
+            type="text"
+            [id]="`description`+locale"
+            [name]="'description' + locale"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+        </ng-container>
+      </div>
+      <div class="col-span-4">
+        <label
+          for="productCode"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Product Code:
+        </label>
+        <input
+          type="text"
+          id="productCode"
+          name="productCode"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div class="col-span-2">
+        <label
+          for="discountPrice"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Discount Price:
+        </label>
+        <input
+         [value]="disCount()"
+      (input)="updateDisCountPrice($event)"
+          type="number"
+          id="discountPrice"
+          name="discountPrice"
+          step="0.01"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div class="col-span-2">
+        <label
+          for="price"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Price:
+        </label>
+        <input
+          type="number"
+        [value]="price()"
+      (input)="updatePrice($event)"
+          id="price"
+          name="price"
+          step="0.01"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div class="col-span-4">
+        <label
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Sizes:
+        </label>
+        <div id="sizes" class="grid grid-cols-3 gap-4">
+          <div class="">
+            <ng-container *ngFor="let size of sizesSignal()">
+              <label
+                [htmlFor]="size.id"
+                class="text-sm font-medium text-gray-900 dark:text-white"
+                >{{ size.size }}</label
+              >
+              <input
+                [id]="size.id"
+                [name]="size.id"
+                type="number"
+                [placeholder]="size.size + ' Quantity in stock'"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-4">
+        <label
+          for="Category"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Categories:
+        </label>
+        <select
+          id="Category"
+          name="categoryId"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        >
+          <ng-container *ngFor="let category of categorySignal()">
+            <option [value]="category.id">{{ category.name }}</option>
+          </ng-container>
+        </select>
+      </div>
+
+      <div class="col-span-4">
+        <label
+          for="pictures"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          Pictures:
+        </label>
+        <input
+          type="file"
+          id="pictures"
+          name="pictures"
+          multiple
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required
+        />
+      </div>
+          <div class="col-span-full">
+      <div class="flex items-center">
+        <input
+          formControlName="isFeatured"
+          id="isFeatured"
+          type="checkbox"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <label
+          for="isFeatured"
+          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >Is featured</label
+        >
+      </div>
+    </div>
+    </div>
+    <button
+      type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Submit
+    </button>
+  </form>
+</ng-container>

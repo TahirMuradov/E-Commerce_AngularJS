@@ -16,16 +16,16 @@ export class HttpClientService {
     }`;
   }
 
-  get<T>(
+  get<TResponse>(
     requestParametres: Partial<RequestParameters>,
     id?: string
-  ): Observable<T> {
+  ): Observable<TResponse> {
     let url: string = '';
     requestParametres.fullEndPoint
       ? (url = requestParametres.fullEndPoint)
       : id? (url = `${this.url(requestParametres)}${id ? `/${id}` : ''}`):url =  `${this.url(requestParametres)}?${requestParametres.queryString}`;
 
-    return this.httpClient.get<T>(url, { headers: requestParametres.headers });
+    return this.httpClient.get<TResponse>(url, { headers: requestParametres.headers });
   }
  
   post<TResult,TBody>(
