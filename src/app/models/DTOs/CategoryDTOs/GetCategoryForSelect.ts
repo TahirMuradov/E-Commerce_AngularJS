@@ -1,4 +1,4 @@
 export default interface GetCategoryForSelect{
     id:string,
-    name:string
+    categoryName:string
 }

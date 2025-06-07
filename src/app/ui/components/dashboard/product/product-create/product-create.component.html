@@ -17,7 +17,7 @@
             [placeholder]="`Product  Title in ${locale}  Language`"
             type="text"
             [id]="'title' + locale"
-            [name]="'title' + locale"
+            [formControlName]="'title' + locale"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
@@ -39,7 +39,7 @@
             [placeholder]="`Product  Description in ${locale} Language`"
             type="text"
             [id]="`description`+locale"
-            [name]="'description' + locale"
+            [formControlName]="'description' + locale"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             required
           />
@@ -55,7 +55,7 @@
         <input
           type="text"
           id="productCode"
-          name="productCode"
+          formControlName='productCode'
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
@@ -73,7 +73,7 @@
       (input)="updateDisCountPrice($event)"
           type="number"
           id="discountPrice"
-          name="discountPrice"
+          formControlName="discountPrice"
           step="0.01"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
@@ -92,7 +92,7 @@
         [value]="price()"
       (input)="updatePrice($event)"
           id="price"
-          name="price"
+          formControlName="price"
           step="0.01"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
@@ -115,7 +115,7 @@
               >
               <input
                 [id]="size.id"
-                [name]="size.id"
+                [formControlName]="size.id"
                 type="number"
                 [placeholder]="size.size + ' Quantity in stock'"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -134,12 +134,12 @@
         </label>
         <select
           id="Category"
-          name="categoryId"
+          formControlName="categoryId"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         >
           <ng-container *ngFor="let category of categorySignal()">
-            <option [value]="category.id">{{ category.name }}</option>
+            <option [value]="category.id">{{ category.categoryName }}</option>
           </ng-container>
         </select>
       </div>
@@ -154,7 +154,9 @@
         <input
           type="file"
           id="pictures"
-          name="pictures"
+            (change)="onFileSelected($event)"
+        
+          accept="image/*"
           multiple
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
@@ -163,13 +165,14 @@
           <div class="col-span-full">
       <div class="flex items-center">
         <input
-          formControlName="isFeatured"
-          id="isFeatured"
+          formControlName="isFeature"
+          id="isFeature"
+          (click)="onClickIsFeatured()"
           type="checkbox"
           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
         <label
-          for="isFeatured"
+          for="isFeature"
           class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >Is featured</label
         >

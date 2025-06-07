@@ -51,7 +51,26 @@
     "PasswordMismatch": "Пароль и подтверждение пароля не совпадают.",
     "AddressRequired": "Адрес обязателен.",
     "ConfirmTokenAlreadyUsed": "Эта ссылка для подтверждения уже использована или истек срок её действия.",
-    "ConfirmedEmail": "Ваша электронная почта была одобрена"
+    "ConfirmedEmail": "Ваша электронная почта была одобрена",
+    "UnsupportedLangs": "Обнаружен(ы) неподдерживаемый(е) язык(и): {{langs}}.",
+    "MissingLangs": "Обнаружены отсутствующие языки: {{langs}}.",
+      "CategoryCRUD":{
+    "CategoryNameRequired": "Требуется название категории.",
+    "CategoryNameMinLength": "Название категории должно содержать не менее 3 символов."
+    },
+      "SizeCrud":{
+            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    },
+      "ProductCrud": {
+    "TitleRequired": "Название продукта пустое или заполнены не все поддерживаемые языки!",
+    "TitleMinLength": "Название продукта должно содержать минимум 3 символа!",
+    "DescriptionRequired": "Описание продукта пустое или заполнены не все поддерживаемые языки!",
+    "DescriptionMinLength": "Описание продукта должно содержать минимум 3 символа!",
+    "ProductImageRequired": "Изображение продукта не может быть пустым!",
+    "CategoryRequired": "Категория продукта не может быть пустой!",
+    "InvalidImageType": "Допускаются только файлы JPG, PNG или GIF"
+  }
   },
   "MessageType": {
     "error": "Ошибка",
@@ -68,16 +87,7 @@
     "accessDenied": "Доступ запрещен",
     "accessDeniedContent": "У вас нет прав для доступа к этой странице!",
     "againLogin": "Вход запрещен",
-    "againLoginContent": "Сначала выйдите из системы!",
-"UnsupportedLangs": "Обнаружен(ы) неподдерживаемый(е) язык(и): {{langs}}.",
-    "MissingLangs": "Обнаружены отсутствующие языки: {{langs}}.",
-      "CategoryCRUD":{
-    "CategoryNameRequired": "Требуется название категории.",
-    "CategoryNameMinLength": "Название категории должно содержать не менее 3 символов."
-    },
-      "SizeCrud":{
-            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
-         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
-    }
+    "againLoginContent": "Сначала выйдите из системы!"
+
   }
 }

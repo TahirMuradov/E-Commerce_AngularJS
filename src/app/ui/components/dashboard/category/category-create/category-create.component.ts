@@ -37,12 +37,12 @@ export class CategoryCreateComponent {
     this.frm = formBuilder.group(
       {},
       {
-        validators: this.supportedLangsValidator(
+        validators: [this.supportedLangsValidator(
           this.translateService.getLangs()
         ),
-        validaors: this.requiredLangsValidator(
+         this.requiredLangsValidator(
           this.translateService.getLangs()
-        ),
+        ),]
       }
     );
     for (const locale of this.translateService.getLangs()) {

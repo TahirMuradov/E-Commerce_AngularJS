@@ -47,8 +47,17 @@
     <!-- Array type -->
     <span *ngSwitchCase="isArray(item[column])" class="flex flex-wrap gap-1">
       <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
-   
-        {{ el }}
+   <!-- Object type -->
+    <ng-container *ngIf="isObject(el)" class="flex flex-col">
+      <ul class="flex">
+
+        <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
+      
+         {{ el[key] }} -
+        </li>
+      </ul>
+    </ng-container>
+    
       </span>
     </span>
     
@@ -75,7 +84,7 @@
                         </a>
           </td>
         </tr>
-        <tr *ngIf="responseApi.data.pageSize === 0">
+        <tr *ngIf="responseApi?.data.pageSize === 0">
           <td
             [attr.colspan]="columnNames.length"
             class="text-center px-4 py-2 text-gray-500"

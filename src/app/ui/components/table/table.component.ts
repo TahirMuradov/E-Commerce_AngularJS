@@ -18,7 +18,6 @@ export class TableComponent<TDataType> implements OnInit {
   constructor(public translateService:TranslateService) {
      //  this.columnNames.push( this.translateService.instant("colum1"))
 
-
    }
 
 //result data
@@ -36,6 +35,7 @@ export class TableComponent<TDataType> implements OnInit {
   pageSize: number = 5;
 
   ngOnInit(): void {
+
 
   if (this.editActionLink && !this.editActionLink.startsWith('/')) {
   this.editActionLink = '/' + this.editActionLink;
@@ -82,7 +82,6 @@ isObject(value: any): value is object {
 }
 getObjectKeys(obj: object): string[] {
 
-  
   return Object.keys(obj);
 
 }

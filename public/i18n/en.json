@@ -51,7 +51,26 @@
     "PasswordMismatch": "Password and Confirm Password do not match.",
     "AddressRequired": "Address is required.",
     "ConfirmTokenAlreadyUsed": "This confirmation link has already been used or has expired.",
-    "ConfirmedEmail": "Your e-mail has been approved"
+    "ConfirmedEmail": "Your e-mail has been approved",
+           "UnsupportedLangs": "Unsupported language(s) detected: {{langs}}.",
+         "MissingLangs": "Missing language(s) detected: {{langs}}.",
+      "CategoryCRUD":{
+       "CategoryNameRequired": "Category Name is required.",
+    "CategoryNameMinLength": "Category Name must be at least 3 characters long."
+    },
+      "SizeCrud":{
+            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    },  
+    "ProductCrud": {
+    "TitleRequired": "Product title is empty or not all supported languages are filled!",
+    "TitleMinLength": "Product title must be at least 3 characters long!",
+    "DescriptionRequired": "Product description is empty or not all supported languages are filled!",
+    "DescriptionMinLength": "Product description must be at least 3 characters long!",
+    "ProductImageRequired": "Product image cannot be empty!",
+    "CategoryRequired": "Product category cannot be empty!",
+    "InvalidImageType": "Only JPG, PNG or GIF files are allowed"
+  }
   },
   "MessageType": {
     "error": "Error",
@@ -68,16 +87,7 @@
     "accessDenied": "Access denied",
     "accessDeniedContent": "You do not have permission to access this page!",
     "againLogin": "Login denied",
-    "againLoginContent": "Please log out first!",
-        "UnsupportedLangs": "Unsupported language(s) detected: {{langs}}.",
-         "MissingLangs": "Missing language(s) detected: {{langs}}.",
-      "CategoryCRUD":{
-       "CategoryNameRequired": "Category Name is required.",
-    "CategoryNameMinLength": "Category Name must be at least 3 characters long."
-    },
-      "SizeCrud":{
-            "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
-         "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
-    }
+    "againLoginContent": "Please log out first!"
+ 
   }
 }

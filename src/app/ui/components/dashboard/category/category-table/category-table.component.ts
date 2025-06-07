@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './category-table.component.html',
   styleUrl: './category-table.component.css',
 })
-export class CategoryTableComponent implements OnInit {
+export class CategoryTableComponent  {
   constructor(private httpClientService: HttpClientService) {
     effect(() => {
       const params = this.requestParamsSignal();
@@ -30,9 +30,7 @@ export class CategoryTableComponent implements OnInit {
   deleteLink: string = 'deleteLink';
   edit: string = '/dashboard/category';
   private timeout: any = null;
-  ngOnInit() {
-    this.requestForGetCatigories();
-  }
+
   onChangeSearchInput(search: string) {
     if (this.timeout) {
       clearTimeout(this.timeout);

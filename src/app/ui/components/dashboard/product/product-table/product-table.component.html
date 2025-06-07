@@ -1,1 +1,9 @@
-<p>product-table works!</p>
+<ng-container *ngIf="ProductResponse?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="ProductResponse"
+      [deleteActionLink]="deleteLink"
+      [editActionLink]="edit"
+    ></app-table>
+</ng-container>
