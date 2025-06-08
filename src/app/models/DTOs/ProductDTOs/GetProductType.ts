@@ -1,4 +1,4 @@
-import { GetSizeForProductType } from "./GetProductDetailtype";
+
 
 export default interface GetProductType {
   Id: string;
@@ -8,9 +8,9 @@ export default interface GetProductType {
   Price: number;
   Discount: number;
   ImageUrl: string;
-  SizeInfo:GetSizeForProductDashboardType[]
+  SizeInfo:GetSizeForProductDashboardTableType[]
 }
-export interface GetSizeForProductDashboardType {
+export interface GetSizeForProductDashboardTableType {
   size: string;
   stockCount: number;
 }

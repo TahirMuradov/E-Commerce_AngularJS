@@ -153,22 +153,25 @@
           Pictures:
         </label>
         <input
+        #fileInput
           type="file"
           id="pictures"
             (change)="onFileSelected($event)"
-        
-          accept="image/*"
+         
+          name="pictures"
+               accept="image/*"
           multiple
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
+
+        <app-image (onPhotoDelete)="deletePhoto($event.photoUrl,$event.NewPhoto,$event.NewPhotoName)" [Photos]="newPictureSignal"></app-image>
       </div>
           <div class="col-span-full">
       <div class="flex items-center">
         <input
           formControlName="isFeature"
           id="isFeature"
-          (click)="onClickIsFeatured()"
           type="checkbox"
           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />

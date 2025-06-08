@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
-import { catchError, finalize, map, tap, throwError } from 'rxjs';
+import { catchError, finalize,  tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);

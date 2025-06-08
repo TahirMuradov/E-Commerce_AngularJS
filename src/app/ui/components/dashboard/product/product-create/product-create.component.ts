@@ -1,11 +1,11 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, ElementRef, signal, ViewChild } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
-  FormGroup,
+
+   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
@@ -21,11 +21,10 @@ import { Router } from '@angular/router';
 import ResultResponseType from '../../../../../models/responseType/ResultResponseType';
 import GetSizeType from '../../../../../models/DTOs/SizeDTOs/GetSizeType';
 import GetCategoryForSelect from '../../../../../models/DTOs/CategoryDTOs/GetCategoryForSelect';
-import AddProductType from '../../../../../models/DTOs/ProductDTOs/AddProductType';
-import { HttpHeaders } from '@angular/common/http';
+import { ImageComponent } from "../../image/image.component";
 @Component({
   selector: 'app-product-create',
-  imports: [NgIf, NgFor, TranslateModule, ReactiveFormsModule],
+  imports: [NgIf, NgFor, TranslateModule, ReactiveFormsModule, ImageComponent],
   templateUrl: './product-create.component.html',
   styleUrl: './product-create.component.css',
   standalone: true,
@@ -41,8 +40,7 @@ export class ProductCreateComponent {
     this.frm = formBuilder.group(
       {
         categoryId: ['', [Validators.required]],
-        pictures: [
-          ,
+        pictures: [[],
           [
             Validators.required,
             this.imageFileValidator(['jpg', 'jpeg', 'png', 'gif']),
@@ -120,13 +118,13 @@ export class ProductCreateComponent {
   }
   sizesSignal = signal<GetSizeType[] | null>(null);
   categorySignal = signal<GetCategoryForSelect[] | null>(null);
+  newPictureSignal=signal<File[]>([])
+
   price = signal<number | null>(null);
   disCount = signal<number | null>(null);
   controlsReady: boolean = false;
   frm: FormGroup;
-onClickIsFeatured(){
-   console.log( this.frm.controls['isFeature']?.value)
-}
+ @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   onSubmit() {
   
     if (this.frm.valid) {
@@ -202,7 +200,7 @@ formData.append("categoryId", this.frm.controls['categoryId']?.value)
           if (!errorMessages.some(x => x.key === validationKey)) {
 
        let errorMessage = '';
-console.log(validationKey+key)
+
         errorMessage = this.translateService.instant(`VALIDATION.ProductCrud.${validationKey+key}`);
 
       errorMessages.push({
@@ -326,6 +324,7 @@ onFileSelected(event: Event) {
       pictures: input.files
     });
     this.frm.get('pictures')?.updateValueAndValidity();
+    this.newPictureSignal.set(Array.from(input.files))
   }
 }
 numberCheck(event:Event){
@@ -336,4 +335,31 @@ numberCheck(event:Event){
       input.value = '';
     }
 }
+ deletePhoto(photoUrl: string, isNew: boolean,photoName:string) {
+ 
+
+    if (isNew) {
+      const updatedPhotos = this.newPictureSignal().filter(file =>
+
+        file.name!== photoName
+      
+      );
+      this.newPictureSignal.set(updatedPhotos);
+   this.frm.patchValue({
+      pictures: updatedPhotos
+    });
+      this.frm.get('pictures')?.updateValueAndValidity();
+
+      const dataTransfer=new DataTransfer();
+       this.newPictureSignal().forEach((file) => {
+    dataTransfer.items.add(file);
+  });
+      if (this.fileInput.nativeElement) {
+      this.fileInput.nativeElement.files = dataTransfer.files;
+    }
+    // 5. Clean up the object URL to prevent memory leaks
+    URL.revokeObjectURL(photoUrl);
+     console.log(this.frm.get("pictures"))
+    }
+  }
 }
