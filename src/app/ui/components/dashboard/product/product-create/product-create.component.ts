@@ -49,8 +49,8 @@ export class ProductCreateComponent {
           ],
         ],
         productCode:['',[Validators.required]],
-      discountPrice:['',[Validators.min(0)]],
-      price:['',[Validators.min(0)]],
+      discountPrice:[0,[Validators.min(0)]],
+      price:[0,[Validators.min(1)]],
  isFeature:[true]
       },
       {
@@ -60,7 +60,7 @@ export class ProductCreateComponent {
         ],
       }
     );
-    // this.frm.addControl('isFeature', this.formBuilder.control(false));
+
     for (const locale of this.translateService.getLangs()) {
       this.frm.addControl(
         `title${locale}`,
@@ -110,7 +110,7 @@ export class ProductCreateComponent {
         for (const size of sizeSignal) {
           this.frm.addControl(
             size.id,
-            this.formBuilder.control('', [Validators.min(0)])
+            this.formBuilder.control(0, [Validators.min(0)])
           );
         }
 
@@ -191,12 +191,26 @@ formData.append("categoryId", this.frm.controls['categoryId']?.value)
           },
         });
     } else {
-      const errorMessages: string[] = [];
+      const errorMessages: {key:string,value:string}[] = [];
 
       for (const key of Object.keys(this.frm.controls)) {
-        const controlErrors = this.frm.controls[key]?.errors;
-        if (controlErrors && key.includes('title')) {
-          console.log(key);
+        const controlErrors: ValidationErrors = this.frm.controls[key]?.errors;
+      
+        if (controlErrors) {
+        const validationKey=  Object.keys(controlErrors).toString()
+         
+          if (!errorMessages.some(x => x.key === validationKey)) {
+
+       let errorMessage = '';
+console.log(validationKey+key)
+        errorMessage = this.translateService.instant(`VALIDATION.ProductCrud.${validationKey+key}`);
+
+      errorMessages.push({
+        key: validationKey,
+        value: errorMessage
+      });
+     }
+;
         }
       }
 
@@ -204,23 +218,25 @@ formData.append("categoryId", this.frm.controls['categoryId']?.value)
       if (formErrors) {
         if (formErrors['unsupportedLangs']) {
           const langs = formErrors['unsupportedLangs'].join(', ');
-          errorMessages.push(
+          errorMessages.push({key:"unsupportedLangs",value:
             this.translateService.instant('VALIDATION.UnsupportedLangs', {
               langs,
-            })
+            })}
           );
         }
 
         if (formErrors['missingLangs']) {
           const langs = formErrors['missingLangs'].join(', ');
-          errorMessages.push(
-            this.translateService.instant('VALIDATION.MissingLangs', { langs })
-          );
+          errorMessages.push({ key:"missingLangs",value:this.translateService.instant('VALIDATION.MissingLangs', { langs })
+        });
         }
       }
 
       if (errorMessages.length > 0) {
-        this.toastr.message(errorMessages.join('\n'), 'Info', {
+        this.toastr.message(errorMessages.reduce((acc, message) => {
+        acc.push(message?.value);
+        return acc;
+      },[]).join('\n'), 'Info', {
           messageType: ToastrMessageType.Info,
           position: ToastrPosition.BottomRight,
         });
@@ -261,7 +277,7 @@ requiredLangsValidator(requiredLangs: string[]): ValidatorFn {
     const input = event.target as HTMLInputElement;
     const value = Number.parseFloat(input?.value);
 
-    if (isNaN(value) || value < 1) {
+    if (isNaN(value) || value <0) {
       this.price.set(null);
       input.value = '';
     } else {
@@ -272,7 +288,7 @@ requiredLangsValidator(requiredLangs: string[]): ValidatorFn {
     const input = event.target as HTMLInputElement;
     const value = Number.parseFloat(input?.value);
 
-    if (isNaN(value) || value < 1) {
+    if (isNaN(value) || value < 0) {
       this.price.set(null);
       input.value = '';
     } else {
@@ -284,7 +300,7 @@ imageFileValidator(allowedTypes: string[]): ValidatorFn {
     const files = control?.value as FileList;
     
     if (!files || files.length === 0) {
-      return null; // Required validator zaten boş olup olmadığını kontrol edecek
+      return null; 
     }
 
     for (let i = 0; i < files.length; i++) {
@@ -311,5 +327,13 @@ onFileSelected(event: Event) {
     });
     this.frm.get('pictures')?.updateValueAndValidity();
   }
+}
+numberCheck(event:Event){
+  const input = event.target as HTMLInputElement;
+      const value = Number.parseInt(input?.value);
+    if (isNaN(value) || value < 0) {
+      this.price.set(null);
+      input.value = '';
+    }
 }
 }

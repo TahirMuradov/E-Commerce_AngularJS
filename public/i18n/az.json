@@ -64,13 +64,33 @@
       "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
     },
     "ProductCrud": {
-      "TitleRequired": "Məhsul Başlığı boşdur vəya Dəstəkəlnən dillərin hamısı yazilmayıb!",
-      "TitleMinLength": "Məhsul Başlığı minimum 3 simvoldan ibarət olmalıdır!",
-      "DescriptionRequired": "Məhsul açıqlaması boşdur vəya Dəstəkəlnən dillərin hamısı yazilmayıb!",
-      "DescriptionMinLength": "Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
-      "ProductImageRequired": "Məhsul şəkili boş ola bilməz!",
-      "CategoryRequired":"Məhsul kateqoriyası boş ola bilməz!",
-       "InvalidImageType": "Yalnız JPG, PNG və ya GIF fayllarına icazə verilir"
+      "requiredtitleaz": "Azərbaycan dilində Məhsul Başlığı boşdur",
+       "requiredtitleru": "Rus dilində Məhsul Başlığı boşdur",
+       "requiredtitleen": "İngilis dilində Məhsul Başlığı boşdur",
+
+      "minlengthtitleru": "Məhsul Başlığı Rus dilində minimum 3 simvoldan ibarət olmalıdır!",
+     "minlengthtitleaz": "Məhsul Başlığı Azərbaycan dilində minimum 3 simvoldan ibarət olmalıdır!",
+     "minlengthtitleen": "Məhsul Başlığı İngilis dilində minimum 3 simvoldan ibarət olmalıdır!",
+
+     
+      "descriptionrequiredaz": "Azərbaycan dilində Məhsul açıqlaması boşdur!",
+      "descriptionrequiredru": "Rus dilində Məhsul açıqlaması boşdur!",
+      "descriptionrequireden": "İngilis dilində Məhsul açıqlaması boşdur!",
+      
+      "minlengthdescriptionaz": "Azərbaycan dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "İngilis dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+
+      
+      "requiredcategoryId":"Məhsul kateqoriyası boş ola bilməz!",
+      "requiredproductCode":"Məhsul kodu boş ola bilməz!",
+      
+      "mindiscountPrice":"Endirimli qiymət 0-dan kiçik ola bilməz!",
+      "requireddiscountPrice":"Endirimli qiymət boş", 
+      "minprice":"Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
+      
+      "requiredpictures": "Məhsul şəkili boş ola bilməz!",
+      "invalidFileTypepictures": "Yalnız JPG, PNG və ya GIF fayllarına icazə verilir"
     }
   },
   "MessageType": {
