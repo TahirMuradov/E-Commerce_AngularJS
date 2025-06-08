@@ -40,7 +40,11 @@
           >
           <ng-container [ngSwitch]="true">
     <!-- Primitive types -->
-    <span *ngSwitchCase="isString(item[column])">{{ item[column] }}</span>
+    <span *ngSwitchCase="isString(item[column])">
+    
+      {{ item[column] }} ;
+    
+    </span>
     <span *ngSwitchCase="isNumber(item[column])">{{ item[column] }}</span>
     <span *ngSwitchCase="isBoolean(item[column])">{{ item[column] ? 'Yes' : 'No' }}</span>
     

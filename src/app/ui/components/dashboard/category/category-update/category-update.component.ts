@@ -46,12 +46,13 @@ export class CategoryUpdateComponent {
     this.frm = this.formBuilder.group(
       {},
       {
-        validators: this.supportedLangsValidator(
+        validators:[ this.supportedLangsValidator(
           this.translateService.getLangs()
         ),
-            validaors: this.requiredLangsValidator(
-          this.translateService.getLangs()
-        )
+        this.requiredLangsValidator(
+     this.translateService.getLangs()
+   )
+      ]
       }
     );
 

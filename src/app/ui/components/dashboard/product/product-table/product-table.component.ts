@@ -45,7 +45,7 @@ export class ProductTableComponent {
         ) => {
           if (response?.isSuccess) {
             this.ProductResponse = response;
-console.log(response)
+
           }
         },
         error(err) {

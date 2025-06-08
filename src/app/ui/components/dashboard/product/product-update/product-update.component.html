@@ -55,7 +55,7 @@
         <input
           type="text"
           id="productCode"
-          formControlName='productCode'
+          formControlName="productCode"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
@@ -69,8 +69,7 @@
           Discount Price:
         </label>
         <input
-         [value]="disCount()"
-      (input)="updateDisCountPrice($event)"
+          (input)="numberCheck($event)"
           type="number"
           id="discountPrice"
           formControlName="discountPrice"
@@ -89,8 +88,7 @@
         </label>
         <input
           type="number"
-        [value]="price()"
-      (input)="updatePrice($event)"
+          (input)="numberCheck($event)"
           id="price"
           formControlName="price"
           step="0.01"
@@ -140,7 +138,12 @@
           required
         >
           <ng-container *ngFor="let category of categorySignal()">
-            <option [value]="category.id">{{ category.categoryName }}</option>
+            <option
+              [selected]="productSignal()?.categoryId === category.id"
+              [value]="category.id"
+            >
+              {{ category.categoryName }}
+            </option>
           </ng-container>
         </select>
       </div>
@@ -153,31 +156,56 @@
           Pictures:
         </label>
         <input
+          #fileInput
           type="file"
           id="pictures"
-            (change)="onFileSelected($event)"
-        
+          (change)="onFileSelected($event)"
+          name="pictures"
           accept="image/*"
           multiple
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
+<ng-container *ngIf="oldPicturePathSignal();then forOldPicture">
+
+</ng-container>
+
+<ng-template #forOldPicture>
+
+  <app-image
+    (onPhotoDelete)="
+      deletePhoto($event.photoUrl, $event.NewPhoto, $event.NewPhotoName)
+    "
+
+    [CurrentPictureUrls]="oldPicturePathSignal"
+  ></app-image>
+</ng-template>
+<ng-container >
+
+  <app-image
+    (onPhotoDelete)="
+      deletePhoto($event.photoUrl, $event.NewPhoto, $event.NewPhotoName)
+    "
+    [Photos]="newPictureSignal"
+  
+  ></app-image>
+</ng-container>
       </div>
-          <div class="col-span-full">
-      <div class="flex items-center">
-        <input
-          formControlName="isFeature"
-          id="isFeature"
-          type="checkbox"
-          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-        />
-        <label
-          for="isFeature"
-          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >Is featured</label
-        >
+      <div class="col-span-full">
+        <div class="flex items-center">
+          <input
+            formControlName="isFeature"
+            id="isFeature"
+            type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            for="isFeature"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Is featured</label
+          >
+        </div>
       </div>
-    </div>
     </div>
     <button
       type="submit"
