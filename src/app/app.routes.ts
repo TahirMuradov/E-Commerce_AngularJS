@@ -245,6 +245,26 @@ export const routes: Routes = [
             './ui/components/dashboard/DisCountArea/dis-count-area-create/dis-count-area-create.component'
           ).then((x) => x.DisCountAreaCreateComponent),
       },
+       {
+        path: 'homeslideritem/create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/homesliderItem/home-slider-item-create/home-slider-item-create.component'
+          ).then((x) => x.HomeSliderItemCreateComponent),
+      },
+           {
+        path: 'homeslideritems/:page',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/homesliderItem/home-slider-item-table/home-slider-item-table.component'
+          ).then((x) => x.HomeSliderItemTableComponent),
+      },   {
+        path: 'homeslideritem/edit/:id',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/homesliderItem/home-slider-item-update/home-slider-item-update.component'
+          ).then((x) => x.HomeSliderItemUpdateComponent),
+      },
     ],
   },
 

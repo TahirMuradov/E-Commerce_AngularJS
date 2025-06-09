@@ -89,7 +89,7 @@ getObjectKeys(obj: object): string[] {
 
 isImageUrl(url: any): boolean {
  
-  console.log(url)
+ 
  if (typeof url !== "string" || !url.trim()) return false;
  
   const extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];

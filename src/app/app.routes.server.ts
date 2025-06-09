@@ -37,7 +37,9 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/discountarea/edit/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/discountarea/create', renderMode: RenderMode.Client },
 
-
+    { path: 'dashboard/homeslideritems/:page', renderMode: RenderMode.Client },
+  { path: 'dashboard/homeslideritem/edit/:id', renderMode: RenderMode.Client },
+  { path: 'dashboard/homeslideritem/create', renderMode: RenderMode.Client },
 
   // Wildcard
   { path: '**', renderMode: RenderMode.Client },
