@@ -42,7 +42,7 @@
     <!-- Primitive types -->
     <span *ngSwitchCase="isString(item[column])">
     
-      {{ item[column] }} ;
+      {{ item[column] }} 
     
     </span>
     <span *ngSwitchCase="isNumber(item[column])">{{ item[column] }}</span>
@@ -51,16 +51,23 @@
     <!-- Array type -->
     <span *ngSwitchCase="isArray(item[column])" class="flex flex-wrap gap-1">
       <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
+          <ng-container *ngIf="isImageUrl(el); else notImage">
+            
+    <img [src]="apiDomem+el" alt="Image" class="w-16 h-16 object-cover rounded" />
+  </ng-container>
    <!-- Object type -->
-    <ng-container *ngIf="isObject(el)" class="flex flex-col">
-      <ul class="flex">
+     <ng-template #notImage>
 
-        <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
-      
-         {{ el[key] }} -
-        </li>
-      </ul>
-    </ng-container>
+       <ng-container *ngIf="isObject(el)" class="flex flex-col">
+         <ul class="flex">
+   
+           <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
+         
+            {{ el[key] }} -
+           </li>
+         </ul>
+       </ng-container>
+     </ng-template>
     
       </span>
     </span>

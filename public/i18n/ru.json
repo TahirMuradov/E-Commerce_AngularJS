@@ -89,6 +89,23 @@
   
   "requiredpictures": "Изображение товара не может быть пустым!",
   "invalidFileTypepictures": "Разрешены только файлы JPG, PNG или GIF!"
+},
+"DisCountAreaCrud": {
+  "requiredDescriptionContentaz": "Описание на азербайджанском языке отсутствует!",
+  "requiredDescriptionContentru": "Описание на русском языке отсутствует!",
+  "requiredDescriptionContenten": "Описание на английском языке отсутствует!",
+
+  "minlengthDescriptionContentaz": "Описание на азербайджанском языке должно содержать не менее 3 символов!",
+  "minlengthDescriptionContentru": "Описание на русском языке должно содержать не менее 3 символов!",
+  "minlengthDescriptionContenten": "Описание на английском языке должно содержать не менее 3 символов!",
+
+  "requiredTitleContentaz": "Заголовок на азербайджанском языке отсутствует",
+  "requiredTitleContentru": "Заголовок на русском языке отсутствует",
+  "requiredTitleContenten": "Заголовок на английском языке отсутствует",
+
+  "minlengthTitleContentaz": "Заголовок на азербайджанском языке должен содержать не менее 3 символов!",
+  "minlengthTitleContentru": "Заголовок на русском языке должен содержать не менее 3 символов!",
+  "minlengthTitleContenten": "Заголовок на английском языке должен содержать не менее 3 символов!"
 }
   },
   "MessageType": {

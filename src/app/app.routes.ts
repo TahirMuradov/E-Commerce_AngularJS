@@ -224,6 +224,27 @@ export const routes: Routes = [
             './ui/components/dashboard/size/size-update/size-update.component'
           ).then((x) => x.SizeUpdateComponent),
       },
+         {
+        path: 'discountarea/edit/:Id',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/DisCountArea/dis-count-area-update/dis-count-area-update.component'
+          ).then((x) => x.DisCountAreaUpdateComponent),
+      },
+         {
+        path: 'discountareas/:page',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/DisCountArea/dis-count-area-table/dis-count-area-table.component'
+          ).then((x) => x.DisCountAreaTableComponent),
+      },
+         {
+        path: 'discountarea/create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/DisCountArea/dis-count-area-create/dis-count-area-create.component'
+          ).then((x) => x.DisCountAreaCreateComponent),
+      },
     ],
   },
 

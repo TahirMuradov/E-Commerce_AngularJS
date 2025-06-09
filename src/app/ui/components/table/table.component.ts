@@ -6,6 +6,7 @@ import PaginatedListType from '../../../models/responseType/PaginatedListType';
 import ResultResponseType from '../../../models/responseType/ResultResponseType';
 import { RouterLink } from '@angular/router';
 import { PaginationComponentComponent } from "../pagination-component/pagination-component.component";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-table',
@@ -33,7 +34,7 @@ export class TableComponent<TDataType> implements OnInit {
  searchTerm="";
   currentPage: number = 1;
   pageSize: number = 5;
-
+apiDomem=environment.apiUrl;
   ngOnInit(): void {
 
 
@@ -86,6 +87,14 @@ getObjectKeys(obj: object): string[] {
 
 }
 
+isImageUrl(url: any): boolean {
+ 
+  console.log(url)
+ if (typeof url !== "string" || !url.trim()) return false;
+ 
+  const extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+  return extensions.some(ext => url.toLowerCase().endsWith(ext));
+}
 
   // goToPage(page: number) {
   //   if (page >= 1 && page <= this.totalPages) {

@@ -1,1 +1,9 @@
-<p>dis-count-area-table works!</p>
+<ng-container *ngIf="DisCountAreaResponse?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="DisCountAreaResponse"
+      [deleteActionLink]="deleteLink"
+      [editActionLink]="edit"
+    ></app-table>
+</ng-container>

@@ -43,6 +43,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
               let errorMessage = '';
      switch (res.status) {
         case 0:
+      
           toastrService.message(translateService.instant("clientErrorMessage.failedFetchServer"), translateService.instant("clientErrorMessage.serverError"), {
             messageType: ToastrMessageType.Warning,
             position: ToastrPosition.BottomFullWidth
@@ -93,10 +94,28 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
         break;
        
        default:
-          toastrService.message(translateService.instant("clientErrorMessage.defaultErorContent"), translateService.instant("MessageType.error"), {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.BottomFullWidth
-          });
+                if (Array.isArray(res.error?.messages)) {
+    errorMessage = res.error?.messages.join('\n');
+  } else if (typeof res.error?.message === 'string') {
+    errorMessage = res.error?.message;
+  } else {
+    errorMessage = JSON.stringify(res.error);
+  }
+
+  // Use default message if errorMessage is empty
+  const displayMessage = errorMessage!=='' 
+    ? errorMessage 
+    : translateService.instant("clientErrorMessage.defaultErorContent");
+
+  toastrService.message(
+    displayMessage,
+    translateService.instant("MessageType.error"),
+    {
+      messageType: ToastrMessageType.Error,
+      position: ToastrPosition.BottomFullWidth
+    }
+  );
+  
           break;
       }
  return throwError(() => res);

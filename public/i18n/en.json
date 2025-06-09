@@ -87,6 +87,22 @@
 
   "requiredpictures": "Product image cannot be empty!",
   "invalidFileTypepictures": "Only JPG, PNG, or GIF files are allowed!"
+},"DisCountAreaCrud": {
+  "requiredDescriptionContentaz": "Description in Azerbaijani is empty!",
+  "requiredDescriptionContentru": "Description in Russian is empty!",
+  "requiredDescriptionContenten": "Description in English is empty!",
+
+  "minlengthDescriptionContentaz": "Description in Azerbaijani must be at least 3 characters!",
+  "minlengthDescriptionContentru": "Description in Russian must be at least 3 characters!",
+  "minlengthDescriptionContenten": "Description in English must be at least 3 characters!",
+
+  "requiredTitleContentaz": "Title in Azerbaijani is empty",
+  "requiredTitleContentru": "Title in Russian is empty",
+  "requiredTitleContenten": "Title in English is empty",
+
+  "minlengthTitleContentaz": "Title in Azerbaijani must be at least 3 characters!",
+  "minlengthTitleContentru": "Title in Russian must be at least 3 characters!",
+  "minlengthTitleContenten": "Title in English must be at least 3 characters!"
 }
   },
   "MessageType": {

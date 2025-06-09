@@ -65,32 +65,47 @@
     },
     "ProductCrud": {
       "requiredtitleaz": "Azərbaycan dilində Məhsul Başlığı boşdur",
-       "requiredtitleru": "Rus dilində Məhsul Başlığı boşdur",
-       "requiredtitleen": "İngilis dilində Məhsul Başlığı boşdur",
+      "requiredtitleru": "Rus dilində Məhsul Başlığı boşdur",
+      "requiredtitleen": "İngilis dilində Məhsul Başlığı boşdur",
 
       "minlengthtitleru": "Məhsul Başlığı Rus dilində minimum 3 simvoldan ibarət olmalıdır!",
-     "minlengthtitleaz": "Məhsul Başlığı Azərbaycan dilində minimum 3 simvoldan ibarət olmalıdır!",
-     "minlengthtitleen": "Məhsul Başlığı İngilis dilində minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleaz": "Məhsul Başlığı Azərbaycan dilində minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Məhsul Başlığı İngilis dilində minimum 3 simvoldan ibarət olmalıdır!",
 
-     
       "descriptionrequiredaz": "Azərbaycan dilində Məhsul açıqlaması boşdur!",
       "descriptionrequiredru": "Rus dilində Məhsul açıqlaması boşdur!",
       "descriptionrequireden": "İngilis dilində Məhsul açıqlaması boşdur!",
-      
+
       "minlengthdescriptionaz": "Azərbaycan dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
       "minlengthdescriptionru": "Rus dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
       "minlengthdescriptionen": "İngilis dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
 
-      
-      "requiredcategoryId":"Məhsul kateqoriyası boş ola bilməz!",
-      "requiredproductCode":"Məhsul kodu boş ola bilməz!",
-      
-      "mindiscountPrice":"Endirimli qiymət 0-dan kiçik ola bilməz!",
-      "requireddiscountPrice":"Endirimli qiymət boş", 
-      "minprice":"Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
-      
+      "requiredcategoryId": "Məhsul kateqoriyası boş ola bilməz!",
+      "requiredproductCode": "Məhsul kodu boş ola bilməz!",
+
+      "mindiscountPrice": "Endirimli qiymət 0-dan kiçik ola bilməz!",
+      "requireddiscountPrice": "Endirimli qiymət boş",
+      "minprice": "Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
+
       "requiredpictures": "Məhsul şəkili boş ola bilməz!",
       "invalidFileTypepictures": "Yalnız JPG, PNG və ya GIF fayllarına icazə verilir"
+    },
+    "DisCountAreaCrud": {
+      "requiredDescriptionContentaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requiredDescriptionContentru": "Rus dilində  açıqlama boşdur!",
+      "requiredDescriptionContenten": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthDescriptionContentaz": "Azərbaycan dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthDescriptionContentru": "Rus dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthDescriptionContenten": "Ingilis dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredTitleContentaz": "Azərbaycan dilində başlıq boşdur",
+      "requiredTitleContentru": "Rus dilində başlıq boşdur",
+      "requiredTitleContenten": "İngilis dilində başlıq boşdur",
+
+      "minlengthTitleContentaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthTitleContentru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthTitleContenten": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!"
     }
   },
   "MessageType": {
