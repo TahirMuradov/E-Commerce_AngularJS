@@ -26,7 +26,7 @@ export class HomeSliderItemCreateComponent {
 
     this.frm = formBuilder.group(
       {
-            picture: [null,
+            pictures: [[],
           [
             Validators.required,
             this.imageFileValidator(['jpg', 'jpeg', 'png', 'gif']),
@@ -97,7 +97,7 @@ export class HomeSliderItemCreateComponent {
 
     formData.append('Title', JSON.stringify(TitleDataForKeyValue));
     formData.append('Description', JSON.stringify(DescriptionDataForKeyValue));
-    formData.append('BackgroundImage',this.frm.get('picture')?.value as File);
+    formData.append('BackgroundImage',this.frm.get('pictures')?.value[0]);
 
   
       
@@ -208,24 +208,28 @@ requiredLangsValidator(requiredLangs: string[]): ValidatorFn {
 }
 imageFileValidator(allowedTypes: string[]): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const file = control?.value as File;
-
-    if (!file) {
-      return null;  
+    const files = control?.value as FileList;
+    
+    if (!files || files.length === 0) {
+      return null; 
     }
 
-    if (!file.name || file.name.split('.').length < 2) {
-      return { invalidFileType: true };
-    }
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (!file.name || file.name.split('.').length < 2) {
+        return { invalidFileType: true };
+      }
 
-    const extension = file.name.split('.').pop()?.toLowerCase();
-    if (!extension || !allowedTypes.includes(extension)) {
-      return { invalidFileType: true };
+      const extension = file.name.split('.').pop()?.toLowerCase();
+      if (!extension || !allowedTypes.includes(extension)) {
+        return { invalidFileType: true };
+      }
     }
-
+    
     return null;
   };
 }
+
 
  deletePhoto(photoUrl: string, isNew: boolean,photoName:string) {
  

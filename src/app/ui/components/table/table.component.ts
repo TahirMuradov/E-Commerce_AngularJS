@@ -59,7 +59,7 @@ apiDomem=environment.apiUrl;
   }
   }
 onDelete(id:string){
-  console.log(id)
+
   this.httpClient.delete<ResultResponseType<null>>({controller:this.controller,action:this.deleteAction},id)
   .subscribe({
     next:(response:ResultResponseType<null>)=>{

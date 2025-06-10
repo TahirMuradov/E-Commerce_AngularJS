@@ -28,8 +28,8 @@ export class DisCountAreaTableComponent {
     search: '',
   });
 
-  DisCountAreaResponse=signal<ResultResponseType<PaginatedListType<GetDisCountAreaType[]>>>(null);
-  deleteLink: string = 'deleteLink';
+  DisCountAreaResponse=signal<ResultResponseType<PaginatedListType<GetDisCountAreaType>>>(null);
+  
   edit: string = '/dashboard/discountarea/edit';
   private timeout: any = null;
   onChangeSearchInput(search: string) {
@@ -63,16 +63,30 @@ export class DisCountAreaTableComponent {
       })
       .subscribe({
         next: (
-          response: ResultResponseType<PaginatedListType<GetDisCountAreaType[]>>
+          response: ResultResponseType<PaginatedListType<GetDisCountAreaType>>
         ) => {
           if (response?.isSuccess) {
             this.DisCountAreaResponse.set(response);
+       
           }
         }      
       });
   }
   onItemDeleted(id: string) {
- this.requestForGetDisCountAreas()
+
+
+  const filteredData = this.DisCountAreaResponse()?.data.paginatedData.filter(
+    (item) => item.id !== id
+  );
+
+
+  this.DisCountAreaResponse.set({
+    ...this.DisCountAreaResponse(),
+    data: {
+      ...this.DisCountAreaResponse().data,
+      paginatedData: [...filteredData] 
+    }
+  });
 
 }
 }

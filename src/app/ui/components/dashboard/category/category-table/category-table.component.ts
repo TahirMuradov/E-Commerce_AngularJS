@@ -5,7 +5,7 @@ import GetCategoryType from '../../../../../models/DTOs/CategoryDTOs/GetCategory
 import PaginatedListType from '../../../../../models/responseType/PaginatedListType';
 import { TableComponent } from '../../../table/table.component';
 import { NgIf } from '@angular/common';
-import { param } from 'jquery';
+
 @Component({
   selector: 'app-category-table',
   imports: [TableComponent, NgIf],
@@ -28,7 +28,7 @@ export class CategoryTableComponent  {
   });
 
   categoriesResponse=signal<ResultResponseType<PaginatedListType<GetCategoryType>>>(null);
-  edit: string = '/dashboard/category';
+  edit: string = '/dashboard/category/edit';
   private timeout: any = null;
 
   onChangeSearchInput(search: string) {
@@ -74,8 +74,18 @@ export class CategoryTableComponent  {
       });
   }
 onItemDeleted(id: string) {
- this.requestForGetCatigories()
+  const filteredData = this.categoriesResponse()?.data.paginatedData.filter(
+    (item) => item.categoryId !== id);
 
+this.requestForGetCatigories()
+  this.categoriesResponse.set({
+    ...this.categoriesResponse(),
+    data: {
+      ...this.categoriesResponse().data,
+      paginatedData: [...filteredData] 
+    }
+  });
+ 
 }
 
 

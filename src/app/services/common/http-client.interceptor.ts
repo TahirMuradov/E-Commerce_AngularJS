@@ -146,10 +146,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
             }
           );
         }
-   if (req.method === 'DELETE') {
-    router.navigate([router.url]);
- 
-}
+
       }
       return res;
     }),

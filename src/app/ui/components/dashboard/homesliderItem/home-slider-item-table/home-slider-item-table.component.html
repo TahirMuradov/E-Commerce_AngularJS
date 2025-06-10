@@ -1,1 +1,11 @@
-<p>home-slider-item-table works!</p>
+<ng-container *ngIf="HomeSliderItemResponse()?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="HomeSliderItemResponse"
+controller="HomeSliderItem"
+deleteAction="DeleteHomeSliderItem"
+      [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
+    ></app-table>
+</ng-container>

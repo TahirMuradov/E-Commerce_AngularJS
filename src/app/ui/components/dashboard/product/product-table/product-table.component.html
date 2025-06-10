@@ -6,5 +6,6 @@
       controller="Product"
       deleteAction="DeleteProduct"
       [editActionLink]="edit"
+      (itemDeleted)="onItemDeleted($event)"
     ></app-table>
 </ng-container>

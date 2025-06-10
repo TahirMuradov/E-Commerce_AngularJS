@@ -26,7 +26,7 @@ export class ProductTableComponent {
     page: 1,
     search: '',
   });
-  ProductResponse=signal< ResultResponseType<PaginatedListType<GetProductType[]>>>(null);
+  ProductResponse=signal< ResultResponseType<PaginatedListType<GetProductType>>>(null);
   deleteLink: string = 'deleteLink';
   edit: string = '/dashboard/product/edit';
   private timeout: any = null;
@@ -41,7 +41,7 @@ export class ProductTableComponent {
       })
       .subscribe({
         next: (
-          response: ResultResponseType<PaginatedListType<GetProductType[]>>
+          response: ResultResponseType<PaginatedListType<GetProductType>>
         ) => {
           if (response?.isSuccess) {
             this.ProductResponse.set( response);
@@ -73,4 +73,18 @@ export class ProductTableComponent {
       });
     }
   }
+  onItemDeleted(id: string) {
+ const filteredData = this.ProductResponse()?.data.paginatedData.filter(
+    (item) => item.Id !== id
+  );
+
+
+  this.ProductResponse.set({
+    ...this.ProductResponse() ,
+    data: {
+      ...this.ProductResponse().data,
+      paginatedData: [...filteredData] 
+    }
+  });
+}
 }
