@@ -265,6 +265,26 @@ export const routes: Routes = [
             './ui/components/dashboard/homesliderItem/home-slider-item-update/home-slider-item-update.component'
           ).then((x) => x.HomeSliderItemUpdateComponent),
       },
+             {
+        path: 'topcategoryarea/create',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/TopCategoryArea/top-category-area-create/top-category-area-create.component'
+          ).then((x) => x.TopCategoryAreaCreateComponent),
+      },
+           {
+        path: 'topcategoryareas/:page',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/TopCategoryArea/top-category-area-table/top-category-area-table.component'
+          ).then((x) => x.TopCategoryAreaTableComponent),
+      },   {
+        path: 'topcategoryarea/edit/:id',
+        loadComponent: () =>
+          import(
+            './ui/components/dashboard/TopCategoryArea/top-category-area-update/top-category-area-update.component'
+          ).then((x) => x.TopCategoryAreaUpdateComponent),
+      },
     ],
   },
 

@@ -22,7 +22,8 @@ export class HeaderComponent {
     productDropDown: false,
     barsClick: false,
     disCountArea:false,
-    homesliderItem:false
+    homesliderItem:false,
+    topCategoryArea:false
   });
   onclick(
     userDropdownOpen: boolean,
@@ -31,7 +32,8 @@ export class HeaderComponent {
     productDropDown: boolean,
     barsClick: boolean,
     disCountArea:boolean,
-    homesliderItem:boolean
+    homesliderItem:boolean,
+    topCategoryArea:boolean
   ) {
     this.clickData.set({
       barsClick: barsClick,
@@ -40,7 +42,8 @@ export class HeaderComponent {
       sizeDropdown: sizeDropdown,
       userDropdownOpen: userDropdownOpen,
       disCountArea:disCountArea,
-      homesliderItem:homesliderItem
+      homesliderItem:homesliderItem,
+      topCategoryArea:topCategoryArea
     });
   }
 }

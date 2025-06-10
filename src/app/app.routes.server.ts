@@ -40,6 +40,10 @@ export const serverRoutes: ServerRoute[] = [
     { path: 'dashboard/homeslideritems/:page', renderMode: RenderMode.Client },
   { path: 'dashboard/homeslideritem/edit/:id', renderMode: RenderMode.Client },
   { path: 'dashboard/homeslideritem/create', renderMode: RenderMode.Client },
+  
+    { path: 'dashboard/topcategoryareas/:page', renderMode: RenderMode.Client },
+  { path: 'dashboard/topcategoryarea/edit/:id', renderMode: RenderMode.Client },
+  { path: 'dashboard/topcategoryarea/create', renderMode: RenderMode.Client },
 
   // Wildcard
   { path: '**', renderMode: RenderMode.Client },
