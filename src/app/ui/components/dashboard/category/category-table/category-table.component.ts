@@ -5,6 +5,7 @@ import GetCategoryType from '../../../../../models/DTOs/CategoryDTOs/GetCategory
 import PaginatedListType from '../../../../../models/responseType/PaginatedListType';
 import { TableComponent } from '../../../table/table.component';
 import { NgIf } from '@angular/common';
+import { param } from 'jquery';
 @Component({
   selector: 'app-category-table',
   imports: [TableComponent, NgIf],
@@ -16,8 +17,8 @@ export class CategoryTableComponent  {
   constructor(private httpClientService: HttpClientService) {
     effect(() => {
       const params = this.requestParamsSignal();
+    
       if (!params) return;
-
       this.requestForGetCatigories();
     });
   }
@@ -26,8 +27,7 @@ export class CategoryTableComponent  {
     search: '',
   });
 
-  categoriesResponse: ResultResponseType<PaginatedListType<GetCategoryType[]>>;
-  deleteLink: string = 'deleteLink';
+  categoriesResponse=signal<ResultResponseType<PaginatedListType<GetCategoryType>>>(null);
   edit: string = '/dashboard/category';
   private timeout: any = null;
 
@@ -44,7 +44,7 @@ export class CategoryTableComponent  {
     }, 1000);
   }
   onChangePage(page: number) {
-    if (this.categoriesResponse.data.page != page && page > 0) {
+    if (this.categoriesResponse().data.page != page && page > 0) {
       this.requestParamsSignal.set({
         page: page,
         search: this.requestParamsSignal().search,
@@ -62,10 +62,10 @@ export class CategoryTableComponent  {
       })
       .subscribe({
         next: (
-          response: ResultResponseType<PaginatedListType<GetCategoryType[]>>
+          response: ResultResponseType<PaginatedListType<GetCategoryType>>
         ) => {
           if (response) {
-            this.categoriesResponse = response;
+            this.categoriesResponse.set(response) ;
           }
         },
         error(err) {
@@ -73,4 +73,10 @@ export class CategoryTableComponent  {
         },
       });
   }
+onItemDeleted(id: string) {
+ this.requestForGetCatigories()
+
+}
+
+
 }

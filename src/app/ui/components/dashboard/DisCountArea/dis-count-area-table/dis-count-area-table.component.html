@@ -1,9 +1,11 @@
-<ng-container *ngIf="DisCountAreaResponse?.isSuccess">
+<ng-container *ngIf="DisCountAreaResponse()?.isSuccess">
     <app-table
       (pageEvent)="onChangePage($event)"
       (searchEvent)="onChangeSearchInput($event)"
       [responseApi]="DisCountAreaResponse"
-      [deleteActionLink]="deleteLink"
+controller="DisCountArea"
+deleteAction="DeleteDisCountArea"
       [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
     ></app-table>
 </ng-container>

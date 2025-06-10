@@ -26,7 +26,7 @@ export class ProductTableComponent {
     page: 1,
     search: '',
   });
-  ProductResponse: ResultResponseType<PaginatedListType<GetProductType[]>>;
+  ProductResponse=signal< ResultResponseType<PaginatedListType<GetProductType[]>>>(null);
   deleteLink: string = 'deleteLink';
   edit: string = '/dashboard/product/edit';
   private timeout: any = null;
@@ -44,7 +44,7 @@ export class ProductTableComponent {
           response: ResultResponseType<PaginatedListType<GetProductType[]>>
         ) => {
           if (response?.isSuccess) {
-            this.ProductResponse = response;
+            this.ProductResponse.set( response);
 
           }
         },
@@ -66,7 +66,7 @@ export class ProductTableComponent {
     }, 1000);
   }
   onChangePage(page: number) {
-    if (this.ProductResponse.data.page != page && page > 0) {
+    if (this.ProductResponse().data.page != page && page > 0) {
       this.requestParamsSignal.set({
         page: page,
         search: this.requestParamsSignal().search,

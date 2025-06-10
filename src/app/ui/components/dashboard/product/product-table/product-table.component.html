@@ -1,9 +1,10 @@
-<ng-container *ngIf="ProductResponse?.isSuccess">
+<ng-container *ngIf="ProductResponse()?.isSuccess">
     <app-table
       (pageEvent)="onChangePage($event)"
       (searchEvent)="onChangeSearchInput($event)"
       [responseApi]="ProductResponse"
-      [deleteActionLink]="deleteLink"
+      controller="Product"
+      deleteAction="DeleteProduct"
       [editActionLink]="edit"
     ></app-table>
 </ng-container>

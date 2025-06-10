@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, input, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, input, Input, OnInit, Output, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +7,7 @@ import ResultResponseType from '../../../models/responseType/ResultResponseType'
 import { RouterLink } from '@angular/router';
 import { PaginationComponentComponent } from "../pagination-component/pagination-component.component";
 import { environment } from '../../../../environments/environment';
+import { HttpClientService } from '../../../services/common/http-client.service';
 
 @Component({
   selector: 'app-table',
@@ -16,25 +17,32 @@ import { environment } from '../../../../environments/environment';
 })
 export class TableComponent<TDataType> implements OnInit {
 
-  constructor(public translateService:TranslateService) {
+  constructor(public translateService:TranslateService,
+public httpClient:HttpClientService
+
+  ) {
      //  this.columnNames.push( this.translateService.instant("colum1"))
 
    }
 
 //result data
-  @Input({ required: true }) responseApi: ResultResponseType<PaginatedListType< TDataType>>;;
+  @Input({ required: true }) responseApi:Signal< ResultResponseType<PaginatedListType< TDataType>>>;;
   //fro custom Colum Names
   @Input({ required: false}) columnNames: string[] = [];
   //for delete action link only part of static
-@Input({required:true}) deleteActionLink:string;
-@Input({required:true}) editActionLink:string;
 
+@Input({required:true}) editActionLink:string;
+@Input({required:true}) deleteAction:string;
+@Input({required:true}) controller:string;
 @Output() searchEvent:EventEmitter<string>=new EventEmitter();
 @Output() pageEvent:EventEmitter<number>=new EventEmitter();
+@Output() itemDeleted = new EventEmitter<string>();
+
  searchTerm="";
   currentPage: number = 1;
   pageSize: number = 5;
 apiDomem=environment.apiUrl;
+
   ngOnInit(): void {
 
 
@@ -42,18 +50,28 @@ apiDomem=environment.apiUrl;
   this.editActionLink = '/' + this.editActionLink;
 }
 
-if (this.deleteActionLink && !this.deleteActionLink.startsWith('/')) {
-  this.deleteActionLink = '/' + this.deleteActionLink;
-}
-  if (this.responseApi.data.paginatedData.length > 0) {
-    const fieldNames = Object.keys(this.responseApi.data.paginatedData[0]);
+  if (this.responseApi()?.data.paginatedData.length > 0) {
+    const fieldNames = Object.keys(this.responseApi().data.paginatedData[0]);
     this.columnNames=fieldNames
 
   } else {
     console.log('No data to extract field names.');
   }
   }
+onDelete(id:string){
+  console.log(id)
+  this.httpClient.delete<ResultResponseType<null>>({controller:this.controller,action:this.deleteAction},id)
+  .subscribe({
+    next:(response:ResultResponseType<null>)=>{
 
+      if (response.isSuccess) {
+          this.itemDeleted.emit(id);
+        }
+
+    }
+  })
+  
+}
 onChangeSearchInput(){
 this.searchEvent.emit(this.searchTerm)
 }

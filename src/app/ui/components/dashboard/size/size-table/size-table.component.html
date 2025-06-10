@@ -1,10 +1,12 @@
 
-<ng-container *ngIf="sizeResponse?.isSuccess">
+<ng-container *ngIf="sizeResponse()?.isSuccess">
   <app-table
     (pageEvent)="onChangePage($event)"
     (searchEvent)="onChangeSearchInput($event)"
     [responseApi]="sizeResponse"
-    [deleteActionLink]="deleteLink"
+    controller="Size"
+    deleteAction="DeleteSize"
     [editActionLink]="edit"
+    (itemDeleted)="onItemDeleted($event)"
   ></app-table>
 </ng-container>

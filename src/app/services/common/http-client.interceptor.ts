@@ -5,10 +5,13 @@ import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
 import { catchError, finalize,  tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
+import { ActivatedRoute, Router } from '@angular/router';
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
   const toastrService=inject(CustomToastrService)
+  const router=inject(Router)
+  const activatedRoute=inject(ActivatedRoute)
   let currentLocale =  environment.defaultLanguage;
   let modifiedReq = req;
 
@@ -143,6 +146,10 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
             }
           );
         }
+   if (req.method === 'DELETE') {
+    router.navigate([router.url]);
+ 
+}
       }
       return res;
     }),

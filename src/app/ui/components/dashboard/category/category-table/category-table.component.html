@@ -1,9 +1,12 @@
-<ng-container *ngIf="categoriesResponse?.isSuccess">
+<ng-container *ngIf="categoriesResponse()?.isSuccess">
   <app-table
     (pageEvent)="onChangePage($event)"
     (searchEvent)="onChangeSearchInput($event)"
     [responseApi]="categoriesResponse"
-    [deleteActionLink]="deleteLink"
-    [editActionLink]="edit"
+   [editActionLink]="edit"
+   controller="Category"
+   deleteAction="DeleteCategory"
+    (itemDeleted)="onItemDeleted($event)"
+
   ></app-table>
 </ng-container>

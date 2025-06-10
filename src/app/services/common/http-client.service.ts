@@ -68,7 +68,7 @@ export class HttpClientService {
     let url: string = '';
     if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
     else
-      url = `${this.url(requestParameter)}/${id}${
+      url = `${this.url(requestParameter)}?id=${id}${
         requestParameter.queryString ? `?${requestParameter.queryString}` : ''
       }`;
 

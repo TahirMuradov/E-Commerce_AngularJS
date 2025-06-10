@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of responseApi?.data?.paginatedData"
+          *ngFor="let item of responseApi()?.data?.paginatedData"
           class="hover:bg-gray-50 transition-colors"
         >
           <td
@@ -87,15 +87,15 @@
            
             class="px-4 py-2 border-b text-gray-700"
           >
-      <a [routerLink]="[`${deleteActionLink}`,item['id']]" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 focus:outline-hidden focus:border-red-400 focus:text-red-400 disabled:opacity-50 disabled:pointer-events-none">
+      <button (click)="onDelete(item['id'])" class="cursor-pointer py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 focus:outline-hidden focus:border-red-400 focus:text-red-400 disabled:opacity-50 disabled:pointer-events-none">
                          Delete
-                        </a>
+                        </button>
                         <a [routerLink]="[`${editActionLink}`,item['id']]" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-yellow-500 text-yellow-500 hover:border-yellow-400 focus:outline-hidden focus:border-yellow-400 focus:text-yellow-400 disabled:opacity-50 disabled:pointer-events-none">
                          Edit
                         </a>
           </td>
         </tr>
-        <tr *ngIf="responseApi?.data.pageSize === 0">
+        <tr *ngIf="responseApi()?.data?.pageSize === 0">
           <td
             [attr.colspan]="columnNames.length"
             class="text-center px-4 py-2 text-gray-500"
@@ -108,9 +108,9 @@
   </div>
 
   <!--  Pagination -->
-    <ng-container *ngIf="responseApi.isSuccess">
+    <ng-container *ngIf="responseApi()?.isSuccess">
 
-      <app-pagination-component (pageChanged)="onChangePage($event)"  [buttonColorClass]="'bg-indigo-600 text-white'" [pagination]="responseApi.data"></app-pagination-component>
+      <app-pagination-component (pageChanged)="onChangePage($event)"  [buttonColorClass]="'bg-indigo-600 text-white'" [pagination]="responseApi().data"></app-pagination-component>
     </ng-container>
 
 </div>

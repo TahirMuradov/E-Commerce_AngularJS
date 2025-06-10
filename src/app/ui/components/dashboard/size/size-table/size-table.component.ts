@@ -28,7 +28,7 @@ export class SizeTableComponent {
   });
 deleteLink: string = 'deleteLink';
   edit: string = '/dashboard/size';
-    sizeResponse: ResultResponseType<PaginatedListType<GetSizeType[]>>;
+    sizeResponse=signal< ResultResponseType<PaginatedListType<GetSizeType[]>>>(null);
       private timeout: any = null;
     onChangeSearchInput(search: string) {
     if (this.timeout) {
@@ -43,7 +43,7 @@ deleteLink: string = 'deleteLink';
     }, 1000);
   }
   onChangePage(page: number) {
-    if (this.sizeResponse.data.page != page && page > 0) {
+    if (this.sizeResponse().data.page != page && page > 0) {
       this.requestParamsSignal.set({
         page: page,
         search: this.requestParamsSignal().search,
@@ -65,7 +65,7 @@ deleteLink: string = 'deleteLink';
           ) => {
             console.log(response)
             if (response) {
-              this.sizeResponse = response;
+              this.sizeResponse.set( response);
             }
           },
           error(err) {
@@ -73,4 +73,9 @@ deleteLink: string = 'deleteLink';
           },
         });
     }
+
+    onItemDeleted(id: string) {
+ this.requestForGetSizes()
+
+}
 }

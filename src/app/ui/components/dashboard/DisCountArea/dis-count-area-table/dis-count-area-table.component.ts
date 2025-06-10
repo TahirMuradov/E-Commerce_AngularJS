@@ -19,7 +19,7 @@ export class DisCountAreaTableComponent {
       const params = this.requestParamsSignal();
       if (!params) return;
   this.requestForGetDisCountAreas();
-console.log(this.DisCountAreaResponse)
+
     });
   }
 
@@ -28,7 +28,7 @@ console.log(this.DisCountAreaResponse)
     search: '',
   });
 
-  DisCountAreaResponse: ResultResponseType<PaginatedListType<GetDisCountAreaType[]>>;
+  DisCountAreaResponse=signal<ResultResponseType<PaginatedListType<GetDisCountAreaType[]>>>(null);
   deleteLink: string = 'deleteLink';
   edit: string = '/dashboard/discountarea/edit';
   private timeout: any = null;
@@ -45,7 +45,7 @@ console.log(this.DisCountAreaResponse)
     }, 1000);
   }
   onChangePage(page: number) {
-    if (this.DisCountAreaResponse.data.page != page && page > 0) {
+    if (this.DisCountAreaResponse().data.page != page && page > 0) {
       this.requestParamsSignal.set({
         page: page,
         search: this.requestParamsSignal().search,
@@ -66,9 +66,13 @@ console.log(this.DisCountAreaResponse)
           response: ResultResponseType<PaginatedListType<GetDisCountAreaType[]>>
         ) => {
           if (response?.isSuccess) {
-            this.DisCountAreaResponse = response;
+            this.DisCountAreaResponse.set(response);
           }
         }      
       });
   }
+  onItemDeleted(id: string) {
+ this.requestForGetDisCountAreas()
+
+}
 }
