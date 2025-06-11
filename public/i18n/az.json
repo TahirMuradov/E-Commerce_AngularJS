@@ -106,6 +106,71 @@
       "minlengthTitleContentaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
       "minlengthTitleContentru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
       "minlengthTitleContenten": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!"
+    },
+    "HomeSliderItemCrud": {
+      "requiredtitleaz": "Azərbaycan dilində başlıq boşdur!",
+      "requiredtitleru": "Rus dilində  başlıq boşdur!",
+      "requiredtitleen": "İngilis dilində  başlıq boşdur!",
+
+      "minlengthtitleaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+
+      "requireddescriptionaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requireddescriptionru": "Rus dilində  açıqlama boşdur!",
+      "requireddescriptionen": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthdescriptionaz": "Azərbaycan dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində  məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "Ingilis dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+   
+
+
+    "requiredpictures": "Şəkil boş ola bilməz!"
+    },
+    "TopCategoryAreaCrud": {
+      "requireddescriptionaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requireddescriptionru": "Rus dilində  açıqlama boşdur!",
+      "requireddescriptionen": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthdescriptionaz": "Azərbaycan dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "Ingilis dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredtitleaz": "Azərbaycan dilində başlıq boşdur",
+      "requiredtitleru": "Rus dilində başlıq boşdur",
+      "requiredtitleen": "İngilis dilində başlıq boşdur",
+
+      "minlengthtitleaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredcategoryId": "Kateqoriya boş ola bilməz!",
+
+
+      
+      "requiredpictures": "Şəkil boş ola bilməz!"
+    },
+    "PaymentMethodCrud": {
+      "requiredcontentaz": "Azərbaycan dilində məzmun boşdur!",
+      "requiredcontentru": "Rus dilində  məzmun boşdur!",
+      "requiredcontenten": "İngilis dilində  məzmun boşdur!",
+
+      "minlengthcontentaz": "Azərbaycan dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontentru": "Rus dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontenten": "Ingilis dilində məzmun minimum 3 simvoldan ibarət olmalıdır!"
+    },
+    "ShippingMethodCrud": {
+      "requiredcontentaz": "Azərbaycan dilində məzmun boşdur",
+      "requiredcontentru": "Rus dilində məzmun boşdur",
+      "requiredcontenten": "İngilis dilində məzmun boşdur",
+
+      "minlengthcontentaz": "Azərbaycan dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontentru": "Rus dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontenten": "Ingilis dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+
+      "minprice": "Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
+      "mindisCountPrice": "Endirimli qiymət 0-dan kiçik ola bilməz!"
     }
   },
   "MessageType": {

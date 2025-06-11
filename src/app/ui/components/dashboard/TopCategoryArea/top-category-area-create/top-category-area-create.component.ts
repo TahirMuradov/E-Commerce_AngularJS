@@ -140,7 +140,7 @@ constructor(    public translateService: TranslateService,
   
          let errorMessage = '';
   
-          errorMessage = this.translateService.instant(`VALIDATION.ProductCrud.${validationKey+key}`);
+          errorMessage = this.translateService.instant(`VALIDATION.TopCategoryAreaCrud.${validationKey+key}`);
   
         errorMessages.push({
           key: validationKey,

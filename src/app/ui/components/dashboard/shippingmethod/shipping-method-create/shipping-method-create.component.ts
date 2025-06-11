@@ -99,7 +99,7 @@ if (this.frm.valid) {
 
        let errorMessage = '';
 
-        errorMessage = this.translateService.instant(`VALIDATION.DisCountAreaCrud.${validationKey+key}`);
+        errorMessage = this.translateService.instant(`VALIDATION.ShippingMethodCrud.${validationKey+key}`);
 
       errorMessages.push({
         key: validationKey,

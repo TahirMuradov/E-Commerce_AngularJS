@@ -161,7 +161,7 @@ for (const picture of this.newPictureSignal()) {
             let errorMessage = '';
 
             errorMessage = this.translateService.instant(
-              `VALIDATION.ProductCrud.${validationKey + key}`
+              `VALIDATION.HomeSliderItemCrud.${validationKey + key}`
             );
 
             errorMessages.push({

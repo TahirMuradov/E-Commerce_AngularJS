@@ -128,7 +128,7 @@ export class HomeSliderItemCreateComponent {
   
          let errorMessage = '';
   
-          errorMessage = this.translateService.instant(`VALIDATION.ProductCrud.${validationKey+key}`);
+          errorMessage = this.translateService.instant(`VALIDATION.HomeSliderItemCrud.${validationKey+key}`);
   
         errorMessages.push({
           key: validationKey,

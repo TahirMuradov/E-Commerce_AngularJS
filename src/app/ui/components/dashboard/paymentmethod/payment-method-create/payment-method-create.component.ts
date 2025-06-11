@@ -92,7 +92,7 @@ if (this.frm.valid) {
 
        let errorMessage = '';
 
-        errorMessage = this.translateService.instant(`VALIDATION.PaymentMethodCRUD.${validationKey+key}`);
+        errorMessage = this.translateService.instant(`VALIDATION.PaymentMethodCrud.${validationKey+key}`);
 
       errorMessages.push({
         key: validationKey,

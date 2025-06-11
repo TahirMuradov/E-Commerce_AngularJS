@@ -58,7 +58,7 @@ export class ShippingMethodUpdateComponent {
      
         this.frm = formBuilder.group(
           {
-            price: [shippingMethodSignal.price, Validators.min(0)],
+            price: [shippingMethodSignal.price, Validators.min(1)],
             disCountPrice: [shippingMethodSignal.disCount, Validators.min(0)],
           },
           {
@@ -131,7 +131,7 @@ export class ShippingMethodUpdateComponent {
             let errorMessage = '';
 
             errorMessage = this.translateService.instant(
-              `VALIDATION.ShippingMethodCRUD.${validationKey + key}`
+              `VALIDATION.ShippingMethodCrud.${validationKey + key}`
             );
 
             errorMessages.push({

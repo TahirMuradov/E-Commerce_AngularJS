@@ -166,7 +166,7 @@ this.oldPicturePathSignal.set([response.data.pictureUrl])
   
          let errorMessage = '';
   
-          errorMessage = this.translateService.instant(`VALIDATION.ProductCrud.${validationKey+key}`);
+          errorMessage = this.translateService.instant(`VALIDATION.TopCategoryAreaCrud.${validationKey+key}`);
   
         errorMessages.push({
           key: validationKey,
