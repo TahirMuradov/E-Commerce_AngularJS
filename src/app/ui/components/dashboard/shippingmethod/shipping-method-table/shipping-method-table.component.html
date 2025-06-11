@@ -1,1 +1,11 @@
-<p>shipping-method-table works!</p>
+<ng-container *ngIf="shippingMethodResponse()?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="shippingMethodResponse"
+controller="ShippingMethod"
+deleteAction="DeleteShippingMethod"
+      [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
+    ></app-table>
+</ng-container>

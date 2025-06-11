@@ -38,13 +38,22 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/discountarea/create', renderMode: RenderMode.Client },
 
     { path: 'dashboard/homeslideritems/:page', renderMode: RenderMode.Client },
-  { path: 'dashboard/homeslideritem/edit/:id', renderMode: RenderMode.Client },
+  { path: 'dashboard/homeslideritem/edit/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/homeslideritem/create', renderMode: RenderMode.Client },
   
     { path: 'dashboard/topcategoryareas/:page', renderMode: RenderMode.Client },
-  { path: 'dashboard/topcategoryarea/edit/:id', renderMode: RenderMode.Client },
+  { path: 'dashboard/topcategoryarea/edit/:Id', renderMode: RenderMode.Client },
   { path: 'dashboard/topcategoryarea/create', renderMode: RenderMode.Client },
+   
+  { path: 'dashboard/shippingmethods/:page', renderMode: RenderMode.Client },
+  { path: 'dashboard/shippingmethod/edit/:Id', renderMode: RenderMode.Client },
+  { path: 'dashboard/shippingmethod/create', renderMode: RenderMode.Client },
 
-  // Wildcard
+  { path: 'dashboard/paymentmethods/:page', renderMode: RenderMode.Client },
+  { path: 'dashboard/paymentmethod/edit/:Id', renderMode: RenderMode.Client },
+  { path: 'dashboard/paymentmethod/create', renderMode: RenderMode.Client }, 
+
+
+
   { path: '**', renderMode: RenderMode.Client },
 ];
