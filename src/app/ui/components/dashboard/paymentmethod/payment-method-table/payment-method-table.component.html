@@ -1,1 +1,11 @@
-<p>payment-method-table works!</p>
+<ng-container *ngIf="PaymentMethodAreaResponseSignal()?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="PaymentMethodAreaResponseSignal"
+controller="PaymentMethod"
+deleteAction="DeletePaymentMethod"
+      [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
+    ></app-table>
+</ng-container>
