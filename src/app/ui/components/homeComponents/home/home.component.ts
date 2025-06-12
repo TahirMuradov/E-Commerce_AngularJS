@@ -18,33 +18,13 @@ import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.s
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent{
   constructor(
     private httpClientService: HttpClientService,
     private spinnerService: SpinnerLoadingService
-  ) {}
-  ngOnInit() {
-    this.spinnerService.spinerShow();
+  ) {
 
-    this.httpClientService
-      .get({ baseUrl: 'https://dummyjson.com', controller: 'products' })
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.spinnerService.spinerHide()
-     
-          }
-        },
-        error(err) {
-          console.log(err)
-        },
-      });
   }
-  GetCurrentUserInfo() {
-    this.httpClientService
-      .get({ fullEndPoint: 'https://dummyjson.com/auth/me' })
-      .subscribe((response) => {
-        console.log(JSON.stringify(response));
-      });
-  }
+
+
 }
