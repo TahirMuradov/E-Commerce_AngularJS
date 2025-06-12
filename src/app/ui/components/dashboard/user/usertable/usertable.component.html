@@ -1,1 +1,10 @@
-<p>usertable works!</p>
+<ng-container *ngIf="UsersResponseSignal()?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="UsersResponseSignal"
+
+      [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
+    ></app-table>
+</ng-container>

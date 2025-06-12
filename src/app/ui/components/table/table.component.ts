@@ -26,14 +26,14 @@ public httpClient:HttpClientService
    }
 
 //result data
-  @Input({ required: true }) responseApi:Signal< ResultResponseType<PaginatedListType< TDataType>>>;;
+  @Input({ required: true }) responseApi:Signal< ResultResponseType<PaginatedListType< TDataType >>>;
   //fro custom Colum Names
   @Input({ required: false}) columnNames: string[] = [];
   //for delete action link only part of static
 
 @Input({required:true}) editActionLink:string;
-@Input({required:true}) deleteAction:string;
-@Input({required:true}) controller:string;
+@Input({required:false}) deleteAction:string;
+@Input({required:false}) controller:string;
 @Output() searchEvent:EventEmitter<string>=new EventEmitter();
 @Output() pageEvent:EventEmitter<number>=new EventEmitter();
 @Output() itemDeleted = new EventEmitter<string>();
@@ -41,7 +41,7 @@ public httpClient:HttpClientService
  searchTerm="";
   currentPage: number = 1;
   pageSize: number = 5;
-apiDomem=environment.apiUrl;
+apiDomain=environment.apiUrl;
 
   ngOnInit(): void {
 
@@ -59,7 +59,8 @@ apiDomem=environment.apiUrl;
   }
   }
 onDelete(id:string){
-
+if (this.deleteAction&&this.editActionLink) {
+  
   this.httpClient.delete<ResultResponseType<null>>({controller:this.controller,action:this.deleteAction},id)
   .subscribe({
     next:(response:ResultResponseType<null>)=>{
@@ -70,6 +71,7 @@ onDelete(id:string){
 
     }
   })
+}
   
 }
 onChangeSearchInput(){
@@ -114,9 +116,15 @@ isImageUrl(url: any): boolean {
   return extensions.some(ext => url.toLowerCase().endsWith(ext));
 }
 
-  // goToPage(page: number) {
-  //   if (page >= 1 && page <= this.totalPages) {
-  //     this.currentPage = page;
-  //   }
-  // }
+getType(value: any): string {
+  if (typeof value === 'string') return 'string';
+  if (typeof value === 'number') return 'number';
+  if (typeof value === 'boolean') return 'boolean';
+  if (Array.isArray(value)) return 'array';
+  if (value && typeof value === 'object') return 'object';
+  return 'unknown';
+}
+trackById(index: number, item: any): string {
+  return item.id; 
+}
 }

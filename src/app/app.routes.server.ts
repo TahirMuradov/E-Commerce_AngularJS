@@ -18,7 +18,7 @@ export const serverRoutes: ServerRoute[] = [
 
   // Dashboard (Child routes of DashboardLayoutComponent)
   { path: 'dashboard', renderMode: RenderMode.Client }, // parent
-  { path: 'dashboard/users', renderMode: RenderMode.Client },
+  { path: 'dashboard/users/:page', renderMode: RenderMode.Client },
   { path: 'dashboard/user/:Id', renderMode: RenderMode.Client },
 
   { path: 'dashboard/categories/:page', renderMode: RenderMode.Client },

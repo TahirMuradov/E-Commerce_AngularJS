@@ -25,7 +25,8 @@ export class HeaderComponent {
     homesliderItem:false,
     topCategoryArea:false,
       paymentMethod:false,
-    shippingMethod:false
+    shippingMethod:false,
+    users:false
   });
   onclick(
     userDropdownOpen: boolean,
@@ -37,7 +38,8 @@ export class HeaderComponent {
     homesliderItem:boolean,
     topCategoryArea:boolean,
     paymentMethod:boolean,
-    shippingMethod:boolean
+    shippingMethod:boolean,
+    users:boolean
   ) {
     this.clickData.set({
       barsClick: barsClick,
@@ -49,7 +51,8 @@ export class HeaderComponent {
       homesliderItem:homesliderItem,
       topCategoryArea:topCategoryArea,
         paymentMethod:paymentMethod,
-    shippingMethod:shippingMethod
+    shippingMethod:shippingMethod,
+    users:users
     });
   }
 }

@@ -1,5 +1,5 @@
 <div class="p-4">
-  <!--Search Input -->
+  <!-- Search Input -->
   <div class="mb-4">
     <input
       type="text"
@@ -21,85 +21,92 @@
           >
             {{ column | titlecase }}
           </th>
-             <th
-            
-            class="text-center px-4 py-2 font-medium text-gray-700 border-b"
-          >
-          Actions
+          <th class="text-center px-4 py-2 font-medium text-gray-700 border-b">
+            Actions
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of responseApi()?.data?.paginatedData"
+          *ngFor="let item of responseApi()?.data?.paginatedData; trackBy: trackById"
           class="hover:bg-gray-50 transition-colors"
         >
           <td
             *ngFor="let column of columnNames"
             class="px-4 py-2 border-b text-gray-700"
           >
-          <ng-container [ngSwitch]="true">
-    <!-- Primitive types -->
-    <span *ngSwitchCase="isString(item[column])">
-    
-      {{ item[column] }} 
-    
-    </span>
-    <span *ngSwitchCase="isNumber(item[column])">{{ item[column] }}</span>
-    <span *ngSwitchCase="isBoolean(item[column])">{{ item[column] ? 'Yes' : 'No' }}</span>
-    
-    <!-- Array type -->
-    <span *ngSwitchCase="isArray(item[column])" class="flex flex-wrap gap-1">
-      <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
-          <ng-container *ngIf="isImageUrl(el); else notImage">
-            
-    <img [src]="apiDomem+el" alt="Image" class="w-16 h-16 object-cover rounded" />
-  </ng-container>
-   <!-- Object type -->
-     <ng-template #notImage>
-
-       <ng-container *ngIf="isObject(el)" class="flex flex-col">
-         <ul class="flex">
-   
-           <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
-         
-            {{ el[key] }} -
-           </li>
-         </ul>
-       </ng-container>
-     </ng-template>
-    
-      </span>
-    </span>
-    
-    <!-- Object type -->
-    <span *ngSwitchCase="isObject(item[column])" class="flex flex-col">
-      <span *ngFor="let key of getObjectKeys(item[column])" class="text-sm">
-        
-        <strong>{{ key }}:</strong> {{ item[column][key] }}
-      </span>
-    </span>
-    <!--Default Case -->
-      <span *ngSwitchDefault>{{ item[column] | json }}</span>
-  </ng-container>
+            <ng-container [ngSwitch]="getType(item[column])">
+              <!-- String -->
+              <span *ngSwitchCase="'string'">{{ item[column] }}</span>
+              
+              <!-- Number -->
+              <span *ngSwitchCase="'number'">{{ item[column] }}</span>
+              
+              <!-- Boolean -->
+              <span *ngSwitchCase="'boolean'">{{ item[column] ? 'Yes' : 'No' }}</span>
+              
+              <!-- Array -->
+              <span *ngSwitchCase="'array'" class="flex flex-wrap gap-1">
+                <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
+                  <ng-container *ngIf="isImageUrl(el); else notImage">
+                    <img 
+                      [src]="apiDomain + el" 
+                      alt="Image" 
+                      class="w-16 h-16 object-cover rounded" 
+                    />
+                  </ng-container>
+                  <ng-template #notImage>
+                    <ng-container *ngIf="isObject(el); else primitiveValue">
+                      <ul class="flex">
+                        <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
+                          {{ el[key] }} -
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #primitiveValue>
+                      {{ el }}
+                    </ng-template>
+                  </ng-template>
+                </span>
+              </span>
+              
+              <!-- Object -->
+              <span *ngSwitchCase="'object'" class="flex flex-col">
+                <span *ngFor="let key of getObjectKeys(item[column])" class="text-sm">
+                  <strong>{{ key }}:</strong> {{ item[column][key] }}
+                </span>
+              </span>
+              
+              <!-- Default (Fallback) -->
+              <span *ngSwitchDefault>{{ item[column] | json }}</span>
+            </ng-container>
           </td>
-             <td
-           
-            class="px-4 py-2 border-b text-gray-700"
-          >
-      <button (click)="onDelete(item['id'])" class="cursor-pointer py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 focus:outline-hidden focus:border-red-400 focus:text-red-400 disabled:opacity-50 disabled:pointer-events-none">
-                         Delete
-                        </button>
-                        <a [routerLink]="[`${editActionLink}`,item['id']]" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-yellow-500 text-yellow-500 hover:border-yellow-400 focus:outline-hidden focus:border-yellow-400 focus:text-yellow-400 disabled:opacity-50 disabled:pointer-events-none">
-                         Edit
-                        </a>
+          
+          <!-- Actions Column -->
+          <td class="text-center">
+            <ng-container *ngIf="controller && deleteAction">
+       
+
+                <button 
+                  (click)="onDelete(item[`id`])" 
+                  class="cursor-pointer py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-red-500 text-red-500 hover:border-red-400 hover:text-red-400 focus:outline-hidden focus:border-red-400 focus:text-red-400 disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  Delete
+                </button>
+        
+            </ng-container>
+            <a 
+              [routerLink]="[editActionLink, item[`id`]]" 
+              class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-yellow-500 text-yellow-500 hover:border-yellow-400 focus:outline-hidden focus:border-yellow-400 focus:text-yellow-400 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              Edit
+            </a>
           </td>
         </tr>
-        <tr *ngIf="responseApi()?.data?.pageSize === 0">
-          <td
-            [attr.colspan]="columnNames.length"
-            class="text-center px-4 py-2 text-gray-500"
-          >
+        
+        <!-- Empty State -->
+        <tr *ngIf="!responseApi()?.data?.paginatedData?.length">
+          <td [attr.colspan]="columnNames.length + 1" class="text-center px-4 py-2 text-gray-500">
             No data found.
           </td>
         </tr>
@@ -107,10 +114,12 @@
     </table>
   </div>
 
-  <!--  Pagination -->
-    <ng-container *ngIf="responseApi()?.isSuccess">
-
-      <app-pagination-component (pageChanged)="onChangePage($event)"  [buttonColorClass]="'bg-indigo-600 text-white'" [pagination]="responseApi().data"></app-pagination-component>
-    </ng-container>
-
+  <!-- Pagination -->
+  <ng-container *ngIf="responseApi()?.isSuccess">
+    <app-pagination-component 
+      (pageChanged)="onChangePage($event)" 
+      [buttonColorClass]="'bg-indigo-600 text-white'" 
+      [pagination]="responseApi().data"
+    ></app-pagination-component>
+  </ng-container>
 </div>

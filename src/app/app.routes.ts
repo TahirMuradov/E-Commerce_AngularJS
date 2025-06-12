@@ -133,7 +133,7 @@ export const routes: Routes = [
     children: [
       // User Components routes
       {
-        path: 'users',
+        path: 'users/:page',
         title: 'Users',
         loadComponent: () =>
           import(
