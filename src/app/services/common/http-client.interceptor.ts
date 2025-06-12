@@ -18,12 +18,12 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   let token: string | null = null;
 
   if (typeof window !== 'undefined' && window.localStorage) {
-<<<<<<< HEAD
+
     currentLocale=localStorage.getItem("Locale")??currentLocale;
-=======
+
      spinner.spinerShow();
     currentLocale=localStorage.getItem("Locale")??environment.defaultLanguage;
->>>>>>> local
+
     const sessionInfo = localStorage.getItem('SessionInfo');
     token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;
   }
