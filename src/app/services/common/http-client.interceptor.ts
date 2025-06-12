@@ -83,6 +83,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
           });
           break;
        case HttpStatusCode.Unauthorized||HttpStatusCode.Forbidden:
+        
           if (Array.isArray(res.error?.messages)) {
             errorMessage = res.error?.messages.join('\n');
           } else if (typeof res.error?.message === 'string') {
@@ -90,7 +91,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
           } else {
             errorMessage = JSON.stringify(res.error);
           }
-          toastrService.message(errorMessage, translateService.instant("MessageType.info"), {
+          toastrService.message(translateService.instant("clientErrorMessage.accessDenied"), translateService.instant("MessageType.info"), {
             messageType: ToastrMessageType.Info,
             position: ToastrPosition.BottomFullWidth
           });

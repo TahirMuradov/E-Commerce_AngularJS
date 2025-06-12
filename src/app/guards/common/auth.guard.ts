@@ -20,6 +20,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
 
   authService.identityCheck();
+
      let  previousUrl: string | null = null;
   let currentUrl: string | null = router.url;
       router.events.subscribe((event) => {
@@ -29,6 +30,21 @@ export const authGuard: CanActivateFn = (route, state) => {
       }
     });
 
+if(!authService.isAuthenticated &&      
+    state.url.startsWith('/dashboard')
+  ) {
+    router.navigate(["/auth/login"])
+    toastrService.message(
+      translateService.instant('clientErrorMessage.againLogin'),
+      translateService.instant('clientErrorMessage.accessDenied'),
+      {
+        messageType: ToastrMessageType.Warning,
+        position: ToastrPosition.TopRight,
+      }
+    );
+
+    return false;
+  }
   if (
     (!authService.isAuthenticated ||
       !(authService.isRole.includes(RoleEnums.SuperAdmin) ||
@@ -36,7 +52,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     state.url.startsWith('/dashboard')
   ) {
     toastrService.message(
-      translateService.instant('clientErrorMessage.accessDeniedContent'),
+      translateService.instant('clientErrorMessage.againLogin'),
       translateService.instant('clientErrorMessage.accessDenied'),
       {
         messageType: ToastrMessageType.Warning,

@@ -135,6 +135,7 @@ export const routes: Routes = [
       {
         path: 'users/:page',
         title: 'Users',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/user/usertable/usertable.component'
@@ -143,6 +144,7 @@ export const routes: Routes = [
       {
         path: 'user/:Id',
         title: 'User Edit Profile',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/user/user-update/user-update.component'
@@ -152,6 +154,7 @@ export const routes: Routes = [
       // Category Components routes
       {
         path: 'categories/:page',
+         canActivate: [authGuard],
         title: 'Categories',
         loadComponent: () =>
           import(
@@ -160,6 +163,7 @@ export const routes: Routes = [
       },
       {
         path: 'category/edit/:Id',
+         canActivate: [authGuard],
         title: 'Category Edit',
         loadComponent: () =>
           import(
@@ -168,6 +172,7 @@ export const routes: Routes = [
       },
       {
         path: 'category/create',
+         canActivate: [authGuard],
         title: 'Category Create',
         loadComponent: () =>
           import(
@@ -178,6 +183,7 @@ export const routes: Routes = [
       // Product Components routes
       {
         path: 'product/create',
+         canActivate: [authGuard],
         title: 'Product Create',
         loadComponent: () =>
           import(
@@ -194,6 +200,7 @@ export const routes: Routes = [
       },
       {
         path: 'product/edit/:Id',
+         canActivate: [authGuard],
         title: 'Product Update',
         loadComponent: () =>
           import(
@@ -204,6 +211,7 @@ export const routes: Routes = [
       // Size Components routes
       {
         path: 'sizes/:page',
+         canActivate: [authGuard],
         title: 'Sizes',
         loadComponent: () =>
           import(
@@ -212,6 +220,7 @@ export const routes: Routes = [
       },
       {
         path: 'size/create',
+         canActivate: [authGuard],
         title: 'Size Create',
         loadComponent: () =>
           import(
@@ -220,6 +229,7 @@ export const routes: Routes = [
       },
       {
         path: 'size/edit/:Id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/size/size-update/size-update.component'
@@ -229,6 +239,7 @@ export const routes: Routes = [
       // Discount Area Components routes
       {
         path: 'discountarea/edit/:Id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/DisCountArea/dis-count-area-update/dis-count-area-update.component'
@@ -236,6 +247,7 @@ export const routes: Routes = [
       },
       {
         path: 'discountareas/:page',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/DisCountArea/dis-count-area-table/dis-count-area-table.component'
@@ -243,6 +255,7 @@ export const routes: Routes = [
       },
       {
         path: 'discountarea/create',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/DisCountArea/dis-count-area-create/dis-count-area-create.component'
@@ -252,6 +265,7 @@ export const routes: Routes = [
       // Home Slider Item Components routes
       {
         path: 'homeslideritem/create',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/homesliderItem/home-slider-item-create/home-slider-item-create.component'
@@ -259,6 +273,7 @@ export const routes: Routes = [
       },
       {
         path: 'homeslideritems/:page',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/homesliderItem/home-slider-item-table/home-slider-item-table.component'
@@ -266,6 +281,7 @@ export const routes: Routes = [
       },
       {
         path: 'homeslideritem/edit/:id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/homesliderItem/home-slider-item-update/home-slider-item-update.component'
@@ -275,6 +291,7 @@ export const routes: Routes = [
       // Top Category Area Components routes
       {
         path: 'topcategoryarea/create',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/TopCategoryArea/top-category-area-create/top-category-area-create.component'
@@ -282,6 +299,7 @@ export const routes: Routes = [
       },
       {
         path: 'topcategoryareas/:page',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/TopCategoryArea/top-category-area-table/top-category-area-table.component'
@@ -289,6 +307,7 @@ export const routes: Routes = [
       },
       {
         path: 'topcategoryarea/edit/:id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/TopCategoryArea/top-category-area-update/top-category-area-update.component'
@@ -298,6 +317,7 @@ export const routes: Routes = [
       // Shipping Method Components routes
       {
         path: 'shippingmethod/edit/:id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/shippingmethod/shipping-method-update/shipping-method-update.component'
@@ -305,6 +325,7 @@ export const routes: Routes = [
       },
       {
         path: 'shippingmethod/create',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/shippingmethod/shipping-method-create/shipping-method-create.component'
@@ -312,6 +333,7 @@ export const routes: Routes = [
       },
       {
         path: 'shippingmethods/:page',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/shippingmethod/shipping-method-table/shipping-method-table.component'
@@ -321,6 +343,7 @@ export const routes: Routes = [
       // Payment Method Components routes
       {
         path: 'paymentmethod/edit/:id',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/paymentmethod/payment-method-update/payment-method-update.component'
@@ -328,6 +351,7 @@ export const routes: Routes = [
       },
       {
         path: 'paymentmethod/create',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/paymentmethod/payment-method-create/payment-method-create.component'
@@ -335,6 +359,7 @@ export const routes: Routes = [
       },
       {
         path: 'paymentmethods/:page',
+         canActivate: [authGuard],
         loadComponent: () =>
           import(
             './ui/components/dashboard/paymentmethod/payment-method-table/payment-method-table.component'

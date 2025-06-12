@@ -187,7 +187,7 @@
     "forgotPasswordCheckTrue": "İndi Yeni Şifrəni təyin edə bilərsiniz!",
     "accessDenied": "Giriş rədd edildi",
     "accessDeniedContent": "Bu səhifəyə giriş üçün səlahiyətiniz çatmır!",
-    "againLogin": "Giriş rədd edildi",
+    "againLogin": "Sessia vaxtınız bitib.Yenidən daxil olun",
     "againLoginContent": "İlk öncə çıxış edin!"
   }
 }

@@ -1,15 +1,5 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpResponse,
-} from '@angular/common/http';
-import {
-  CustomToastrService,
-  ToastrMessageType,
-  ToastrPosition,
-} from '../ui/custom-toastr.service';
 import { Router } from '@angular/router';
 import ResultResponseType from '../../models/responseType/ResultResponseType';
 import TokenType, {
@@ -18,11 +8,10 @@ import TokenType, {
 import { HttpClientService } from './http-client.service';
 import { RoleEnums } from '../../models/enums/RoleEnums';
 import RegisterType from '../../models/responseType/authResponseType/RegisterType';
-import { TranslateService } from '@ngx-translate/core';
 import UpdateForgotPassword from '../../models/DTOs/UpdateForgotPassword';
 import { map, Observable, of } from 'rxjs';
 import GetCurrentUserType from '../../models/responseType/authResponseType/GetCurrentUserType';
-import { execPath } from 'process';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -48,49 +37,59 @@ get isCurrentUser():GetCurrentUserType{
   /**
  *For  Check User Session
  */
-  identityCheck():boolean {
+identityCheck(): boolean {
+
+  let token: string = null;
+  let expired: boolean = true; // Default to expired
   
-    let token: string = null;
-    let expired: boolean;
+  if (typeof window !== 'undefined') {
+    const sessionInfo = localStorage.getItem('SessionInfo');
+    token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;
+    
+    if (token) {
+      try {
+        expired = this.jwtHelper.isTokenExpired(token);
+        if (expired) {
+          localStorage.removeItem('SessionInfo');
+          token = null;
+        } else {
+          const tokenDecode: DecodedToken = this.jwtHelper.decodeToken(token);
+          _GetCurrentUser = {
+            email: tokenDecode.Email,
+            firstName: tokenDecode.FirstName,
+            id: tokenDecode.id,
+            lastName: tokenDecode.LastName,
+            phoneNumber: tokenDecode.PhoneNumber,
+            roles: tokenDecode.Roles?.split(",") || [],
+            userName: tokenDecode.UserName
+          };
 
-    if (typeof window !== 'undefined') {
-      token = JSON.parse(localStorage.getItem('SessionInfo'))?.accessToken;
-if (token) {
-  
-  try {
-    expired = this.jwtHelper.isTokenExpired(token);
-  } catch {
-    expired = true;
-  }
-  if (!expired && token) {
-    const tokenDecode: DecodedToken = this.jwtHelper.decodeToken(token);
-   _GetCurrentUser={
-    email:tokenDecode.Email,
-    firstName:tokenDecode.FirstName,
-    id:tokenDecode.id,
-    lastName:tokenDecode.LastName,
-    phoneNumber:tokenDecode.PhoneNumber,
-    roles:tokenDecode.Roles.split(","),
-    userName:tokenDecode.UserName
-
-   }
-    if (tokenDecode.Roles.includes(RoleEnums.SuperAdmin)) {
-
-
-
-      _isRole=[RoleEnums.SuperAdmin];
-    } else if (tokenDecode.Roles.includes(RoleEnums.Admin)) {
-     _isRole=[RoleEnums.Admin];
-    } else {
-     _isRole=[RoleEnums.User];
+          if (tokenDecode.Roles?.includes(RoleEnums.SuperAdmin)) {
+            _isRole = [RoleEnums.SuperAdmin];
+          } else if (tokenDecode.Roles?.includes(RoleEnums.Admin)) {
+            _isRole = [RoleEnums.Admin];
+          } else {
+            _isRole = [RoleEnums.User];
+          }
+        }
+      } catch {
+        expired = true;
+        localStorage.removeItem('SessionInfo');
+        token = null;
+      }
     }
   }
+
+  _isAuthenticated = token != null && !expired;
+  
+  // Clear user data if not authenticated
+  if (!_isAuthenticated) {
+    _GetCurrentUser = null;
+    _isRole = [];
+  }
+  
+  return _isAuthenticated;
 }
-    }
-
-    _isAuthenticated = token != null && !expired;
-    return _isAuthenticated
-  }
   signIn(email: string, password: string) {
     this.http
       .post<ResultResponseType<TokenType>, { email: string; password: string }>(
