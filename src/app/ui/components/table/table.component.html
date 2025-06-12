@@ -45,30 +45,42 @@
               <!-- Boolean -->
               <span *ngSwitchCase="'boolean'">{{ item[column] ? 'Yes' : 'No' }}</span>
               
-              <!-- Array -->
-              <span *ngSwitchCase="'array'" class="flex flex-wrap gap-1">
-                <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
-                  <ng-container *ngIf="isImageUrl(el); else notImage">
-                    <img 
-                      [src]="apiDomain + el" 
-                      alt="Image" 
-                      class="w-16 h-16 object-cover rounded" 
-                    />
-                  </ng-container>
-                  <ng-template #notImage>
-                    <ng-container *ngIf="isObject(el); else primitiveValue">
-                      <ul class="flex">
-                        <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
-                          {{ el[key] }} -
-                        </li>
-                      </ul>
-                    </ng-container>
-                    <ng-template #primitiveValue>
-                      {{ el }}
-                    </ng-template>
-                  </ng-template>
-                </span>
-              </span>
+          <span *ngSwitchCase="'array'" class="flex flex-wrap gap-1">
+  <!-- Eğer array değilse ama string ise diziye çevirip tek elemanlı dizi gibi işle -->
+  <ng-container *ngIf="isArray(item[column]); else handleSingleOrMixed">
+    <span *ngFor="let el of item[column]" class="bg-gray-100 px-2 py-1 rounded">
+      <ng-container *ngTemplateOutlet="renderElement; context: { $implicit: el }"></ng-container>
+    </span>
+  </ng-container>
+
+  <ng-template #handleSingleOrMixed>
+    <span class="bg-gray-100 px-2 py-1 rounded">
+      <ng-container *ngTemplateOutlet="renderElement; context: { $implicit: item[column] }"></ng-container>
+    </span>
+  </ng-template>
+</span>
+
+<ng-template #renderElement let-el>
+  <ng-container *ngIf="isImageUrl(el); else notImage">
+    <img 
+      [src]="getCleanedImageUrl(apiDomain +el)" 
+      alt="Image" 
+      class="w-16 h-16 object-cover rounded" 
+    />
+  </ng-container>
+  <ng-template #notImage>
+    <ng-container *ngIf="isObject(el); else primitiveValue">
+      <ul class="flex">
+        <li *ngFor="let key of getObjectKeys(el)" class="text-sm">
+          {{ el[key] }} -
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #primitiveValue>
+      {{ el }}
+    </ng-template>
+  </ng-template>
+</ng-template>
               
               <!-- Object -->
               <span *ngSwitchCase="'object'" class="flex flex-col">

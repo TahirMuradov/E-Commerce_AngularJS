@@ -34,14 +34,7 @@ if(!authService.isAuthenticated &&
     state.url.startsWith('/dashboard')
   ) {
     router.navigate(["/auth/login"])
-    toastrService.message(
-      translateService.instant('clientErrorMessage.againLogin'),
-      translateService.instant('clientErrorMessage.accessDenied'),
-      {
-        messageType: ToastrMessageType.Warning,
-        position: ToastrPosition.TopRight,
-      }
-    );
+  
 
     return false;
   }

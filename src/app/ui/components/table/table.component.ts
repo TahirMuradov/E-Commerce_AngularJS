@@ -58,6 +58,11 @@ apiDomain=environment.apiUrl;
     console.log('No data to extract field names.');
   }
   }
+  getCleanedImageUrl(url: string): string {
+  if (!url) return '';
+
+  return url.replace('/api/', '/');
+}
 onDelete(id:string){
 if (this.deleteAction&&this.editActionLink) {
   
@@ -107,8 +112,8 @@ getObjectKeys(obj: object): string[] {
 
 }
 
-isImageUrl(url: any): boolean {
- 
+isImageUrl(url: string): boolean {
+
  
  if (typeof url !== "string" || !url.trim()) return false;
  
@@ -117,7 +122,9 @@ isImageUrl(url: any): boolean {
 }
 
 getType(value: any): string {
-  if (typeof value === 'string') return 'string';
+  if (typeof value === 'string') {
+    return this.isImageUrl(value) ? 'array' : 'string';  
+  }
   if (typeof value === 'number') return 'number';
   if (typeof value === 'boolean') return 'boolean';
   if (Array.isArray(value)) return 'array';
