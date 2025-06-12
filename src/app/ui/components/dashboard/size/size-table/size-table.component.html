@@ -1,1 +1,12 @@
-<p>size-table works!</p>
+
+<ng-container *ngIf="sizeResponse()?.isSuccess">
+  <app-table
+    (pageEvent)="onChangePage($event)"
+    (searchEvent)="onChangeSearchInput($event)"
+    [responseApi]="sizeResponse"
+    controller="Size"
+    deleteAction="DeleteSize"
+    [editActionLink]="edit"
+    (itemDeleted)="onItemDeleted($event)"
+  ></app-table>
+</ng-container>

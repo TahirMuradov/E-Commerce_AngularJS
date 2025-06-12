@@ -1,27 +1,57 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+    NgModel,
+    ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../../services/common/auth.service';
+
 
 @Component({
   selector: 'app-forgotpassword',
-  imports: [RouterLink,FormsModule],
-  standalone:true,
+  imports: [RouterLink, ReactiveFormsModule,TranslateModule],
+  standalone: true,
   templateUrl: './forgotpassword.component.html',
-  styleUrl: './forgotpassword.component.css'
+  styleUrl: './forgotpassword.component.css',
 })
-export class ForgotpasswordComponent implements OnInit {
-  //template-driven Forms
-  @ViewChild("frm",{static:true})frm:NgForm
-  ngOnInit(): void {
-console.log(this.frm)
-console.log(this.frm.form)
-console.log(this.frm.valid)
-console.log(this.frm.value)
-console.log(this.frm.touched)
-console.log(this.frm.submitted)
-console.log(this.frm.controls)
+export class ForgotpasswordComponent {
+  constructor(
+    private formBuilder: FormBuilder,
+    public translate: TranslateService,
+    private toastr: ToastrService,
+    private authService: AuthService,
+
+  ) {
+    this.frm = formBuilder.group({
+      email:['', [Validators.required]],
+    });
   }
-onSubmitForm(data:{email:string}){
-console.log(data.email)
-}
+  frm: FormGroup;
+  onSubmitForm(): void {
+
+    if (this.frm.valid) {
+      this.authService.forgotPassword(this.frm.controls['email'].value);
+    } else {
+      let errorMessages: string[] = [];
+
+      if (this.frm.controls['email'].errors) {
+        if (this.frm.controls['email'].errors['required']) {
+          errorMessages.push(
+            this.translate.instant('VALIDATION.EmailRequired')
+          );
+        }
+        if (this.frm.controls['email'].errors['email']) {
+          errorMessages.push(this.translate.instant('VALIDATION.EmailType'));
+        }
+      }
+
+      this.toastr.error(errorMessages.join('\n'), 'Error');
+    }
+  }
 }

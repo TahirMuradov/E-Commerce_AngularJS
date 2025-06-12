@@ -1,45 +1,194 @@
 {
   "header": {
-      "your_bag": "Your Bag is",
-      "cart": "Cart",
-      "checkout": "Checkout",
-      "login": "Login",
-      "register": "Register",
-      "total": "Total",
-      "phone": "+994 55 278 43 44",
-      "logo_alt": "Company Logo",
-      "menu": {
-        "home": "Home",
-        "shop": "Shop",
-        "contact": "Contact",
-        "cart_detail": "Cart Detail"
-      },
-      "products": {
-        "product1": "Product Name 1",
-        "product2": "Product Name 2"
-      }
+    "your_bag": "Your Bag is",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "login": "Login",
+    "register": "Register",
+    "total": "Total",
+    "phone": "+994 55 278 43 44",
+    "logo_alt": "Company Logo",
+    "menu": {
+      "home": "Home",
+      "shop": "Shop",
+      "contact": "Contact",
+      "cart_detail": "Cart Detail"
     },
-    "home":{
-      "home-slider": {
-        "btn": "View Details"
-      },
-      "top-category-section":{
-      "btn":"View Details"
-      },
-      "new-arrival-section": {
-        "new-arrival": "New Arrivals"
-      }
+    "products": {
+      "product1": "Product Name 1",
+      "product2": "Product Name 2"
+    }
+  },
+  "home": {
+    "home-slider": {
+      "btn": "View Details"
     },
-    "product-cart":{
-      "btn":"start shopping"
+    "top-category-section": {
+      "btn": "View Details"
     },
-    "not-found":{
-      "return-home":"Home Page"
+    "new-arrival-section": {
+      "new-arrival": "New Arrivals"
+    }
+  },
+  "product-cart": {
+    "btn": "start shopping"
+  },
+  "not-found": {
+    "return-home": "Home Page"
+  },
+  "currencyType": "USD",
+  "VALIDATION": {
+    "FirstnameRequired": "First name is required.",
+    "LastnameRequired": "Last name is required.",
+    "UsernameRequired": "Username is required.",
+    "EmailRequired": "Email is required.",
+    "EmailType": "Invalid email format.",
+    "PhoneRequired": "Phone number is required.",
+    "PhonePattern": "Phone number must be in '+994-xx-xxx-xx-xx' format.",
+    "RequiredPassword": "Password is required.",
+    "PasswordPattern": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character.",
+    "ConfirmPasswordRequired": "Confirm password is required.",
+    "PasswordMismatch": "Password and Confirm Password do not match.",
+    "AddressRequired": "Address is required.",
+    "ConfirmTokenAlreadyUsed": "This confirmation link has already been used or has expired.",
+    "ConfirmedEmail": "Your e-mail has been approved",
+    "UnsupportedLangs": "Unsupported language(s) detected: {{langs}}.",
+    "MissingLangs": "Missing language(s) detected: {{langs}}.",
+    "CategoryCRUD": {
+      "CategoryNameRequired": "Category Name is required.",
+      "CategoryNameMinLength": "Category Name must be at least 3 characters long."
     },
-       "currencyType":"USD",
-    "VALIDATION": {
-    "RequiredPassword": "Password cannot be left empty.",
-    "EmailType": "Please enter a valid email address.",
-    "EmailRequired": "Please enter your email address."
+    "SizeCrud": {
+      "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+      "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    },
+    "ProductCrud": {
+      "requiredtitleaz": "Product Title in Azerbaijani is required!",
+      "requiredtitleru": "Product Title in Russian is required!",
+      "requiredtitleen": "Product Title in English is required!",
+
+      "minlengthtitleru": "Product Title in Russian must be at least 3 characters long!",
+      "minlengthtitleaz": "Product Title in Azerbaijani must be at least 3 characters long!",
+      "minlengthtitleen": "Product Title in English must be at least 3 characters long!",
+
+      "descriptionrequiredaz": "Product Description in Azerbaijani is required!",
+      "descriptionrequiredru": "Product Description in Russian is required!",
+      "descriptionrequireden": "Product Description in English is required!",
+
+      "minlengthdescriptionaz": "Product Description in Azerbaijani must be at least 3 characters long!",
+      "minlengthdescriptionru": "Product Description in Russian must be at least 3 characters long!",
+      "minlengthdescriptionen": "Product Description in English must be at least 3 characters long!",
+
+      "requiredcategoryId": "Product category cannot be empty!",
+      "requiredproductCode": "Product code cannot be empty!",
+
+      "mindiscountPrice": "Discount price cannot be less than 0!",
+      "minprice": "Price cannot be less than or equal to 0!",
+
+      "requiredpictures": "Product image cannot be empty!",
+      "invalidFileTypepictures": "Only JPG, PNG, or GIF files are allowed!"
+    },
+    "DisCountAreaCrud": {
+      "requiredDescriptionContentaz": "Description in Azerbaijani is empty!",
+      "requiredDescriptionContentru": "Description in Russian is empty!",
+      "requiredDescriptionContenten": "Description in English is empty!",
+
+      "minlengthDescriptionContentaz": "Description in Azerbaijani must be at least 3 characters!",
+      "minlengthDescriptionContentru": "Description in Russian must be at least 3 characters!",
+      "minlengthDescriptionContenten": "Description in English must be at least 3 characters!",
+
+      "requiredTitleContentaz": "Title in Azerbaijani is empty",
+      "requiredTitleContentru": "Title in Russian is empty",
+      "requiredTitleContenten": "Title in English is empty",
+
+      "minlengthTitleContentaz": "Title in Azerbaijani must be at least 3 characters!",
+      "minlengthTitleContentru": "Title in Russian must be at least 3 characters!",
+      "minlengthTitleContenten": "Title in English must be at least 3 characters!"
+    },
+    "HomeSliderItemCrud": {
+      "requiredtitleaz": "Title in Azerbaijani is empty!",
+      "requiredtitleru": "Title in Russian is empty!",
+      "requiredtitleen": "Title in English is empty!",
+
+      "minlengthtitleaz": "Title in Azerbaijani must be at least 3 characters long!",
+      "minlengthtitleru": "Title in Russian must be at least 3 characters long!",
+      "minlengthtitleen": "Title in English must be at least 3 characters long!",
+
+      "requireddescriptionaz": "Description in Azerbaijani is empty!",
+      "requireddescriptionru": "Description in Russian is empty!",
+      "requireddescriptionen": "Description in English is empty!",
+
+      "minlengthdescriptionaz": "Description in Azerbaijani must be at least 3 characters long!",
+      "minlengthdescriptionru": "Description in Russian must be at least 3 characters long!",
+      "minlengthdescriptionen": "Description in English must be at least 3 characters long!",
+    
+    "requiredpictures": "Image cannot be empty!"
+    },
+    "TopCategoryAreaCrud": {
+      "requireddescriptionaz": "Description in Azerbaijani is empty!",
+      "requireddescriptionru": "Description in Russian is empty!",
+      "requireddescriptionen": "Description in English is empty!",
+
+      "minlengthdescriptionaz": "Description in Azerbaijani must be at least 3 characters long!",
+      "minlengthdescriptionru": "Description in Russian must be at least 3 characters long!",
+      "minlengthdescriptionen": "Description in English must be at least 3 characters long!",
+
+      "requiredtitleaz": "Title in Azerbaijani is empty!",
+      "requiredtitleru": "Title in Russian is empty!",
+      "requiredtitleen": "Title in English is empty!",
+
+      "minlengthtitleaz": "Title in Azerbaijani must be at least 3 characters long!",
+      "minlengthtitleru": "Title in Russian must be at least 3 characters long!",
+      "minlengthtitleen": "Title in English must be at least 3 characters long!",
+
+      "requiredcategoryId": "Category cannot be empty!",
+      "requiredpictures": "Image cannot be empty!"
+    },
+    "PaymentMethodCrud": {
+      "requireddescriptionaz": "Description in Azerbaijani is empty!",
+      "requireddescriptionru": "Description in Russian is empty!",
+      "requireddescriptionen": "Description in English is empty!",
+
+      "minlengthdescriptionaz": "Description in Azerbaijani must be at least 3 characters long!",
+      "minlengthdescriptionru": "Description in Russian must be at least 3 characters long!",
+      "minlengthdescriptionen": "Description in English must be at least 3 characters long!",
+
+      "requiredtitleaz": "Title in Azerbaijani is empty!",
+      "requiredtitleru": "Title in Russian is empty!",
+      "requiredtitleen": "Title in English is empty!",
+
+      "minlengthtitleaz": "Title in Azerbaijani must be at least 3 characters long!",
+      "minlengthtitleru": "Title in Russian must be at least 3 characters long!",
+      "minlengthtitleen": "Title in English must be at least 3 characters long!"
+    },
+    "ShippingMethodCrud": {
+      "requiredcontentaz": "Content in Azerbaijani is empty!",
+      "requiredcontentru": "Content in Russian is empty!",
+      "requiredcontenten": "Content in English is empty!",
+
+      "minlengthcontentaz": "Content in Azerbaijani must be at least 3 characters long!",
+      "minlengthcontentru": "Content in Russian must be at least 3 characters long!",
+      "minlengthcontenten": "Content in English must be at least 3 characters long!",
+
+      "minprice": "Price cannot be less than or equal to 0!",
+      "mindiscountPrice": "Discount price cannot be less than 0!"
+    }
+  },
+  "MessageType": {
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "success": "Successful operation"
+  },
+  "clientErrorMessage": {
+    "emailConfirmation": "Your e-mail has confirmed you can now access your profile!",
+    "defaultErorContent": "An unknown failure has occurred.",
+    "failedFetchServer": "The server is not accessible!",
+    "serverError": "Server Error!",
+    "forgotPasswordCheckTrue": "Now you can set the new password!",
+    "accessDenied": "Access denied",
+    "accessDeniedContent": "You do not have permission to access this page!",
+    "againLogin": "Login denied",
+    "againLoginContent": "Please log out first!"
   }
 }

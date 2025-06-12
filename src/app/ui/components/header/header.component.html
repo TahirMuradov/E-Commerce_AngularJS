@@ -135,10 +135,16 @@
             </div>
 
             <div class="mx-2 p-2">
-              <a routerLink="/auth/login">{{ "header.login" | translate }}</a> |
-              <a routerLink="/auth/register">{{ "header.register" | translate }}</a> |<br>
-              <a routerLink="/dashboard/users">dashboardUsers</a> | <br>
-              <a class="cursor-pointer" (click)="logout()">SignOut</a>
+      <ng-container *ngIf="!authService.isAuthenticated">
+  <a routerLink="/auth/login">{{ "header.login" | translate }}</a> |
+  <a routerLink="/auth/register">{{ "header.register" | translate }}</a> |
+</ng-container>
+<ng-container *ngIf="authService.isAuthenticated">
+<ng-container *ngIf="authService.isRole.includes(RoleEnum.Admin)||authService.isRole.includes(RoleEnum.SuperAdmin)">
+  <a routerLink="/dashboard">dashboard</a> |
+</ng-container>
+  <a class="cursor-pointer" (click)="logout()">SignOut</a>
+</ng-container>
             </div>
 
             <div class="ml-15 block lg:hidden col-start-2">

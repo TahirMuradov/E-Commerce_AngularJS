@@ -1,1 +1,11 @@
-<p>category-table works!</p>
+<ng-container *ngIf="categoriesResponse()?.isSuccess">
+  <app-table
+  [responseApi]="categoriesResponse"
+  [editActionLink]="edit"
+  controller="Category"
+  deleteAction="DeleteCategory"
+  (pageEvent)="onChangePage($event)"
+  (searchEvent)="onChangeSearchInput($event)"
+    (itemDeleted)="onItemDeleted($event)"
+  ></app-table>
+</ng-container>

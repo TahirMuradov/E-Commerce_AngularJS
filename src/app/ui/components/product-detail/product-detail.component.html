@@ -95,7 +95,7 @@
   
         <div class="slider-container grid grid-cols-2 md:grid-cols-3 gap-3">
           <div class="px-2" *ngFor="let relatedProduct of signalProduct().relatedProducts">
-            <a [routerLink]="'/productdetail/'+relatedProduct.id">
+            <a [routerLink]="'/productdetail/'+relatedProduct.id" [attr.href]="'/products/' + relatedProduct.id">
             <!-- Placeholder for product card -->
             <div class="product-card">
               <img [src]="relatedProduct.imgUrl" [alt]="relatedProduct.title" />

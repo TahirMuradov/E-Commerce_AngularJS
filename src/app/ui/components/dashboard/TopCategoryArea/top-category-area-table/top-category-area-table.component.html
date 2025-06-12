@@ -1,0 +1,11 @@
+<ng-container *ngIf="TopCategoryAreaResponse()?.isSuccess">
+    <app-table
+      (pageEvent)="onChangePage($event)"
+      (searchEvent)="onChangeSearchInput($event)"
+      [responseApi]="TopCategoryAreaResponse"
+controller="TopCategoryArea"
+deleteAction="RemoveTopCategoryArea"
+      [editActionLink]="edit"
+        (itemDeleted)="onItemDeleted($event)"
+    ></app-table>
+</ng-container>

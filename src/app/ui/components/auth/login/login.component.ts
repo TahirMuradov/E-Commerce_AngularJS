@@ -23,17 +23,18 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     private toastr: ToastrService,
+  
     private authService: AuthService
   ) {
     this.frm = formBuilder.group({
       email: ['', [Validators.required]],
-      password: ['', Validators.required],
+      password: ['',[ Validators.required]],
     });
   }
   frm: FormGroup;
   ngOnInit(): void {
-    this.frm.controls['email'].setValue('emilys');
-    this.frm.controls['password'].setValue('emilyspass');
+    this.frm.controls['email'].setValue('muradovtahir01@gmail.com');
+  
   }
   onSubmitForm(): void {
     if (this.frm.valid) {
@@ -41,8 +42,7 @@ export class LoginComponent implements OnInit {
         this.frm.controls['email'].value,
         this.frm.controls['password'].value
       );
-      console.log('Email:', this.frm.controls['email'].value);
-      console.log('Password:', this.frm.controls['password'].value);
+
     } else {
       let errorMessages: string[] = [];
 

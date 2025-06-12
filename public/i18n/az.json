@@ -1,48 +1,193 @@
 {
-    "header": {
-      "currencyType":"AZN",
-        "your_bag": "Səbətiniz",
-        "cart": "Səbət",
-        "checkout": "Ödəniş",
-        "login": "Daxil ol",
-        "register": "Qeydiyyat",
-        "total": "Ümumi",
-        "phone": "+994 55 278 43 44",
-        "logo_alt": "Şirkət loqosu",
-        "menu": {
-          "home": "Əsas səhifə",
-          "shop": "Mağaza",
-          "contact": "Əlaqə",
-          "cart_detail": "Səbət detalları"
-        },
-        "products": {
-          "product1": "Məhsul adı 1",
-          "product2": "Məhsul adı 2"
-        }
-      },
-      "home":{
-        "home-slider":{
-          "btn":"Ətraflı Bax"
-        },
-        "top-category-section":{
-          "btn":"Ətraflı Bax"
-        },
-        "new-arriwal-section":{
-          "new-arriwal":"Yeni Məhsullar"
-        }
+  "header": {
+    "currencyType": "AZN",
+    "your_bag": "Səbətiniz",
+    "cart": "Səbət",
+    "checkout": "Ödəniş",
+    "login": "Daxil ol",
+    "register": "Qeydiyyat",
+    "total": "Ümumi",
+    "phone": "+994 55 278 43 44",
+    "logo_alt": "Şirkət loqosu",
+    "menu": {
+      "home": "Əsas səhifə",
+      "shop": "Mağaza",
+      "contact": "Əlaqə",
+      "cart_detail": "Səbət detalları"
+    },
+    "products": {
+      "product1": "Məhsul adı 1",
+      "product2": "Məhsul adı 2"
+    }
+  },
+  "home": {
+    "home-slider": {
+      "btn": "Ətraflı Bax"
+    },
+    "top-category-section": {
+      "btn": "Ətraflı Bax"
+    },
+    "new-arriwal-section": {
+      "new-arriwal": "Yeni Məhsullar"
+    }
+  },
+  "product-cart": {
+    "btn": "indi alış-veriş edin"
+  },
+  "not-found": {
+    "return-home": "Ana Səhifə"
+  },
 
-      },
-      "product-cart":{
-        "btn":"indi alış-veriş edin"
-      },
-      "not-found":{
-        "return-home":"Ana Səhifə"
-      },
+  "VALIDATION": {
+    "FirstnameRequired": "Ad daxil edilməlidir.",
+    "LastnameRequired": "Soyad daxil edilməlidir.",
+    "UsernameRequired": "İstifadəçi adı daxil edilməlidir.",
+    "EmailRequired": "Email daxil edilməlidir.",
+    "EmailType": "Email formatı yanlışdır.",
+    "PhoneRequired": "Telefon nömrəsi daxil edilməlidir.",
+    "PhonePattern": "Telefon nömrəsi '+994-xx-xxx-xx-xx' formatında olmalıdır.",
+    "RequiredPassword": "Şifrə daxil edilməlidir.",
+    "PasswordPattern": "Şifrə ən azı 6 simvoldan ibarət olmalı və böyük hərf, kiçik hərf, rəqəm və xüsusi simvol daxil etməlidir.",
+    "ConfirmPasswordRequired": "Təkrar şifrə daxil edilməlidir.",
+    "PasswordMismatch": "Şifrə və təkrar şifrə eyni olmalıdır.",
+    "AddressRequired": "Ünvan daxil edilməlidir.",
+    "ConfirmTokenAlreadyUsed": "Bu təsdiq linki artıq istifadə olunub və ya müddəti bitib.",
+    "ConfirmedEmail": "Elektron Poçtunuz təsdiqləndi",
+    "UnsupportedLangs": "Dəstəklənməyən dil(lər) aşkar edildi: {{langs}}.",
+    "MissingLangs": "Əskik dil(lər) aşkar edildi: {{langs}}.",
+    "CategoryCRUD": {
+      "CategoryNameRequired": "Kateqoriya adı tələb olunur.",
+      "CategoryNameMinLength": "Kateqoriya adı ən azı 3 simvol olmalıdır."
+    },
+    "SizeCrud": {
+      "SizeContentRequired": "Ölçü məzmunu tələb olunur.",
+      "SizeContentMinLength": "Ölçü məzmunu ən azı 1 simvol olmalıdır."
+    },
+    "ProductCrud": {
+      "requiredtitleaz": "Azərbaycan dilində Məhsul Başlığı boşdur",
+      "requiredtitleru": "Rus dilində Məhsul Başlığı boşdur",
+      "requiredtitleen": "İngilis dilində Məhsul Başlığı boşdur",
+
+      "minlengthtitleru": "Məhsul Başlığı Rus dilində minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleaz": "Məhsul Başlığı Azərbaycan dilində minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Məhsul Başlığı İngilis dilində minimum 3 simvoldan ibarət olmalıdır!",
+
+      "descriptionrequiredaz": "Azərbaycan dilində Məhsul açıqlaması boşdur!",
+      "descriptionrequiredru": "Rus dilində Məhsul açıqlaması boşdur!",
+      "descriptionrequireden": "İngilis dilində Məhsul açıqlaması boşdur!",
+
+      "minlengthdescriptionaz": "Azərbaycan dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "İngilis dilində Məhsul açıqlaması minimum 3 simvoldan ibarət olmalıdır!",
+
+      "requiredcategoryId": "Məhsul kateqoriyası boş ola bilməz!",
+      "requiredproductCode": "Məhsul kodu boş ola bilməz!",
+
+      "mindiscountPrice": "Endirimli qiymət 0-dan kiçik ola bilməz!",
+      "requireddiscountPrice": "Endirimli qiymət boş",
+      "minprice": "Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
+
+      "requiredpictures": "Məhsul şəkili boş ola bilməz!",
+      "invalidFileTypepictures": "Yalnız JPG, PNG və ya GIF fayllarına icazə verilir"
+    },
+    "DisCountAreaCrud": {
+      "requiredDescriptionContentaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requiredDescriptionContentru": "Rus dilində  açıqlama boşdur!",
+      "requiredDescriptionContenten": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthDescriptionContentaz": "Azərbaycan dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthDescriptionContentru": "Rus dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthDescriptionContenten": "Ingilis dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredTitleContentaz": "Azərbaycan dilində başlıq boşdur",
+      "requiredTitleContentru": "Rus dilində başlıq boşdur",
+      "requiredTitleContenten": "İngilis dilində başlıq boşdur",
+
+      "minlengthTitleContentaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthTitleContentru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthTitleContenten": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!"
+    },
+    "HomeSliderItemCrud": {
+      "requiredtitleaz": "Azərbaycan dilində başlıq boşdur!",
+      "requiredtitleru": "Rus dilində  başlıq boşdur!",
+      "requiredtitleen": "İngilis dilində  başlıq boşdur!",
+
+      "minlengthtitleaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+
+      "requireddescriptionaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requireddescriptionru": "Rus dilində  açıqlama boşdur!",
+      "requireddescriptionen": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthdescriptionaz": "Azərbaycan dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində  məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "Ingilis dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+   
+
+
+    "requiredpictures": "Şəkil boş ola bilməz!"
+    },
+    "TopCategoryAreaCrud": {
+      "requireddescriptionaz": "Azərbaycan dilində açıqlama boşdur!",
+      "requireddescriptionru": "Rus dilində  açıqlama boşdur!",
+      "requireddescriptionen": "İngilis dilində  açıqlama boşdur!",
+
+      "minlengthdescriptionaz": "Azərbaycan dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionru": "Rus dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+      "minlengthdescriptionen": "Ingilis dilində açıqlama min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredtitleaz": "Azərbaycan dilində başlıq boşdur",
+      "requiredtitleru": "Rus dilində başlıq boşdur",
+      "requiredtitleen": "İngilis dilində başlıq boşdur",
+
+      "minlengthtitleaz": "Azərbaycan dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleru": "Rus dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+      "minlengthtitleen": "Ingilis dilində başlıq min 3 simvoldan ibarət olmalıdır!",
+
+      "requiredcategoryId": "Kateqoriya boş ola bilməz!",
+
+
       
-        "VALIDATION": {
-    "RequiredPassword": "Şifrə boş buraxıla bilməz.",
-    "EmailType": "Zəhmət olmasa düzgün e-poçt adresi daxil edin.",
-    "EmailRequired": "Zəhmət olmasa e-poçt adresi daxil edin."
+      "requiredpictures": "Şəkil boş ola bilməz!"
+    },
+    "PaymentMethodCrud": {
+      "requiredcontentaz": "Azərbaycan dilində məzmun boşdur!",
+      "requiredcontentru": "Rus dilində  məzmun boşdur!",
+      "requiredcontenten": "İngilis dilində  məzmun boşdur!",
+
+      "minlengthcontentaz": "Azərbaycan dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontentru": "Rus dilində məzmun minimum 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontenten": "Ingilis dilində məzmun minimum 3 simvoldan ibarət olmalıdır!"
+    },
+    "ShippingMethodCrud": {
+      "requiredcontentaz": "Azərbaycan dilində məzmun boşdur",
+      "requiredcontentru": "Rus dilində məzmun boşdur",
+      "requiredcontenten": "İngilis dilində məzmun boşdur",
+
+      "minlengthcontentaz": "Azərbaycan dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontentru": "Rus dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+      "minlengthcontenten": "Ingilis dilində məzmun min 3 simvoldan ibarət olmalıdır!",
+
+      "minprice": "Qiymət 0-dan kiçik vəya bərabər ola bilməz!",
+      "mindisCountPrice": "Endirimli qiymət 0-dan kiçik ola bilməz!"
+    }
+  },
+  "MessageType": {
+    "error": "Xəta",
+    "warning": "Xəbərdarlıq",
+    "info": "Məlumat",
+    "success": "Uğurlu əməliyyat"
+  },
+  "clientErrorMessage": {
+    "emailConfirmation": "Elektron Poçtunuz təsdiqləndi indi profilinizə daxil ola bilərsiniz!",
+    "defaultErorContent": "Naməlum xəta baş verdi.",
+    "failedFetchServer": "Server əlçatan deyil!",
+    "serverError": "Server xətası!!",
+    "forgotPasswordCheckTrue": "İndi Yeni Şifrəni təyin edə bilərsiniz!",
+    "accessDenied": "Giriş rədd edildi",
+    "accessDeniedContent": "Bu səhifəyə giriş üçün səlahiyətiniz çatmır!",
+    "againLogin": "Sessia vaxtınız bitib.Yenidən daxil olun",
+    "againLoginContent": "İlk öncə çıxış edin!"
   }
-    
 }

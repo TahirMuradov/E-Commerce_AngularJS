@@ -151,14 +151,15 @@
             Register
               </h2>
 
-  <form id="registerForm" class="grid grid-cols-2 gap-2">
+  <form  [formGroup]="frm" (ngSubmit)="onSubmitForm()" class="grid grid-cols-2 gap-2">
                 <div class="mb-4">
                   <label class="mb-2.5 block font-medium text-black">
                     First Name
                   </label>
                   <div class="relative">
                     <input
-                    name="firstname"
+                    formControlName='firstName'
+                    name="firstName"
                       type="text"
                       placeholder="Enter your First name"
                       class="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none"
@@ -193,6 +194,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="lastName"
                     name="lastname"
                       type="text"
                       placeholder="Enter your Last name"
@@ -228,6 +230,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="userName"
                     name="username"
                       type="text"
                       placeholder="Enter your User Name"
@@ -263,6 +266,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="email"
                     name="email"
                       type="email"
                       placeholder="Enter your email"
@@ -294,6 +298,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="phoneNumber"
                     name="phoneNumber"
                       type="tel"
                       placeholder="Enter your phone number"
@@ -314,6 +319,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="adress"
                     name="adress"
                       type="text"
                       placeholder="Enter your address"
@@ -337,6 +343,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="password"
                     name="password"
                       type="password"
                       placeholder="Enter your password"
@@ -372,6 +379,7 @@
                   </label>
                   <div class="relative">
                     <input
+                    formControlName="confirmPassword"
                     name="confirmPassword"
                       type="password"
                       placeholder="Re-enter your password"
