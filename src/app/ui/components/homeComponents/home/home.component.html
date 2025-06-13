@@ -1,7 +1,13 @@
 
-<ng-container *ngIf="HomeDataSignal()?.isSuccess">
+<ng-container *ngIf="HomeDataSignal()?.isSuccess; else errorTemplate">
 {{HomeDataSignal().data.disCountAreas[0].title}}
 </ng-container>
+
+<ng-template #errorTemplate>
+  <div class="text-center text-red-500 p-4">
+    {{ 'clientErrorMessage.failedFetchServer' | translate }}
+  </div>
+</ng-template>
 
 <app-discount-section></app-discount-section>
 <app-homeslider></app-homeslider>

@@ -1,4 +1,4 @@
-import {Component } from '@angular/core';
+import {afterRender, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '../environments/environment';
@@ -11,21 +11,21 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent  {
   title = 'E-Commerce';
 
   constructor(private translate: TranslateService) {
     this.translate.addLangs(environment.supportLanguagesLocale);
     this.translate.setDefaultLang(environment.defaultLanguage);
-
-if (typeof window !== 'undefined') {
-  
-  this.translate.use(
+afterRender(()=>{
+     this.translate.use(
     window && typeof window !== 'undefined'
       ? localStorage?.getItem('Locale') ?? environment.defaultLanguage
       : environment.defaultLanguage
   );
-}
+})
+
  
   }
+
 }

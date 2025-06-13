@@ -25,7 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideNativeDateAdapter(),//for angular material animation
       provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
-       provideServerRendering(),
     provideServerRouting(serverRoutes), 
     provideClientHydration(withEventReplay()),
     provideHttpClient(

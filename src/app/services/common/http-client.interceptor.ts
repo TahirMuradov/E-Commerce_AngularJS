@@ -45,87 +45,92 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(modifiedReq).pipe(
-    finalize(()=>spinner.spinerHide())
-  ,catchError(res=>{
+    catchError(res=>{
+ const isBrowser = typeof window !== 'undefined';
               let errorMessage = '';
-     switch (res.status) {
-        case 0:
-      
-          toastrService.message(translateService.instant("clientErrorMessage.failedFetchServer"), translateService.instant("clientErrorMessage.serverError"), {
-            messageType: ToastrMessageType.Warning,
-            position: ToastrPosition.BottomFullWidth
-          });
-          break;
-        case HttpStatusCode.BadRequest:
-
-
-          if (Array.isArray(res.error?.messages)) {
-            errorMessage = res.error?.messages.join('\n');
-          } else if (typeof res.error?.message === 'string') {
-            errorMessage =res.error?.message;
-          } else {
-            errorMessage = JSON.stringify(res.error);
-          }
-          toastrService.message(errorMessage, translateService.instant("MessageType.warning"), {
-            messageType: ToastrMessageType.Warning,
-            position: ToastrPosition.BottomFullWidth
-          });
-          break;
-        case HttpStatusCode.NotFound:
+              if (res) {
+                
+                switch (res.status) {
+                   case 0:
+       if (isBrowser) {
+              toastrService.message(translateService.instant("clientErrorMessage.failedFetchServer"), translateService.instant("clientErrorMessage.serverError"), {
+                       messageType: ToastrMessageType.Warning,
+                       position: ToastrPosition.BottomFullWidth
+                     });
+        }
+               
+                     break;
+                   case HttpStatusCode.BadRequest:
            
-
-          if (Array.isArray(res.error?.messages)) {
-            errorMessage = res.error?.messages.join('\n');
-          } else if (typeof res.error?.message === 'string') {
-            errorMessage = res.error?.message;
-          } else {
-            errorMessage = JSON.stringify(res.error);
-          }
-          toastrService.message(errorMessage, translateService.instant("MessageType.info"), {
-            messageType: ToastrMessageType.Warning,
-            position: ToastrPosition.BottomFullWidth
-          });
-          break;
-       case HttpStatusCode.Unauthorized||HttpStatusCode.Forbidden:
-        
-          if (Array.isArray(res.error?.messages)) {
-            errorMessage = res.error?.messages.join('\n');
-          } else if (typeof res.error?.message === 'string') {
-            errorMessage = res.error?.message;
-          } else {
-            errorMessage = JSON.stringify(res.error);
-          }
-          toastrService.message(translateService.instant("clientErrorMessage.accessDenied"), translateService.instant("MessageType.info"), {
-            messageType: ToastrMessageType.Info,
-            position: ToastrPosition.BottomFullWidth
-          });
-        break;
-       
-       default:
-                if (Array.isArray(res.error?.messages)) {
-    errorMessage = res.error?.messages.join('\n');
-  } else if (typeof res.error?.message === 'string') {
-    errorMessage = res.error?.message;
-  } else {
-    errorMessage = JSON.stringify(res.error);
-  }
-
-  // Use default message if errorMessage is empty
-  const displayMessage = errorMessage!=='' 
-    ? errorMessage 
-    : translateService.instant("clientErrorMessage.defaultErorContent");
-
-  toastrService.message(
-    displayMessage,
-    translateService.instant("MessageType.error"),
-    {
-      messageType: ToastrMessageType.Error,
-      position: ToastrPosition.BottomFullWidth
-    }
-  );
-  
-          break;
-      }
+           
+                     if (Array.isArray(res.error?.messages)) {
+                       errorMessage = res.error?.messages.join('\n');
+                     } else if (typeof res.error?.message === 'string') {
+                       errorMessage =res.error?.message;
+                     } else {
+                       errorMessage = JSON.stringify(res.error);
+                     }
+                     toastrService.message(errorMessage, translateService.instant("MessageType.warning"), {
+                       messageType: ToastrMessageType.Warning,
+                       position: ToastrPosition.BottomFullWidth
+                     });
+                     break;
+                   case HttpStatusCode.NotFound:
+                      
+           
+                     if (Array.isArray(res.error?.messages)) {
+                       errorMessage = res.error?.messages.join('\n');
+                     } else if (typeof res.error?.message === 'string') {
+                       errorMessage = res.error?.message;
+                     } else {
+                       errorMessage = JSON.stringify(res.error);
+                     }
+                     toastrService.message(errorMessage, translateService.instant("MessageType.info"), {
+                       messageType: ToastrMessageType.Warning,
+                       position: ToastrPosition.BottomFullWidth
+                     });
+                     break;
+                  case HttpStatusCode.Unauthorized||HttpStatusCode.Forbidden:
+                   
+                     if (Array.isArray(res.error?.messages)) {
+                       errorMessage = res.error?.messages.join('\n');
+                     } else if (typeof res.error?.message === 'string') {
+                       errorMessage = res.error?.message;
+                     } else {
+                       errorMessage = JSON.stringify(res.error);
+                     }
+                     toastrService.message(translateService.instant("clientErrorMessage.accessDenied"), translateService.instant("MessageType.info"), {
+                       messageType: ToastrMessageType.Info,
+                       position: ToastrPosition.BottomFullWidth
+                     });
+                   break;
+                  
+                  default:
+                           if (Array.isArray(res.error?.messages)) {
+               errorMessage = res.error?.messages.join('\n');
+             } else if (typeof res.error?.message === 'string') {
+               errorMessage = res.error?.message;
+             } else {
+               errorMessage = JSON.stringify(res.error);
+             }
+           
+             // Use default message if errorMessage is empty
+             const displayMessage = errorMessage!=='' 
+               ? errorMessage 
+               : translateService.instant("clientErrorMessage.defaultErorContent");
+           
+             toastrService.message(
+               displayMessage,
+               translateService.instant("MessageType.error"),
+               {
+                 messageType: ToastrMessageType.Error,
+                 position: ToastrPosition.BottomFullWidth
+               }
+             );
+             
+                     break;
+                 }
+              }
  return throwError(() => res);
       
   }),
@@ -155,6 +160,9 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
       }
       return res;
     }),
+    finalize(()=>spinner.spinerHide())
+  
+  
     // map((event: HttpEvent<any>) => {
 
     //                 if (event instanceof HttpResponse) {

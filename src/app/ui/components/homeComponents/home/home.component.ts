@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, effect, OnInit, signal } from '@angular/core';
 import { HomesliderComponent } from '../homeslider/homeslider.component';
 import { DiscountSectionComponent } from '../discount-section/discount-section.component';
 import { TopCategorySectionComponent } from '../top-category-section/top-category-section.component';
@@ -7,8 +7,9 @@ import { HttpClientService } from '../../../../services/common/http-client.servi
 import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.service';
 import ResultResponseType from '../../../../models/responseType/ResultResponseType';
 import GetAllHomeDataType from '../../../../models/DTOs/WebUIDTOs/GetAllHomeDataType';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {NgIf} from "@angular/common"
+import { homeSliderData } from '../../../../models/ui/HomeSliderDataType';
 @Component({
   selector: 'app-home',
   imports: [
@@ -16,7 +17,7 @@ import {NgIf} from "@angular/common"
     DiscountSectionComponent,
     TopCategorySectionComponent,
     NewArriwalSectionComponent,
-    NgIf
+    NgIf,TranslateModule
   ],
   standalone: true,
   templateUrl: './home.component.html',
@@ -28,21 +29,35 @@ export class HomeComponent{
     private spinnerService: SpinnerLoadingService,
     private translateService:TranslateService
   ) {
+effect(()=>{
+  const HomeDataSignal=this.HomeDataSignal()
+  if (HomeDataSignal) {
+    console.log(HomeDataSignal)
+  }
+})
+ 
 translateService.onLangChange.subscribe(lang=>{
 
-  if (lang) {
-    
-    this.httpClientService.get<ResultResponseType<GetAllHomeDataType>>({controller:"Home",action:"GetAllData"})
-    .subscribe({next:(response:ResultResponseType<GetAllHomeDataType>)=>{
-   if (response?.isSuccess) {
-     this.HomeDataSignal.set(response)
-   }
-    }})
-  }
+this.getHomeData()
 })
 
 
   }
-HomeDataSignal=signal<ResultResponseType<GetAllHomeDataType>>(null)
 
+HomeDataSignal=signal<ResultResponseType<GetAllHomeDataType>>(null)
+ngOnInit(){
+  
+    this.getHomeData() 
+}
+getHomeData(){
+   this.httpClientService.get<ResultResponseType<GetAllHomeDataType>>({controller:"Home",action:"GetAllData"})
+    .subscribe({next:(response:ResultResponseType<GetAllHomeDataType>)=>{
+   if (response?.isSuccess) {
+
+     this.HomeDataSignal.set(response)
+   }
+    }
+  
+  })
+}
 }

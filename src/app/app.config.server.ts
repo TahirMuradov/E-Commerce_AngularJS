@@ -8,6 +8,7 @@ import {HttpClient, provideHttpClient} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './i18n/', '.json');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
