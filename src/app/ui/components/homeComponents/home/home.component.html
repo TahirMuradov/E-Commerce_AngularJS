@@ -1,5 +1,7 @@
 
-
+<ng-container *ngIf="HomeDataSignal()?.isSuccess">
+{{HomeDataSignal().data.disCountAreas[0].title}}
+</ng-container>
 
 <app-discount-section></app-discount-section>
 <app-homeslider></app-homeslider>
