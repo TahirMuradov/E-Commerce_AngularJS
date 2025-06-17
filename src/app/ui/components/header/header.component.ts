@@ -51,25 +51,16 @@ export class HeaderComponent {
     }
   }
 
-  // currencyCode = 'AZN'; // Can be made dynamic based on language
+ 
 
   useLanguage(event: Event): void {
     const lang = (event.target as HTMLSelectElement).value;
     if (lang && environment.supportLanguagesLocale.includes(lang)) {
-      localStorage.setItem('Locale', lang);
       this.currentLocale = lang;
       this.translate.use(lang);
 
-      // this.updateCurrencyCode(lang);
     }
   }
 
-  // private updateCurrencyCode(lang: string): void {
-  //   const currencyMap: {[key: string]: string} = {
-  //     'en': 'USD',
-  //     'ru': 'RUB',
-  //     'az': 'AZN'
-  //   };
-  //   this.currencyCode = currencyMap[lang] || 'AZN';
-  // }
+
 }

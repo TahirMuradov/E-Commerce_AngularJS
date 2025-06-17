@@ -7,14 +7,15 @@ import { catchError, finalize,  tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
+
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
   const toastrService=inject(CustomToastrService)
-  let currentLocale =  translateService.currentLang?? environment.defaultLanguage;
+
+    let currentLocale =  translateService.currentLang?? environment.defaultLanguage;
 
 
   let modifiedReq = req;
-
 
   let token: string | null = null;
 
@@ -22,7 +23,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
 
     spinner.spinerShow();
 
-    currentLocale=localStorage.getItem("Locale")??currentLocale;
+
 
     const sessionInfo = localStorage.getItem('SessionInfo');
     token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;

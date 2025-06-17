@@ -9,6 +9,7 @@ import GetAllHomeDataType from '../../../../models/DTOs/WebUIDTOs/GetAllHomeData
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {NgIf} from "@angular/common"
 import { Subscription } from 'rxjs';
+import { CookieManagerService } from '../../../../services/common/cookie-manager.service';
 @Component({
   selector: 'app-home',
   imports: [
@@ -34,9 +35,10 @@ effect(()=>{
   }
 })
  
- this.translateSubscribe= translateService.onLangChange.subscribe(lang=>{
+ this.translateSubscribe= translateService.onLangChange.subscribe(()=>{
 
 this.getHomeData()
+
 }) 
 
 

@@ -29,6 +29,7 @@
     "@types/web": "^0.0.235",
     "express": "^4.18.2",
     "jquery": "^3.7.1",
+    "ngx-cookie-service": "^19.1.2",
     "ngx-owl-carousel-o": "^19.0.2",
     "ngx-slick-carousel": "^19.0.0",
     "ngx-spinner": "^19.0.0",
