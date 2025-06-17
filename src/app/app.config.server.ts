@@ -14,6 +14,7 @@ const serverConfig: ApplicationConfig = {
     provideServerRendering(),
     provideServerRouting(serverRoutes),
     provideHttpClient(),
+    
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

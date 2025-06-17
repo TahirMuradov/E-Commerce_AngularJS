@@ -1,27 +1,28 @@
-import {HttpInterceptorFn, HttpResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpInterceptorFn,  HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../environments/environment';
 import { SpinnerLoadingService } from '../ui/spinner-loading.service';
 import { catchError, finalize,  tap, throwError } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
-import { ActivatedRoute, Router } from '@angular/router';
+
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
   const toastrService=inject(CustomToastrService)
-  const router=inject(Router)
-  const activatedRoute=inject(ActivatedRoute)
+
   let currentLocale =  environment.defaultLanguage;
   let modifiedReq = req;
+
 
   let token: string | null = null;
 
   if (typeof window !== 'undefined' && window.localStorage) {
+    spinner.spinerShow();
 
     currentLocale=localStorage.getItem("Locale")??currentLocale;
 
-     spinner.spinerShow();
+     
     currentLocale=localStorage.getItem("Locale")??environment.defaultLanguage;
 
     const sessionInfo = localStorage.getItem('SessionInfo');
@@ -114,7 +115,7 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
                errorMessage = JSON.stringify(res.error);
              }
            
-             // Use default message if errorMessage is empty
+         
              const displayMessage = errorMessage!=='' 
                ? errorMessage 
                : translateService.instant("clientErrorMessage.defaultErorContent");
@@ -134,46 +135,44 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
  return throwError(() => res);
       
   }),
-  tap((res: any) => {
+  // tap((res: any) => {
 
-    const responseBody = res.body;
-    let messages:string[]=[]
-      if (res instanceof HttpResponse) {
+  //   const responseBody = res.body;
+  //    const isBrowser = typeof window !== 'undefined';
+  //   let messages:string[]=[]
+  //     if (res instanceof HttpResponse) {
      
-        if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
-      if (typeof responseBody?.message === 'string') {
-        messages.push(responseBody.message);
-      }
-     if (Array.isArray(responseBody?.messages)) {
-        messages.push(...responseBody.messages);
-      }
-          toastrService.message(
-          messages.join("\n")??"",
-            translateService.instant("MessageType.success"),
-            {
-              messageType: ToastrMessageType.Success,
-              position: ToastrPosition.BottomFullWidth
-            }
-          );
-        }
+  //       if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+  //     if (typeof responseBody?.message === 'string') {
+  //       messages.push(responseBody.message);
+  //     }
+  //    if (Array.isArray(responseBody?.messages)) {
+  //       messages.push(...responseBody.messages);
+  //     }
+  //     if (isBrowser) {
+        
+  //       toastrService.message(
+  //       messages.join("\n")??"",
+  //         translateService.instant("MessageType.success"),
+  //         {
+  //           messageType: ToastrMessageType.Success,
+  //           position: ToastrPosition.BottomFullWidth
+  //         }
+  //       );
+  //     }
+  //       }
 
+  //     }
+  //     return res;
+  //   }),
+    finalize(()=>{
+       const isBrowser = typeof window !== 'undefined';
+      if (isBrowser) {
+        
+        spinner.spinerHide()
       }
-      return res;
+
+
     }),
-    finalize(()=>spinner.spinerHide())
-  
-  
-    // map((event: HttpEvent<any>) => {
-
-    //                 if (event instanceof HttpResponse) {
-    //                   if (event.ok) {
-    //                      console.log('Success');
-    //                   } else {
-    //                     console.log('Error');
-    //                   }
-    //                 }
-            
-    //                 return event;
-    //               })
 );
 };

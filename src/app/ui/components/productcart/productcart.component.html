@@ -1,7 +1,7 @@
 
 <ng-container>
 
-    <div class="animate-fade-up animate-ease-in max-w-xs  rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div class="transition duration-150 ease-in-out animate-fade-up animate-ease-in max-w-xs rounded overflow-hidden shadow-lg hover:shadow-xl">
       
      <a [routerLink]="'/productdetail/' + product.id" class="cursor-pointer">
 
@@ -9,7 +9,7 @@
 
         <!-- Product Image -->
           <div class="relative">
-            <img class="w-full h-64 object-cover" src="img/product-img/product-1.jpg" alt="Jeans midi cocktail dress">
+            <img [style]="`view-transition-name:product${product.id}`" class="transition duration-150 ease-in-out w-full h-64 object-cover" src="img/product-img/product-1.jpg" alt="Jeans midi cocktail dress">
            
            
             <!-- Category Badge -->

@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withViewTransitions } from '@angular/router';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),//for angular material animation
     provideNativeDateAdapter(),//for angular material animation
       provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes),
+    provideRouter(routes,withViewTransitions()),
     provideServerRouting(serverRoutes), 
     provideClientHydration(withEventReplay()),
     provideHttpClient(

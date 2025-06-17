@@ -1,4 +1,4 @@
-import {afterRender, Component, OnInit } from '@angular/core';
+import {afterRender, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '../environments/environment';
@@ -17,13 +17,7 @@ export class AppComponent  {
   constructor(private translate: TranslateService) {
     this.translate.addLangs(environment.supportLanguagesLocale);
     this.translate.setDefaultLang(environment.defaultLanguage);
-afterRender(()=>{
-     this.translate.use(
-    window && typeof window !== 'undefined'
-      ? localStorage?.getItem('Locale') ?? environment.defaultLanguage
-      : environment.defaultLanguage
-  );
-})
+
 
  
   }

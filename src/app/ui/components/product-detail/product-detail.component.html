@@ -1,6 +1,6 @@
 
 
-  <section *ngIf="signalProduct()!=null" class="single_product_details_area section_padding_0_100">
+  <section *ngIf="signalProduct()!=null" class="transition duration-150 ease-in-out single_product_details_area section_padding_0_100">
     <div class="w-4/5 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="w-full">
@@ -11,10 +11,11 @@
   
       <div class="w-full" >
         <img
+      [style]="`view-transition-name:product${signalProduct().id}`"
           [src]="imgUrl"
           alt="Product Description"
           style="max-width: 345px; max-height: 498px"
-          class="object-cover object-center"
+          class="transition duration-150 ease-in-out object-cover object-center"
           [alt]="signalProduct().title"
         />
       </div>
