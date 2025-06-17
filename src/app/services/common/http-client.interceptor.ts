@@ -10,20 +10,19 @@ export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
   const translateService = inject(TranslateService);
   const spinner=inject(SpinnerLoadingService)
   const toastrService=inject(CustomToastrService)
+  let currentLocale =  translateService.currentLang?? environment.defaultLanguage;
 
-  let currentLocale =  environment.defaultLanguage;
+
   let modifiedReq = req;
 
 
   let token: string | null = null;
 
   if (typeof window !== 'undefined' && window.localStorage) {
+
     spinner.spinerShow();
 
     currentLocale=localStorage.getItem("Locale")??currentLocale;
-
-     
-    currentLocale=localStorage.getItem("Locale")??environment.defaultLanguage;
 
     const sessionInfo = localStorage.getItem('SessionInfo');
     token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;

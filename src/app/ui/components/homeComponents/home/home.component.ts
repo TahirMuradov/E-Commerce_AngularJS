@@ -1,15 +1,14 @@
-import { AfterViewInit, Component, effect, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
 import { HomesliderComponent } from '../homeslider/homeslider.component';
 import { DiscountSectionComponent } from '../discount-section/discount-section.component';
 import { TopCategorySectionComponent } from '../top-category-section/top-category-section.component';
 import { NewArriwalSectionComponent } from '../new-arriwal-section/new-arriwal-section.component';
 import { HttpClientService } from '../../../../services/common/http-client.service';
-import { SpinnerLoadingService } from '../../../../services/ui/spinner-loading.service';
 import ResultResponseType from '../../../../models/responseType/ResultResponseType';
 import GetAllHomeDataType from '../../../../models/DTOs/WebUIDTOs/GetAllHomeDataType';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {NgIf} from "@angular/common"
-import { homeSliderData } from '../../../../models/ui/HomeSliderDataType';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   imports: [
@@ -23,10 +22,9 @@ import { homeSliderData } from '../../../../models/ui/HomeSliderDataType';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent{
+export class HomeComponent implements OnDestroy{
   constructor(
     private httpClientService: HttpClientService,
-    private spinnerService: SpinnerLoadingService,
     private translateService:TranslateService
   ) {
 effect(()=>{
@@ -36,13 +34,17 @@ effect(()=>{
   }
 })
  
-translateService.onLangChange.subscribe(lang=>{
+ this.translateSubscribe= translateService.onLangChange.subscribe(lang=>{
 
 this.getHomeData()
-})
+}) 
 
 
   }
+  ngOnDestroy(): void {
+      this.translateSubscribe.unsubscribe();
+  }
+ translateSubscribe:Subscription;
 
 HomeDataSignal=signal<ResultResponseType<GetAllHomeDataType>>(null)
 ngOnInit(){
