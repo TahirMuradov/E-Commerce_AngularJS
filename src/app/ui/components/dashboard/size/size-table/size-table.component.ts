@@ -27,7 +27,7 @@ export class SizeTableComponent {
     search: '',
   });
 deleteLink: string = 'deleteLink';
-  edit: string = '/dashboard/size';
+  edit: string = '/dashboard/size/edit';
     sizeResponse=signal< ResultResponseType<PaginatedListType<GetSizeType>>>(null);
       private timeout: any = null;
     onChangeSearchInput(search: string) {
