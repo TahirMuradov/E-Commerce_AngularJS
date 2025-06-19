@@ -7,7 +7,7 @@
         <div class="laungugage_box lg:w-1/4 col-span-1">
           <select (change)="useLanguage($event)" class="language-selector">
             <ng-container *ngFor="let lang of supportLangs">
-              <option [value]="lang" [selected]="lang === currentLocale">
+              <option [value]="lang" [selected]="lang == currentLocale">
                 {{ lang }}
               </option>
             </ng-container>

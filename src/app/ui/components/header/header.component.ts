@@ -6,7 +6,7 @@ import { BasketService } from '../../../services/globalStateServices/basketState
 import { AuthService } from '../../../services/common/auth.service';
 import { environment } from '../../../../environments/environment';
 import { RoleEnums } from '../../../models/enums/RoleEnums';
-
+import { SsrCookieServiceService } from '../../../services/common/ssr-cookie-service.service';
 @Component({
   selector: 'app-header',
   imports: [ CurrencyPipe, TranslateModule, RouterLink,CommonModule],
@@ -19,6 +19,7 @@ export class HeaderComponent {
     private translate: TranslateService,
     public basketService: BasketService,
     public authService: AuthService,
+    private ssrCookieService:SsrCookieServiceService
     
   ) {}
   readonly RoleEnum = RoleEnums;
@@ -58,6 +59,13 @@ export class HeaderComponent {
     if (lang && environment.supportLanguagesLocale.includes(lang)) {
       this.currentLocale = lang;
       this.translate.use(lang);
+     if (this.ssrCookieService.check("Locale")) {
+      this.ssrCookieService.deleteAll("Locale")
+    console.log(this.ssrCookieService.getAll())
+     }
+      this.ssrCookieService.set("Locale",lang)
+    
+      
 
     }
   }

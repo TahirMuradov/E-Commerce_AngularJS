@@ -9,7 +9,7 @@ import GetAllHomeDataType from '../../../../models/DTOs/WebUIDTOs/GetAllHomeData
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {NgIf} from "@angular/common"
 import { Subscription } from 'rxjs';
-import { CookieManagerService } from '../../../../services/common/cookie-manager.service';
+import { SsrCookieService } from 'ngx-cookie-service-ssr';
 @Component({
   selector: 'app-home',
   imports: [
@@ -26,7 +26,8 @@ import { CookieManagerService } from '../../../../services/common/cookie-manager
 export class HomeComponent implements OnDestroy{
   constructor(
     private httpClientService: HttpClientService,
-    private translateService:TranslateService
+    private translateService:TranslateService,
+    	private cookieService: SsrCookieService,
   ) {
 effect(()=>{
   const HomeDataSignal=this.HomeDataSignal()
@@ -50,7 +51,6 @@ this.getHomeData()
 
 HomeDataSignal=signal<ResultResponseType<GetAllHomeDataType>>(null)
 ngOnInit(){
-  
     this.getHomeData() 
 }
 getHomeData(){
