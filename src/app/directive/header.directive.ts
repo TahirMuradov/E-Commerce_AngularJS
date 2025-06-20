@@ -6,6 +6,33 @@ import { Directive, ElementRef, HostBinding, HostListener, Input, input } from '
 export class HeaderDirective {
 constructor(private el: ElementRef) {}
 
+/*
+       Mouse Events:
+click: When the mouse button is clicked on the element.
+dblclick: When the mouse button is double-clicked on the element.
+mousedown: When a mouse button is pressed down over the element.
+mouseup: When a mouse button is released over the element.
+mouseenter: When the mouse pointer enters the element's area.
+mouseleave: When the mouse pointer leaves the element's area.
+mousemove: When the mouse pointer moves while over the element.
+mouseover: When the mouse pointer enters the element or one of its children.
+mouseout: When the mouse pointer leaves the element or one of its children.
+contextmenu: When the right mouse button is clicked on the element.
+      Keyboard Events:
+keydown: When a key is pressed down.
+keyup: When a key is released.
+keypress: When a key is pressed and released.
+       Input/Form Events:
+change: When the value of an input element changes and is committed (e.g., blur, enter key).
+input: When the value of an input element changes (immediately).
+focus: When an element receives focus.
+blur: When an element loses focus.
+submit: When a form is submitted.
+       Window/Document Events (with prefix):
+window:scroll: When the window is scrolled.
+document:click: When a click occurs anywhere on the document.
+window:resize: When the browser window is resized.
+window:beforeunload: Before the browser window or tab is closed. */
 
 /*
 for structural directive
