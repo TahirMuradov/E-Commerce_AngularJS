@@ -45,7 +45,7 @@ if (clientLocale !== serverLocale && translateService.currentLang !== serverLoca
 
   let token: string | null = null;
   if (typeof window !== 'undefined' && window.localStorage) {
-      spinner.spinerShow();
+      spinner.spinerShow(); 
     const sessionInfo = localStorage.getItem('SessionInfo');
     token = sessionInfo ? JSON.parse(sessionInfo)?.accessToken : null;
   }

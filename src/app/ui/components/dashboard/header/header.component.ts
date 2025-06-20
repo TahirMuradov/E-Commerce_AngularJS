@@ -2,10 +2,11 @@ import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { AuthService } from '../../../../services/common/auth.service';
 import { RouterLink } from '@angular/router';
+import { HeaderDirective } from '../../../../directive/header.directive';
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass, RouterLink],
+  imports: [NgClass, RouterLink,  HeaderDirective],
   standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -15,44 +16,19 @@ export class HeaderComponent {
     this.atuhService.identityCheck();
   }
 
-  clickData = signal({
-    userDropdownOpen: false,
-    categoryDropdown: false,
-    sizeDropdown: false,
-    productDropDown: false,
-    barsClick: false,
-    disCountArea:false,
-    homesliderItem:false,
-    topCategoryArea:false,
-      paymentMethod:false,
-    shippingMethod:false,
-    users:false
-  });
+ clickVisible = signal({
+  barsVisible:false,
+  userDropDown:false
+ });
   onclick(
-    userDropdownOpen: boolean,
-    categoryDropdown: boolean,
-    sizeDropdown: boolean,
-    productDropDown: boolean,
+
     barsClick: boolean,
-    disCountArea:boolean,
-    homesliderItem:boolean,
-    topCategoryArea:boolean,
-    paymentMethod:boolean,
-    shippingMethod:boolean,
-    users:boolean
+    userDropDown:boolean
   ) {
-    this.clickData.set({
-      barsClick: barsClick,
-      categoryDropdown: categoryDropdown,
-      productDropDown: productDropDown,
-      sizeDropdown: sizeDropdown,
-      userDropdownOpen: userDropdownOpen,
-      disCountArea:disCountArea,
-      homesliderItem:homesliderItem,
-      topCategoryArea:topCategoryArea,
-        paymentMethod:paymentMethod,
-    shippingMethod:shippingMethod,
-    users:users
-    });
+    this.clickVisible.set({
+barsVisible:barsClick,
+userDropDown:userDropDown
+    }  
+    );
   }
 }

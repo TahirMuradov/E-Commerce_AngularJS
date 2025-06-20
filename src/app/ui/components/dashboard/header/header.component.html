@@ -1,4 +1,4 @@
-<nav
+<nav 
   class="fixed top-0 z-50 w-full bg-blue border-b border-gray-200 dark:text-slate-400 dark:bg-slate-800"
 >
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -7,17 +7,8 @@
         <button
           (click)="
             onclick(
-              false,
-              false,
-              false,
-              false,
-              !clickData().barsClick,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false
+    ! clickVisible().barsVisible,
+     clickVisible().userDropDown
             )
           "
           type="button"
@@ -52,17 +43,9 @@
             <button
               (click)="
                 onclick(
-                  !clickData().userDropdownOpen,
-                  false,
-                  false,
-                  false,
-                  clickData().barsClick,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false,
-                  false
+                !clickVisible().userDropDown,
+                clickVisible().barsVisible
+              
                 )
               "
               type="button"
@@ -80,7 +63,7 @@
           <div
             class="z-50 transform transition-opacity"
             [ngClass]="
-              clickData().userDropdownOpen
+              clickVisible().userDropDown
                 ? 'block opacity-100'
                 : 'opacity-0 hidden'
             "
@@ -128,29 +111,15 @@
 
 <aside
   id="logo-sidebar"
-  [ngClass]="{ 'translate-x-0': clickData().barsClick }"
+  [ngClass]="{ 'translate-x-0': clickVisible().barsVisible}"
   class="fixed top-0 left-0 -translate-x-full z-40 w-64 h-screen pt-20 transition-transform border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
   aria-label="Sidebar"
 >
   <div class="h-full px-3 pb-4 overflow-y-auto dark:bg-gray-800">
     <ul class="space-y-2 font-medium">
-      <li>
+      <li appHeader >
         <button
-          (click)="
-            onclick(
-              false,
-              !clickData().categoryDropdown,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false
-            )
-          "
+       
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -190,7 +159,6 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().categoryDropdown }"
           class="py-2 space-y-2"
         >
           <li>
@@ -210,23 +178,9 @@
         
         </ul>
       </li>
-      <li>
+      <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              !clickData().sizeDropdown,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false
-            )
-          "
+   
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -266,7 +220,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().sizeDropdown }"
+      
           class="py-2 space-y-2"
         >
           <li>
@@ -286,23 +240,9 @@
         </ul>
       </li>
 
-      <li>
+      <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              !clickData().productDropDown,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-              false,
-              false,
-              false
-            )
-          "
+        
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -342,7 +282,6 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().productDropDown }"
           class="py-2 space-y-2"
         >
           <li>
@@ -361,23 +300,9 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              !clickData().disCountArea,
-              false,
-              false,
-              false,
-              false,
-              false
-            )
-          "
+      
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -417,7 +342,6 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().disCountArea }"
           class="py-2 space-y-2"
         >
           <li>
@@ -436,23 +360,9 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              !clickData().homesliderItem,
-              false,
-              false,
-              false,
-              false
-            )
-          "
+         
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -492,7 +402,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().homesliderItem }"
+
           class="py-2 space-y-2"
         >
           <li>
@@ -511,23 +421,9 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              !clickData().topCategoryArea,
-              false,
-              false,
-              false
-            )
-          "
+       
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -567,7 +463,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().topCategoryArea }"
+        
           class="py-2 space-y-2"
         >
           <li>
@@ -587,23 +483,9 @@
         </ul>
         
       </li>
-          <li>
+          <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-             false,
-             !clickData().shippingMethod,
-             false
-            )
-          "
+    
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -643,7 +525,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().shippingMethod }"
+        
           class="py-2 space-y-2"
         >
           <li>
@@ -663,23 +545,9 @@
         </ul>
         
       </li>
-          <li>
+          <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-              !clickData().paymentMethod,
-              false,
-              false
-            )
-          "
+      
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -719,7 +587,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().paymentMethod }"
+     
           class="py-2 space-y-2"
         >
           <li>
@@ -739,23 +607,9 @@
         </ul>
         
       </li>
-          <li>
+          <li appHeader>
         <button
-          (click)="
-            onclick(
-              false,
-              false,
-              false,
-              false,
-              clickData().barsClick,
-              false,
-              false,
-              false,
-             false,
-              false,
-              !clickData().users
-            )
-          "
+    
           type="button"
           class="flex cursor-pointer items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           aria-controls="dropdown-example"
@@ -795,7 +649,7 @@
         </button>
         <ul
           id="dropdown-example"
-          [ngClass]="{ hidden: !clickData().users }"
+        
           class="py-2 space-y-2"
         >
           <li>
@@ -815,7 +669,7 @@
 
 <div
   (click)="
-    onclick(false, false, false, false, !clickData().barsClick, false, false,false,false,false,false)
+    onclick(!clickVisible().barsVisible,clickVisible().userDropDown)
   "
   class="p-4 sm:ml-64"
 >
