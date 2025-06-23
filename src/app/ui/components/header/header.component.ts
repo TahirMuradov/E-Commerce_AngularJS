@@ -27,9 +27,14 @@ export class HeaderComponent {
   currentLocale: string;
   supportLangs: string[];
   ngOnInit() {
-    this.currentLocale = this.translate.currentLang;
+    const ssrCokkieLocale=this.ssrCookieService.get("Locale")
+ 
+      
+      this.currentLocale =   ssrCokkieLocale|| this.translate.currentLang;
+    
     this.supportLangs = this.translate.getLangs();
     this.authService.identityCheck();
+
   }
 
   clickSignal = signal({
@@ -61,7 +66,7 @@ export class HeaderComponent {
       this.translate.use(lang);
      if (this.ssrCookieService.check("Locale")) {
       this.ssrCookieService.deleteAll("Locale")
-    console.log(this.ssrCookieService.getAll())
+  
      }
       this.ssrCookieService.set("Locale",lang)
     
