@@ -1,8 +1,16 @@
 {
     "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
+      { "source": "/(.*)",   "destination": "/api" }
     ],
     "cleanUrls": true,
-    "trailingSlash": false
+    "trailingSlash": false,
+       "version": 2,
+    "public": true,
+    "name": "E-Commerce",
+    "functions": {
+      "api/index.js": {
+        "includeFiles": "dist/E-Commerce/**"
+      }
+    }
   }
   
