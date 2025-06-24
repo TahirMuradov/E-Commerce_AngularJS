@@ -1,18 +1,16 @@
 {
   "version": 2,
-      "rewrites": [
-      { "source": "/(.*)",   "destination": "/" }
-    ],
-  "builds": [
-    {
-      "src": "dist/e-commerce/server/main.js",
-      "use": "@vercel/node"
-    }
+  "public": true,
+  "name": "e-commerce",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/" }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/e-commerce/server/main.js"
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/e-commerce/**"
     }
-  ]
+  }
 }
