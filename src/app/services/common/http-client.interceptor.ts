@@ -18,6 +18,8 @@ function setCookie(name: string, value: string, days = 365) {
 }
 
 export const httpClientInterceptor: HttpInterceptorFn = (req, next) => {
+
+
   const translateService = inject(TranslateService);
   const spinner = inject(SpinnerLoadingService);
   const toastrService = inject(CustomToastrService);
