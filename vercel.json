@@ -3,14 +3,13 @@
   "public": true,
   "name": "e-commerce",
   "cleanUrls": true,
-  "devCommand":"node dist/e-commerce/server/main.js",
   "trailingSlash": false,
   "rewrites": [
     { "source": "/(.*)", "destination": "/api" }
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/e-commerce/**"
+      "includeFiles": "dist/e-commerce/browser/**"
     }
   }
 }
