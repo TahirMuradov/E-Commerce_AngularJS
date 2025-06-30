@@ -14,7 +14,7 @@ const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-const app = express();
+export const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
