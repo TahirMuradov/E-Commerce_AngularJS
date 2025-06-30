@@ -5,5 +5,6 @@ export default interface ResultResponseType<T>{
     isSuccess:boolean,
     message:string|null,
     messages:string[]|null,
-    statusCode:number
+    statusCode:number,
+    responseLangCode: string
 }
