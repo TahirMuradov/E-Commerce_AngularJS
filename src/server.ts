@@ -9,10 +9,10 @@ import { dirname, resolve } from 'node:path';
 
 import { fileURLToPath } from 'node:url';
 
-// const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 
-// const browserDistFolder = resolve(serverDistFolder, '../browser');
-
+const browserDistFolder = resolve(serverDistFolder, '../browser');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
  const app = express();
 const angularApp = new AngularNodeAppEngine();
@@ -32,13 +32,13 @@ const angularApp = new AngularNodeAppEngine();
 /**
  * Serve static files from /browser
  */
-// app.use(
-//   express.static(browserDistFolder, {
-//     maxAge: '1y',
-//     index: false,
-//     redirect: false,
-//   }),
-// );
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
 
 /**
  * Handle all other requests by rendering the Angular application.
