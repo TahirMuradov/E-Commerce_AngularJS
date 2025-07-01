@@ -29,7 +29,7 @@ export async function netlifyCommonEngineHandler(request: Request, context: any)
   //   return Response.json({ message: 'Hello from the API' });
   // }
 
-  return await render(angularApp)
+  return await render(CommonEngine)
 }
 /**
  * Example Express Rest API endpoints can be defined here.
