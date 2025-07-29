@@ -399,6 +399,14 @@ for (const picture of this.newPictureSignal()) {
 
   const updatedOldPhotos = this.oldPicturePathSignal().filter(x => x !== photoUrl);
   this.oldPicturePathSignal.set(updatedOldPhotos);
+          const currentProduct = this.productSignal();
+      if (currentProduct) {
+        const updatedProduct = {
+          ...currentProduct,
+          imageUrls: currentProduct.imageUrls.filter((url) => url !== photoUrl),
+        };
+        this.productSignal.set(updatedProduct);
+      }
 }}
     }
   }
