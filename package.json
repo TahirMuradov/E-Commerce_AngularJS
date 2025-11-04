@@ -23,6 +23,7 @@
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.9",
     "@auth0/angular-jwt": "^5.2.0",
+    "@microsoft/signalr": "^9.0.6",
     "@netlify/angular-runtime": "^2.4.0",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
